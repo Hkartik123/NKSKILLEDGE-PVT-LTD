@@ -1,0 +1,122 @@
+[
+  {
+    "_id": "proj_smart_campus",
+    "title": "EduTrack - Institute ERP & Attendance System",
+    "category": "Web",
+    "client": "Regional Polytechnic & Degree Institutes",
+    "industry": "Education & Administration",
+    "shortSummary": "Comprehensive cloud portal automating student attendance, fee tracking, and academic analytics.",
+    "problemStatement": "Manual paper registers and disorganized fee tracking led to administrative delays and student status discrepancies.",
+    "solution": "Built a multi-tenant web application with role-based access for directors, faculty, and students featuring QR attendance and automated SMS reports.",
+    "technologies": [
+      "React.js",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Tailwind CSS"
+    ],
+    "features": [
+      "Real-time QR Attendance",
+      "Automated Fee Invoicing",
+      "Academic Grade Sheets",
+      "Parent SMS Broadcast"
+    ],
+    "results": "Cut attendance processing time by 85% and eliminated fee record discrepancies across 1,200+ students.",
+    "status": "Completed & Live",
+    "liveUrl": "https://nkskilledge.com",
+    "githubUrl": "https://github.com/nkskilledge",
+    "image": "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80",
+    "isFeatured": true,
+    "createdAt": "2026-09-04T05:44:55.383Z",
+    "updatedAt": "2026-09-04T05:44:55.383Z"
+  },
+  {
+    "_id": "proj_agri_iot",
+    "title": "SmartAgri - Solar IoT Soil & Irrigation Monitor",
+    "category": "IoT",
+    "client": "Bhandara Agro Innovations",
+    "industry": "Agriculture & IoT",
+    "shortSummary": "Solar-powered telemetry node transmitting real-time soil moisture and automated pump actuation commands.",
+    "problemStatement": "Farmers struggled with irregular power grids and over-watering crops leading to yield damage.",
+    "solution": "Engineered an ESP32-based wireless sensor unit connected to a solar battery and cloud MQTT server with automated solenoid valve triggers.",
+    "technologies": [
+      "ESP32",
+      "C++",
+      "MQTT",
+      "React Dashboard",
+      "Node.js Backend"
+    ],
+    "features": [
+      "Solar Battery Operation",
+      "Soil Moisture & pH Telemetry",
+      "Automated Pump Relay",
+      "Mobile SMS Alerts"
+    ],
+    "results": "Saved 40% water consumption across 12 test farm plots with zero manual night valve inspections.",
+    "status": "Active Deployment",
+    "liveUrl": "https://nkskilledge.com",
+    "image": "https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&auto=format&fit=crop&q=80",
+    "isFeatured": true,
+    "createdAt": "2026-09-04T05:44:55.384Z",
+    "updatedAt": "2026-09-04T05:44:55.384Z"
+  },
+  {
+    "_id": "proj_retail_ecommerce",
+    "title": "LocalKart - Hyperlocal Delivery & Billing App",
+    "category": "Mobile",
+    "client": "Sakoli Merchants Association",
+    "industry": "Retail & E-Commerce",
+    "shortSummary": "Mobile shopping app and vendor admin portal enabling neighborhood grocery stores to deliver in under 2 hours.",
+    "problemStatement": "Small local shopkeepers were losing neighborhood market share to massive centralized delivery aggregators.",
+    "solution": "Developed an easy-to-use vernacular mobile ordering application with live order tracking and Bluetooth thermal receipt printing.",
+    "technologies": [
+      "Flutter",
+      "Firebase",
+      "Node.js",
+      "Razorpay",
+      "Google Maps API"
+    ],
+    "features": [
+      "Bilingual UI (Marathi & English)",
+      "Cash on Delivery + UPI QR",
+      "Instant Delivery Route Maps",
+      "Thermal Printer Integration"
+    ],
+    "results": "Processed over 6,500 local orders in its first 4 months of operation.",
+    "status": "Completed",
+    "liveUrl": "https://nkskilledge.com",
+    "image": "https://images.unsplash.com/photo-1556742049-0a67c5574f73?w=800&auto=format&fit=crop&q=80",
+    "isFeatured": true,
+    "createdAt": "2026-09-04T05:44:55.384Z",
+    "updatedAt": "2026-09-04T05:44:55.384Z"
+  },
+  {
+    "_id": "proj_ai_cv",
+    "title": "VisionGate - Automated License Plate Recognition",
+    "category": "AI",
+    "client": "Commercial Logistics Hub",
+    "industry": "Security & Logistics",
+    "shortSummary": "Computer vision pipeline detecting vehicle registration plates and logging security timestamps automatically.",
+    "problemStatement": "Security guards faced vehicle traffic bottlenecks manually noting truck numbers during peak delivery hours.",
+    "solution": "Trained a custom YOLOv8 model deployed on edge cameras connected to a central audit web dashboard.",
+    "technologies": [
+      "Python",
+      "YOLOv8",
+      "OpenCV",
+      "FastAPI",
+      "React"
+    ],
+    "features": [
+      "98.4% OCR Accuracy in Low Light",
+      "Instant Blacklist Vehicle Alarm",
+      "Automated Barrier Lift Signal"
+    ],
+    "results": "Reduced gate vehicle check-in time from 90 seconds to under 4 seconds.",
+    "status": "Completed",
+    "liveUrl": "https://nkskilledge.com",
+    "image": "https://images.unsplash.com/photo-1508962914676-134849a727f0?w=800&auto=format&fit=crop&q=80",
+    "isFeatured": true,
+    "createdAt": "2026-09-04T05:44:55.385Z",
+    "updatedAt": "2026-09-04T05:44:55.385Z"
+  }
+]

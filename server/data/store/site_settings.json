@@ -1,0 +1,69 @@
+[
+  {
+    "_id": "settings_default",
+    "companyName": "NK SkillEdge Pvt. Ltd.",
+    "tagline": "Shaping Skills, Building Futures",
+    "brandLine": "One Company — Many Solutions — Unlimited Possibilities",
+    "logo": "https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png",
+    "corePositioning": "NK SkillEdge empowers students and professionals through practical training, industry exposure, and real-world learning, while also providing digital solutions to businesses and startups.",
+    "phones": [
+      "7498784109",
+      "9356049629"
+    ],
+    "email": "hmendhe72@gmail.com",
+    "office": "NK SkillEdge Pvt. Ltd., Near Gobade Hospital, Sakoli",
+    "city": "Sakoli",
+    "state": "Maharashtra",
+    "pincode": "441802",
+    "whatsappNumber": "7498784109",
+    "stats": {
+      "studentsTrained": "200+",
+      "studentsPlaced": "50+",
+      "activeProjects": "15+",
+      "happyClients": "30+",
+      "projectsCompleted": "50+",
+      "upcomingProjects": "10+"
+    },
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/company/nkskilledge",
+      "instagram": "https://instagram.com/nkskilledge",
+      "facebook": "https://facebook.com/nkskilledge",
+      "youtube": "https://youtube.com/@nkskilledge",
+      "whatsapp": "https://wa.me/917498784109"
+    },
+    "journeyTimeline": [
+      {
+        "year": "2023",
+        "title": "Foundation & Sakoli Launch",
+        "description": "Established NK SkillEdge Pvt. Ltd. with the mission to bridge rural-urban tech skill gaps."
+      },
+      {
+        "year": "2023",
+        "title": "First Training Batch",
+        "description": "Conducted first industrial training batch with 40+ engineering and diploma students."
+      },
+      {
+        "year": "2024",
+        "title": "Corporate Client Solutions",
+        "description": "Launched dedicated IT development division delivering custom web and mobile apps for MSMEs."
+      },
+      {
+        "year": "2024",
+        "title": "150+ Students Placed & Trained",
+        "description": "Achieved 50+ placement milestone with corporate tie-ups and internship drives."
+      },
+      {
+        "year": "2025",
+        "title": "Next-Gen Tech Curriculum",
+        "description": "Introduced hands-on training in AI, Machine Learning, and IoT with practical laboratories."
+      },
+      {
+        "year": "2026",
+        "title": "Digital Platform Renewal",
+        "description": "Expanded digital footprint with an integrated student portal, certification registry, and live projects."
+      }
+    ],
+    "createdAt": "2026-09-05T08:24:06.104Z",
+    "updatedAt": "2026-09-05T08:24:06.104Z"
+  }
+]

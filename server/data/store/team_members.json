@@ -1,0 +1,160 @@
+[
+  {
+    "_id": "lead_kartik",
+    "name": "Mr. Kartik Mendhe",
+    "role": "Chief Executive Officer (CEO)",
+    "designation": "CEO & Founder",
+    "image": "https://i.ibb.co/MDwcPjPq/Whats-App-Image-2026-02-02-at-9-21-25-PM.jpg",
+    "bio": "Visionary entrepreneur and technology strategist committed to elevating regional technical education. Kartik leads executive operations, strategic alliances, and the core mission of making industrial grade engineering accessible to every aspiring student.",
+    "leadershipMessage": "At NK SkillEdge, we believe practical execution is the single greatest catalyst for young engineers. We shape genuine problem solvers who build real-world software and lead the technology revolution.",
+    "responsibilities": "Strategic direction, institutional partnerships, growth initiatives, and overarching educational quality.",
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/kartik-mendhe",
+      "twitter": "https://twitter.com/kartikmendhe",
+      "email": "kartik@nkskilledge.com"
+    },
+    "order": 1,
+    "isLeadership": true,
+    "isActive": true,
+    "createdAt": "2026-09-05T08:24:06.108Z",
+    "updatedAt": "2026-09-05T08:24:06.108Z"
+  },
+  {
+    "_id": "lead_ayush",
+    "name": "Mr. Ayush Bhendarkar",
+    "role": "Director & Co-Founder",
+    "designation": "Director & Co-Founder",
+    "image": "https://i.ibb.co/jkdCkhwn/Ayu.png",
+    "bio": "Technology leader and business architect driving enterprise collaborations, client acquisition, and operational excellence across student development programs and software delivery.",
+    "leadershipMessage": "Bridging the disconnect between traditional academic syllabi and fast-paced modern industry stacks is what defines our ethos. Every student leaves NK SkillEdge equipped with live project portfolios.",
+    "responsibilities": "Business development, corporate alliances, software client delivery, and student career mentorship.",
+    "socialLinks": {
+      "linkedin": "https://linkedin.com/in/ayush-bhendarkar",
+      "twitter": "https://twitter.com/ayushbhendarkar",
+      "email": "ayush@nkskilledge.com"
+    },
+    "order": 2,
+    "isLeadership": true,
+    "isActive": true,
+    "createdAt": "2026-09-05T08:24:06.109Z",
+    "updatedAt": "2026-09-05T08:24:06.109Z"
+  },
+  {
+    "_id": "tm_harshal",
+    "name": "Mr. Harshal Mendulkar",
+    "role": "Chief Technology Officer",
+    "designation": "Chief Technology Officer",
+    "department": "Engineering & Tech Architecture",
+    "bio": "Architecting scalable cloud microservices, software systems, and steering curriculum alignment with modern tech frameworks.",
+    "image": "https://i.ibb.co/vWCtyT7/HArshal.jpg",
+    "skills": [
+      "Full Stack Architecture",
+      "Node.js",
+      "React",
+      "Cloud Ops",
+      "System Design"
+    ],
+    "socialLinks": {
+      "linkedin": "https://linkedin.com"
+    },
+    "order": 1,
+    "isLeadership": false,
+    "isActive": true,
+    "createdAt": "2026-09-05T08:24:06.109Z",
+    "updatedAt": "2026-09-05T08:24:06.109Z"
+  },
+  {
+    "_id": "tm_madhusudan",
+    "name": "Mr. Madhusudan Madankar",
+    "role": "Technical Head Officer",
+    "designation": "Technical Head Officer",
+    "department": "Technical Operations & Training",
+    "bio": "Leading laboratory infrastructure, hands-on workshop execution, and student technical mentorship across industrial training cohorts.",
+    "image": "https://i.ibb.co/67JHV0hg/Madhusudan.jpg",
+    "skills": [
+      "Embedded Systems",
+      "IoT",
+      "Python",
+      "Firmware",
+      "Project Mentorship"
+    ],
+    "socialLinks": {
+      "linkedin": "https://linkedin.com"
+    },
+    "order": 2,
+    "isLeadership": false,
+    "isActive": true,
+    "createdAt": "2026-09-05T08:24:06.111Z",
+    "updatedAt": "2026-09-05T08:24:06.111Z"
+  },
+  {
+    "_id": "tm_harsh",
+    "name": "Mr. Harsh Sagare",
+    "role": "Social Media Manager",
+    "designation": "Social Media Manager",
+    "department": "Brand & Digital Outreach",
+    "bio": "Directing digital communications, brand storytelling, student community engagement, and digital acquisition campaigns.",
+    "image": "https://i.ibb.co/9kVD9pRf/harsh.png",
+    "skills": [
+      "Digital Marketing",
+      "Content Strategy",
+      "Social Outreach",
+      "Community Engagement"
+    ],
+    "socialLinks": {
+      "linkedin": "https://linkedin.com"
+    },
+    "order": 3,
+    "isLeadership": false,
+    "isActive": true,
+    "createdAt": "2026-09-05T08:24:06.112Z",
+    "updatedAt": "2026-09-05T08:24:06.112Z"
+  },
+  {
+    "_id": "tm_sandesh",
+    "name": "Mr. Sandesh Lawhale",
+    "role": "Web Developer",
+    "designation": "Web Developer",
+    "department": "Frontend & UI Engineering",
+    "bio": "Developing intuitive, accessible, and high-performance client web applications and internal learning platforms.",
+    "image": "https://i.ibb.co/N6JW8Wmg/Sandesh-Ramdas-Lawhale.jpg",
+    "skills": [
+      "React.js",
+      "Next.js",
+      "Tailwind",
+      "JavaScript",
+      "Responsive UI"
+    ],
+    "socialLinks": {
+      "linkedin": "https://linkedin.com"
+    },
+    "order": 4,
+    "isLeadership": false,
+    "isActive": true,
+    "createdAt": "2026-09-05T08:24:06.113Z",
+    "updatedAt": "2026-09-05T08:24:06.113Z"
+  },
+  {
+    "_id": "tm_sujal",
+    "name": "Mr. Sujal Dhoke",
+    "role": "Cyber Security Manager",
+    "designation": "Cyber Security Manager",
+    "department": "Security & Infrastructure",
+    "bio": "Guarding data security protocols, defensive cybersecurity training, and secure application development standards.",
+    "image": "https://i.ibb.co/SXWdfL52/Sujal-Sudhir-Dhoke.jpg",
+    "skills": [
+      "Network Security",
+      "Vulnerability Assessment",
+      "Ethical Hacking",
+      "OWASP"
+    ],
+    "socialLinks": {
+      "linkedin": "https://linkedin.com"
+    },
+    "order": 5,
+    "isLeadership": false,
+    "isActive": true,
+    "createdAt": "2026-09-05T08:24:06.114Z",
+    "updatedAt": "2026-09-05T08:24:06.114Z"
+  }
+]

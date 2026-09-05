@@ -1,0 +1,50 @@
+[
+  {
+    "_id": "faq_1",
+    "category": "Training & Courses",
+    "question": "What courses and training programs are available at NK SkillEdge?",
+    "answer": "We offer comprehensive industrial training programs in Full Stack Web Development (MERN), Mobile App Development (Flutter/React Native), AI & Machine Learning, Internet of Things (IoT), Career Development, and Corporate Technical Workshops.",
+    "createdAt": "2026-09-04T05:44:55.403Z",
+    "updatedAt": "2026-09-04T05:44:55.403Z"
+  },
+  {
+    "_id": "faq_2",
+    "category": "Training & Courses",
+    "question": "What is the duration of the Industrial Training and Internship programs?",
+    "answer": "Programs range from 1 Month (Fast-track technical sessions) to 3 Months (Full Stack modules) and 6 Months (Comprehensive Industrial Internship with Live Client Projects and placement mentorship).",
+    "createdAt": "2026-09-04T05:44:55.404Z",
+    "updatedAt": "2026-09-04T05:44:55.404Z"
+  },
+  {
+    "_id": "faq_3",
+    "category": "Certifications",
+    "question": "Are certificates provided upon completion, and are they verifiable?",
+    "answer": "Yes! Every trainee who completes their project submissions receives an official ISO & MSME-recognized completion certificate featuring a unique Certificate ID that employers can verify in real-time on our online verification portal.",
+    "createdAt": "2026-09-04T05:44:55.405Z",
+    "updatedAt": "2026-09-04T05:44:55.405Z"
+  },
+  {
+    "_id": "faq_4",
+    "category": "Placements",
+    "question": "Is placement support provided to students?",
+    "answer": "Yes. We provide dedicated placement assistance including ATS-friendly resume reviews, GitHub portfolio polishing, technical mock interviews, HR communication training, and referrals to partner IT firms across Maharashtra and Bangalore.",
+    "createdAt": "2026-09-04T05:44:55.407Z",
+    "updatedAt": "2026-09-04T05:44:55.407Z"
+  },
+  {
+    "_id": "faq_5",
+    "category": "Business Services",
+    "question": "How can businesses and startups hire NK SkillEdge for software development?",
+    "answer": "You can submit a project inquiry via our \"Request Quote\" or Contact page, or message us directly on WhatsApp at 7498784109. Our team will schedule a discovery consultation to evaluate requirements, recommend the ideal tech stack, and share a transparent proposal.",
+    "createdAt": "2026-09-04T05:44:55.408Z",
+    "updatedAt": "2026-09-04T05:44:55.408Z"
+  },
+  {
+    "_id": "faq_6",
+    "category": "Mode of Training",
+    "question": "Is online training available, or is it strictly offline at the Sakoli campus?",
+    "answer": "We offer flexible hybrid models. Students residing in Sakoli and nearby regions attend our equipped hardware and computer laboratories in person, while distant students can attend live interactive virtual sessions with code pairing and cloud lab access.",
+    "createdAt": "2026-09-04T05:44:55.410Z",
+    "updatedAt": "2026-09-04T05:44:55.410Z"
+  }
+]

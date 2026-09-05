@@ -1,0 +1,25 @@
+[
+  {
+    "_id": "ev_workshop_ai",
+    "title": "Hands-on Workshop: Building Your First Generative AI & Web Agent",
+    "banner": "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80",
+    "date": "2025-04-12",
+    "time": "10:00 AM - 04:00 PM IST",
+    "venue": "NK SkillEdge Training Center, Near Gobade Hospital, Sakoli",
+    "mode": "Offline Hands-on Lab",
+    "speaker": "Mr. Harshal Mendulkar (CTO)",
+    "description": "An intensive, project-based Saturday workshop where students will build and deploy a real-time AI assistant integrated with a custom web dashboard.",
+    "agenda": [
+      "10:00 AM: Introduction to LLMs & Prompt Engineering",
+      "11:30 AM: Building Python API bridges with FastAPI",
+      "01:00 PM: Networking Lunch & Tech Discussion",
+      "02:00 PM: Building the React UI & Streaming Responses",
+      "03:30 PM: Project Demos & Certificate Distribution"
+    ],
+    "seats": 40,
+    "registeredCount": 28,
+    "registrationStatus": "open",
+    "createdAt": "2026-09-04T05:44:55.399Z",
+    "updatedAt": "2026-09-04T05:44:55.399Z"
+  }
+]

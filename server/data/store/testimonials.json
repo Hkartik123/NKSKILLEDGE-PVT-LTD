@@ -1,0 +1,41 @@
+[
+  {
+    "_id": "tst_1",
+    "name": "Prathamesh Kulkarni",
+    "role": "Full Stack Trainee (Batch of 2024)",
+    "course": "Full Stack Web Development",
+    "company": "Placed at TechVerge Labs",
+    "rating": 5,
+    "testimonial": "The hands-on project training at NK SkillEdge changed everything for me. Unlike college theory, here we built real backend APIs and deployed actual web portals. That gave me immense confidence during tech interviews!",
+    "status": "approved",
+    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80",
+    "createdAt": "2026-09-04T05:44:55.390Z",
+    "updatedAt": "2026-09-04T05:44:55.390Z"
+  },
+  {
+    "_id": "tst_2",
+    "name": "Rupali Meshram",
+    "role": "Industrial Training Intern",
+    "course": "Industrial Training & Python",
+    "company": "Placed as Associate Developer",
+    "rating": 5,
+    "testimonial": "Mentors like Mr. Harshal and Mr. Madhusudan took personal care of our doubts. Building a live project from scratch in Sakoli without traveling to Pune or Bangalore saved me time and money.",
+    "status": "approved",
+    "image": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80",
+    "createdAt": "2026-09-04T05:44:55.391Z",
+    "updatedAt": "2026-09-04T05:44:55.391Z"
+  },
+  {
+    "_id": "tst_3",
+    "name": "Sachin Bawankule",
+    "role": "Director, Bhandara Agro Innovations",
+    "course": "Client Service",
+    "company": "Client Partner",
+    "rating": 5,
+    "testimonial": "NK SkillEdge delivered our IoT soil monitor ahead of schedule. Their technical head understood rural field challenges and built a rugged, reliable hardware-cloud solution.",
+    "status": "approved",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&auto=format&fit=crop&q=80",
+    "createdAt": "2026-09-04T05:44:55.393Z",
+    "updatedAt": "2026-09-04T05:44:55.393Z"
+  }
+]

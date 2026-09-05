@@ -1,0 +1,52 @@
+[
+  {
+    "_id": "id_1788501234462_k8k8sjv",
+    "title": "New Training Registration",
+    "message": "Kartik Jagadish Mendhe enrolled in Full Stack Web Development (ID: NKSK-TR-2026-3301)",
+    "type": "registration",
+    "link": "/admin/registrations",
+    "isRead": false,
+    "createdAt": "2026-09-04T05:53:54.459Z",
+    "updatedAt": "2026-09-04T05:53:54.462Z"
+  },
+  {
+    "_id": "id_1788501386031_805w2xo",
+    "title": "New Lead Inquiry",
+    "message": "Test Candidate inquired about Full Stack Web Development",
+    "type": "lead",
+    "link": "/admin/leads",
+    "isRead": false,
+    "createdAt": "2026-09-04T05:56:26.031Z",
+    "updatedAt": "2026-09-04T05:56:26.031Z"
+  },
+  {
+    "_id": "id_1788501386040_hzyx349",
+    "title": "New Training Registration",
+    "message": "Pooja Verma enrolled in Industrial Training Program (ID: NKSK-TR-2026-5073)",
+    "type": "registration",
+    "link": "/admin/registrations",
+    "isRead": false,
+    "createdAt": "2026-09-04T05:56:26.040Z",
+    "updatedAt": "2026-09-04T05:56:26.040Z"
+  },
+  {
+    "_id": "id_1788597514261_fnzagp3",
+    "title": "New Training Registration",
+    "message": "Kartik Jagadish Mendhe enrolled in Industrial Training Program (ID: NKSK-TR-2026-6617)",
+    "type": "registration",
+    "link": "/admin/registrations",
+    "isRead": false,
+    "createdAt": "2026-09-05T08:38:34.261Z",
+    "updatedAt": "2026-09-05T08:38:34.262Z"
+  },
+  {
+    "_id": "id_1788598279298_tq4xjfd",
+    "title": "New Training Registration",
+    "message": "Kartik Jagadish Mendhe enrolled in Industrial Training Program (ID: NKSK-TR-2026-9837)",
+    "type": "registration",
+    "link": "/admin/registrations",
+    "isRead": false,
+    "createdAt": "2026-09-05T08:51:19.298Z",
+    "updatedAt": "2026-09-05T08:51:19.300Z"
+  }
+]

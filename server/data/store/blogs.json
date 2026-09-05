@@ -1,0 +1,45 @@
+[
+  {
+    "_id": "blog_1",
+    "title": "How to Choose the Right Industrial Training in 2025: A Practical Guide for Engineering Students",
+    "slug": "how-to-choose-industrial-training-2025",
+    "author": "Harshal Mendulkar (CTO)",
+    "category": "Student Guidance",
+    "tags": [
+      "Industrial Training",
+      "Engineering",
+      "Career",
+      "Internship"
+    ],
+    "summary": "A step-by-step breakdown of what engineering students must look for in an industrial training program to guarantee placement readiness.",
+    "content": "Industrial training is no longer a mere paper formality to submit for college credits. Today, top tech recruiters look for proof of execution: verifiable GitHub repositories, live deployed web URLs, and understanding of standard engineering workflows like Git branching, pull requests, and Docker containers.\n\n### 1. Avoid Certificate-Only Mills\nIf an institute offers certificates without you writing a single line of real backend code or deploying your project on the cloud, employers will spot the gap in the first technical round. Look for programs with live project reviews and code audits.\n\n### 2. Focus on Foundational Depth over Framework Fads\nFrameworks change, but fundamentals like data structures, asynchronous JavaScript, and RESTful API architecture remain timeless. Master how data flows from client to server and back.\n\n### 3. Mentorship from Active Practitioners\nEnsure your trainers are actual developers who solve production bugs daily, not just instructors reciting decade-old textbooks. At NK SkillEdge, our developers mentor trainees directly on real client pipelines.",
+    "readingTime": "5 min read",
+    "isPublished": true,
+    "publishDate": "2025-01-15",
+    "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80",
+    "createdAt": "2026-09-04T05:44:55.397Z",
+    "updatedAt": "2026-09-04T05:44:55.397Z"
+  },
+  {
+    "_id": "blog_2",
+    "title": "Mastering the MERN Stack: Why Full-Stack JavaScript Continues to Dominate Tech Hiring",
+    "slug": "mastering-mern-stack-web-development",
+    "author": "Sandesh Lawhale",
+    "category": "Web Development",
+    "tags": [
+      "MERN",
+      "React",
+      "Node.js",
+      "MongoDB",
+      "JavaScript"
+    ],
+    "summary": "Discover why the unified JavaScript ecosystem remains the top choice for startups and high-growth technology companies worldwide.",
+    "content": "Full stack JavaScript enables a developer to navigate seamlessly between client state management and server microservices without context-switching between different programming syntaxes.\n\n### Why Startups Love MERN\n- Single language across frontend and backend (JavaScript / TypeScript)\n- Massive npm ecosystem with ready solutions for authentication, caching, and ORMs\n- Rapid prototyping from idea to cloud MVP in record time\n\nAt NK SkillEdge, our Web Development batch focuses on building real-world enterprise dashboards and e-commerce architectures so students stand out instantly to hiring managers.",
+    "readingTime": "6 min read",
+    "isPublished": true,
+    "publishDate": "2025-02-02",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80",
+    "createdAt": "2026-09-04T05:44:55.398Z",
+    "updatedAt": "2026-09-04T05:44:55.398Z"
+  }
+]

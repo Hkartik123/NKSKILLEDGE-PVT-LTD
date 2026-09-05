@@ -1,0 +1,19 @@
+[
+  {
+    "_id": "id_1788501386028_wal1w7o",
+    "fullName": "Test Candidate",
+    "email": "test@gmail.com",
+    "phone": "9876543210",
+    "userType": "Student",
+    "serviceOrCourse": "Full Stack Web Development",
+    "message": "Interested in the next Sakoli cohort",
+    "budget": "",
+    "preferredTime": "",
+    "city": "Sakoli",
+    "status": "New",
+    "source": "Website Contact Form",
+    "notes": [],
+    "createdAt": "2026-09-04T05:56:26.028Z",
+    "updatedAt": "2026-09-04T05:56:26.028Z"
+  }
+]

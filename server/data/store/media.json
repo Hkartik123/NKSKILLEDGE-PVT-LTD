@@ -1,0 +1,134 @@
+[
+  {
+    "_id": "med_logo",
+    "name": "Official Company Logo",
+    "url": "https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png",
+    "folder": "Brand",
+    "altText": "NK SkillEdge Pvt. Ltd. Official Logo",
+    "mimeType": "image/png",
+    "size": "128 KB",
+    "createdAt": "2026-09-05T08:24:06.148Z",
+    "updatedAt": "2026-09-05T08:24:06.148Z"
+  },
+  {
+    "_id": "med_ceo",
+    "name": "Mr. Kartik Mendhe - CEO",
+    "url": "https://i.ibb.co/MDwcPjPq/Whats-App-Image-2026-02-02-at-9-21-25-PM.jpg",
+    "folder": "Team",
+    "altText": "Mr. Kartik Mendhe, CEO of NK SkillEdge Pvt. Ltd.",
+    "mimeType": "image/jpeg",
+    "size": "240 KB",
+    "createdAt": "2026-09-05T08:24:06.149Z",
+    "updatedAt": "2026-09-05T08:24:06.149Z"
+  },
+  {
+    "_id": "med_director",
+    "name": "Mr. Ayush Bhendarkar - Director",
+    "url": "https://i.ibb.co/jkdCkhwn/Ayu.png",
+    "folder": "Team",
+    "altText": "Mr. Ayush Bhendarkar, Director & Co-Founder of NK SkillEdge Pvt. Ltd.",
+    "mimeType": "image/png",
+    "size": "310 KB",
+    "createdAt": "2026-09-05T08:24:06.150Z",
+    "updatedAt": "2026-09-05T08:24:06.150Z"
+  },
+  {
+    "_id": "med_cto",
+    "name": "Mr. Harshal Mendulkar - CTO",
+    "url": "https://i.ibb.co/vWCtyT7/HArshal.jpg",
+    "folder": "Team",
+    "altText": "Mr. Harshal Mendulkar, Chief Technology Officer",
+    "mimeType": "image/jpeg",
+    "size": "195 KB",
+    "createdAt": "2026-09-05T08:24:06.150Z",
+    "updatedAt": "2026-09-05T08:24:06.150Z"
+  },
+  {
+    "_id": "med_tech_head",
+    "name": "Mr. Madhusudan Madankar - Technical Head",
+    "url": "https://i.ibb.co/67JHV0hg/Madhusudan.jpg",
+    "folder": "Team",
+    "altText": "Mr. Madhusudan Madankar, Technical Head Officer",
+    "mimeType": "image/jpeg",
+    "size": "210 KB",
+    "createdAt": "2026-09-05T08:24:06.151Z",
+    "updatedAt": "2026-09-05T08:24:06.151Z"
+  },
+  {
+    "_id": "med_social_mgr",
+    "name": "Mr. Harsh Sagare - Social Media Manager",
+    "url": "https://i.ibb.co/9kVD9pRf/harsh.png",
+    "folder": "Team",
+    "altText": "Mr. Harsh Sagare, Social Media Manager",
+    "mimeType": "image/png",
+    "size": "280 KB",
+    "createdAt": "2026-09-05T08:24:06.152Z",
+    "updatedAt": "2026-09-05T08:24:06.152Z"
+  },
+  {
+    "_id": "med_web_dev",
+    "name": "Mr. Sandesh Lawhale - Web Developer",
+    "url": "https://i.ibb.co/N6JW8Wmg/Sandesh-Ramdas-Lawhale.jpg",
+    "folder": "Team",
+    "altText": "Mr. Sandesh Lawhale, Web Developer",
+    "mimeType": "image/jpeg",
+    "size": "205 KB",
+    "createdAt": "2026-09-05T08:24:06.153Z",
+    "updatedAt": "2026-09-05T08:24:06.153Z"
+  },
+  {
+    "_id": "med_security_mgr",
+    "name": "Mr. Sujal Dhoke - Cyber Security Manager",
+    "url": "https://i.ibb.co/SXWdfL52/Sujal-Sudhir-Dhoke.jpg",
+    "folder": "Team",
+    "altText": "Mr. Sujal Dhoke, Cyber Security Manager",
+    "mimeType": "image/jpeg",
+    "size": "225 KB",
+    "createdAt": "2026-09-05T08:24:06.153Z",
+    "updatedAt": "2026-09-05T08:24:06.153Z"
+  },
+  {
+    "_id": "med_msme",
+    "name": "MSME Registered Enterprise Certificate",
+    "url": "https://i.ibb.co/FLNxpYs9/MSME.webp",
+    "folder": "Certificates",
+    "altText": "Ministry of MSME Official Certificate",
+    "mimeType": "image/webp",
+    "size": "110 KB",
+    "createdAt": "2026-09-05T08:24:06.154Z",
+    "updatedAt": "2026-09-05T08:24:06.154Z"
+  },
+  {
+    "_id": "med_iso",
+    "name": "ISO 9001:2015 Quality Management Certificate",
+    "url": "https://i.ibb.co/fd4tyhHN/ISO.jpg",
+    "folder": "Certificates",
+    "altText": "ISO 9001:2015 Official Certification",
+    "mimeType": "image/jpeg",
+    "size": "185 KB",
+    "createdAt": "2026-09-05T08:24:06.154Z",
+    "updatedAt": "2026-09-05T08:24:06.154Z"
+  },
+  {
+    "_id": "med_gov",
+    "name": "Government IT Skill Recognition",
+    "url": "https://i.ibb.co/xtKK3Jv4/Gov.jpg",
+    "folder": "Certificates",
+    "altText": "Government Approved Skill Development Center Recognition",
+    "mimeType": "image/jpeg",
+    "size": "175 KB",
+    "createdAt": "2026-09-05T08:24:06.155Z",
+    "updatedAt": "2026-09-05T08:24:06.155Z"
+  },
+  {
+    "_id": "med_gst",
+    "name": "GST Registration Certificate",
+    "url": "https://i.ibb.co/fGdCth1V/GST.png",
+    "folder": "Certificates",
+    "altText": "GST Registered and Compliant Business Certificate",
+    "mimeType": "image/png",
+    "size": "160 KB",
+    "createdAt": "2026-09-05T08:24:06.156Z",
+    "updatedAt": "2026-09-05T08:24:06.156Z"
+  }
+]

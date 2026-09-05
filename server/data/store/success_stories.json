@@ -1,0 +1,44 @@
+[
+  {
+    "_id": "ss_1",
+    "studentName": "Prathamesh Kulkarni",
+    "course": "Full Stack Web Development (MERN)",
+    "internship": "6 Months Live Industry Project",
+    "company": "TechVerge Labs",
+    "package": "4.8 LPA",
+    "achievement": "Frontend Software Engineer",
+    "testimonial": "Learned MERN stack from scratch and landed my first role right after college.",
+    "status": "Placed",
+    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format&fit=crop&q=80",
+    "createdAt": "2026-09-04T05:44:55.394Z",
+    "updatedAt": "2026-09-04T05:44:55.394Z"
+  },
+  {
+    "_id": "ss_2",
+    "studentName": "Pooja Raut",
+    "course": "Mobile App Development (Flutter)",
+    "internship": "4 Months Project Internship",
+    "company": "InnoApp Solutions",
+    "package": "4.2 LPA",
+    "achievement": "Junior Flutter Developer",
+    "testimonial": "Published two live apps on the Google Play Store as part of the curriculum!",
+    "status": "Placed",
+    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+    "createdAt": "2026-09-04T05:44:55.394Z",
+    "updatedAt": "2026-09-04T05:44:55.394Z"
+  },
+  {
+    "_id": "ss_3",
+    "studentName": "Nikhil Gajbhiye",
+    "course": "Industrial Training (IoT & Embedded)",
+    "internship": "6 Months Industrial Apprenticeship",
+    "company": "SmartGrid Telemetry Systems",
+    "package": "3.6 LPA",
+    "achievement": "Embedded Systems Engineer",
+    "testimonial": "Working directly with ESP32 and MQTT protocols in the hardware lab made all the difference.",
+    "status": "Placed",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+    "createdAt": "2026-09-04T05:44:55.395Z",
+    "updatedAt": "2026-09-04T05:44:55.395Z"
+  }
+]

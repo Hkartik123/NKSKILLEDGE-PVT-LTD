@@ -1,0 +1,60 @@
+[
+  {
+    "_id": "job_web_trainer",
+    "position": "Full Stack Web Development Trainer / Mentor",
+    "department": "Training & Academic Operations",
+    "location": "Sakoli, Maharashtra",
+    "employmentType": "Full Time / Part Time",
+    "experience": "1 - 3 Years",
+    "skills": [
+      "React.js",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Git",
+      "Mentorship"
+    ],
+    "description": "We are looking for a passionate developer who loves mentoring students, leading hands-on lab sessions, and building live demonstration projects.",
+    "responsibilities": [
+      "Deliver practical sessions on MERN stack and modern web fundamentals",
+      "Guide students through milestone capstone projects and code reviews",
+      "Help design real-world curriculum and evaluate student assignments"
+    ],
+    "requirements": [
+      "Strong practical experience in React, Node, and REST API development",
+      "Clear communication skills in Hindi, Marathi, and English",
+      "Passion for teaching and community building"
+    ],
+    "deadline": "2025-05-30",
+    "isActive": true,
+    "createdAt": "2026-09-04T05:44:55.400Z",
+    "updatedAt": "2026-09-04T05:44:55.400Z"
+  },
+  {
+    "_id": "job_dev_intern",
+    "position": "Software Engineering Intern (Web / Mobile)",
+    "department": "Software Solutions Division",
+    "location": "Sakoli, Maharashtra",
+    "employmentType": "Internship (3-6 Months)",
+    "experience": "Fresher / Final Year Students",
+    "skills": [
+      "JavaScript",
+      "React",
+      "Flutter or Node.js basics"
+    ],
+    "description": "Work alongside senior engineers on live client projects, building user interfaces, database integrations, and automated testing.",
+    "responsibilities": [
+      "Develop reusable frontend components",
+      "Test and debug REST API integrations",
+      "Participate in daily engineering standups"
+    ],
+    "requirements": [
+      "Completed basic coursework in CS or related field",
+      "Demonstrable personal project on GitHub"
+    ],
+    "deadline": "2025-06-15",
+    "isActive": true,
+    "createdAt": "2026-09-04T05:44:55.402Z",
+    "updatedAt": "2026-09-04T05:44:55.402Z"
+  }
+]

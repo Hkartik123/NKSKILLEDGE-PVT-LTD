@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "cert_demo_101",
+    "certificateId": "NKSK-2025-WD101",
+    "studentName": "Kartik Sharma",
+    "course": "Full Stack Web Development (MERN)",
+    "issueDate": "2025-01-20",
+    "completionDate": "2025-01-15",
+    "grade": "A+ (Distinction)",
+    "status": "Valid",
+    "organization": "NK SkillEdge Pvt. Ltd.",
+    "verifiedBy": "Mr. Kartik Mendhe (CEO)",
+    "projectTitle": "E-Commerce Cloud Portal with Payment Gateway",
+    "createdAt": "2026-09-04T05:44:55.415Z",
+    "updatedAt": "2026-09-04T05:44:55.415Z"
+  },
+  {
+    "_id": "cert_demo_102",
+    "certificateId": "NKSK-2025-IT204",
+    "studentName": "Sneha Deshmukh",
+    "course": "Industrial Training Program (IoT & Embedded)",
+    "issueDate": "2025-02-10",
+    "completionDate": "2025-02-05",
+    "grade": "A",
+    "status": "Valid",
+    "organization": "NK SkillEdge Pvt. Ltd.",
+    "verifiedBy": "Mr. Harshal Mendulkar (CTO)",
+    "projectTitle": "Smart Home Automated Node",
+    "createdAt": "2026-09-04T05:44:55.415Z",
+    "updatedAt": "2026-09-04T05:44:55.415Z"
+  },
+  {
+    "_id": "id_1788597873646_4quu9ff",
+    "certificateId": "NKSK-0101",
+    "studentName": "KARAN",
+    "course": "Full Stack Web Development (MERN)",
+    "issueDate": "2026-09-05",
+    "completionDate": "2026-09-05",
+    "grade": "A+ (Distinction)",
+    "status": "Valid",
+    "organization": "NK SkillEdge Pvt. Ltd.",
+    "verifiedBy": "Super Administrator",
+    "projectTitle": "",
+    "createdAt": "2026-09-05T08:44:33.646Z",
+    "updatedAt": "2026-09-05T08:44:33.646Z"
+  }
+]

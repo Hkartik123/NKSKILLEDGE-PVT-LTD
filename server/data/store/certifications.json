@@ -1,0 +1,46 @@
+[
+  {
+    "_id": "cert_msme",
+    "title": "MSME Registered Enterprise",
+    "authority": "Ministry of Micro, Small & Medium Enterprises, Govt. of India",
+    "code": "UDYAM-MH-REG",
+    "badge": "Govt. Recognized",
+    "image": "https://i.ibb.co/FLNxpYs9/MSME.webp",
+    "description": "Officially registered as a technology and skill development enterprise under the Government of India.",
+    "createdAt": "2026-09-05T08:24:06.119Z",
+    "updatedAt": "2026-09-05T08:24:06.119Z"
+  },
+  {
+    "_id": "cert_iso",
+    "title": "ISO 9001:2015 Certified",
+    "authority": "International Organization for Standardization",
+    "code": "ISO-9001-QMS",
+    "badge": "Quality Assured",
+    "image": "https://i.ibb.co/fd4tyhHN/ISO.jpg",
+    "description": "Adhering to international quality management benchmarks in IT education, practical training delivery, and digital solution standards.",
+    "createdAt": "2026-09-05T08:24:06.120Z",
+    "updatedAt": "2026-09-05T08:24:06.120Z"
+  },
+  {
+    "_id": "cert_gov",
+    "title": "Government Certification",
+    "authority": "Directorate of Technical Education & Skill Development",
+    "code": "GOV-RECOG-IT",
+    "badge": "Recognized Center",
+    "image": "https://i.ibb.co/xtKK3Jv4/Gov.jpg",
+    "description": "Approved center for practical skill training and engineering apprenticeships.",
+    "createdAt": "2026-09-05T08:24:06.120Z",
+    "updatedAt": "2026-09-05T08:24:06.120Z"
+  },
+  {
+    "_id": "cert_gst",
+    "title": "GST Registered & Compliant Entity",
+    "authority": "Department of Revenue, Govt. of India",
+    "code": "GST-APPROVED",
+    "badge": "Fully Compliant",
+    "image": "https://i.ibb.co/fGdCth1V/GST.png",
+    "description": "Legally compliant corporate entity authorized to provide IT services, enterprise consultancy, and industrial education.",
+    "createdAt": "2026-09-05T08:24:06.121Z",
+    "updatedAt": "2026-09-05T08:24:06.121Z"
+  }
+]

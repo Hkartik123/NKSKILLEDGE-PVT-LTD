@@ -1,0 +1,121 @@
+[
+  {
+    "_id": "id_1788501386258_h0spa1m",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "LOGIN",
+    "module": "Authentication",
+    "details": {
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-04T05:56:26.258Z",
+    "createdAt": "2026-09-04T05:56:26.258Z",
+    "updatedAt": "2026-09-04T05:56:26.258Z"
+  },
+  {
+    "_id": "id_1788501386285_hm7aq8h",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "UPDATE_STATISTICS",
+    "module": "Settings",
+    "details": {
+      "stats": {
+        "studentsTrained": "250+",
+        "studentsPlaced": "50+",
+        "activeProjects": "15+",
+        "happyClients": "30+",
+        "projectsCompleted": "50+",
+        "upcomingProjects": "10+"
+      }
+    },
+    "timestamp": "2026-09-04T05:56:26.285Z",
+    "createdAt": "2026-09-04T05:56:26.285Z",
+    "updatedAt": "2026-09-04T05:56:26.285Z"
+  },
+  {
+    "_id": "id_1788501721615_q8xqzoh",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "LOGIN",
+    "module": "Authentication",
+    "details": {
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-04T06:02:01.615Z",
+    "createdAt": "2026-09-04T06:02:01.615Z",
+    "updatedAt": "2026-09-04T06:02:01.615Z"
+  },
+  {
+    "_id": "id_1788597774850_ap0gpzt",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "LOGIN",
+    "module": "Authentication",
+    "details": {
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-05T08:42:54.850Z",
+    "createdAt": "2026-09-05T08:42:54.852Z",
+    "updatedAt": "2026-09-05T08:42:54.852Z"
+  },
+  {
+    "_id": "id_1788597843888_z5f02dz",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "LOGIN",
+    "module": "Authentication",
+    "details": {
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-05T08:44:03.888Z",
+    "createdAt": "2026-09-05T08:44:03.888Z",
+    "updatedAt": "2026-09-05T08:44:03.888Z"
+  },
+  {
+    "_id": "id_1788597873651_0400m7b",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "ISSUE_CERTIFICATE",
+    "module": "Certificates",
+    "details": {
+      "certificateId": "NKSK-0101"
+    },
+    "timestamp": "2026-09-05T08:44:33.651Z",
+    "createdAt": "2026-09-05T08:44:33.653Z",
+    "updatedAt": "2026-09-05T08:44:33.653Z"
+  },
+  {
+    "_id": "id_1788598346784_d30ogv2",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "LOGIN",
+    "module": "Authentication",
+    "details": {
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-05T08:52:26.784Z",
+    "createdAt": "2026-09-05T08:52:26.784Z",
+    "updatedAt": "2026-09-05T08:52:26.784Z"
+  },
+  {
+    "_id": "id_1788598756757_vo4gg3s",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "LOGIN",
+    "module": "Authentication",
+    "details": {
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-05T08:59:16.757Z",
+    "createdAt": "2026-09-05T08:59:16.757Z",
+    "updatedAt": "2026-09-05T08:59:16.757Z"
+  }
+]

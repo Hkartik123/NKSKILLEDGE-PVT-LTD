@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "branch_sakoli",
+    "name": "Main Branch — NK SkillEdge Pvt. Ltd. Office (Head Office)",
+    "address": "Near Gobade Hospital, Sakoli, Dist. Bhandara, Maharashtra – 441802",
+    "city": "Sakoli",
+    "district": "Dist. Bhandara",
+    "state": "Maharashtra",
+    "pincode": "441802",
+    "isMainBranch": true,
+    "phone": "+91 7498784109",
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Gobade%20Hospital,%20Sakoli,%20Maharashtra%20441802&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    "displayOrder": 1,
+    "createdAt": "2026-09-05T08:24:06.101Z",
+    "updatedAt": "2026-09-05T08:24:06.145Z"
+  },
+  {
+    "_id": "branch_nagpur",
+    "name": "2nd Branch — Nagpur Center",
+    "address": "Plot No. 9, Naik Nagar, Near NIT Garden, Nagpur, Maharashtra – 440009",
+    "city": "Nagpur",
+    "district": "Nagpur",
+    "state": "Maharashtra",
+    "pincode": "440009",
+    "isMainBranch": false,
+    "phone": "+91 9356049629",
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Naik%20Nagar,%20NIT%20Garden,%20Nagpur,%20Maharashtra%20440009&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    "displayOrder": 2,
+    "createdAt": "2026-09-05T08:24:06.101Z",
+    "updatedAt": "2026-09-05T08:24:06.145Z"
+  },
+  {
+    "_id": "branch_gondia",
+    "name": "3rd Branch — IBM Center, GP Gondia Campus",
+    "address": "IBM Center, GP Gondia Campus, Government Polytechnic Gondia, Gondia, Maharashtra – 441601",
+    "city": "Gondia",
+    "district": "Gondia",
+    "state": "Maharashtra",
+    "pincode": "441601",
+    "isMainBranch": false,
+    "phone": "+91 7498784109",
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Government%20Polytechnic%20Gondia,%20Gondia,%20Maharashtra%20441601&t=&z=15&ie=UTF8&iwloc=&output=embed",
+    "displayOrder": 3,
+    "createdAt": "2026-09-05T08:24:06.101Z",
+    "updatedAt": "2026-09-05T08:24:06.146Z"
+  }
+]

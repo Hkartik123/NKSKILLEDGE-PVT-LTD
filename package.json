@@ -1,0 +1,19 @@
+{
+  "name": "nk-skilledge-platform",
+  "version": "2.0.0",
+  "description": "NK SkillEdge Pvt. Ltd. — Official Website Renewal & Full-Stack Digital Platform",
+  "main": "server/index.js",
+  "scripts": {
+    "install-all": "npm install && npm install --prefix server && npm install --prefix client",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
+    "dev": "concurrently -n \"SERVER,CLIENT\" -c \"blue,cyan\" \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "start": "npm run start --prefix server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "author": "NK SkillEdge Engineering Team",
+  "license": "ISC"
+}

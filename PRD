@@ -1,0 +1,1184 @@
+
+PRODUCT REQUIREMENTS DOCUMENT
+NK SkillEdge Pvt. Ltd. — Official Website Renewal & Digital Platform
+“Shaping Skills, Building Futures”
+
+Field	Detail
+Project Type	Corporate Website Renewal & Full-Stack Web Platform
+Organization	NK SkillEdge Pvt. Ltd.
+Current Website	nkskilledge.com
+Target Technology	Node.js Full-Stack Architecture (MERN)
+Document Version	2.0 (Detailed)
+Prepared For	NK SkillEdge Pvt. Ltd.
+Document Owner	Product / Engineering Team
+Status	Draft for Review
+
+
+Table of Contents
+
+
+
+
+1. Project Overview
+NK SkillEdge Pvt. Ltd. currently operates an informational corporate website (nkskilledge.com) containing company information, leadership profiles, services, training programs, projects, success stories, team details, and contact information.
+This PRD defines the requirements for renewing that website into a modern, scalable, and professionally structured digital platform that represents NK SkillEdge as an established IT training, skill-development, and software-development organization.
+The new platform is not a like-for-like reproduction of the old website. It must materially improve the following dimensions:
+•Brand presentation
+•User experience
+•Content organization
+•Website performance
+•Search engine optimization (SEO)
+•Lead generation
+•Training registrations
+•Project and service inquiries
+•Content management
+•Administrative control
+•Mobile responsiveness
+•Security
+•Analytics
+•Scalability
+The system must be architected so that future features and modules can be added incrementally, without requiring a rebuild of the core application.
+2. Business Objectives
+2.1 Brand Building
+Position NK SkillEdge as a professional technology, training, and digital-solutions company through consistent visual identity, messaging, and credibility signals across every page.
+2.2 Student Acquisition
+Generate qualified registrations and inquiries for the following program categories:
+•Industrial Training
+•Web Development
+•App Development
+•AI / ML
+•IoT
+•Career Development
+•Technical Workshops
+•Certification Programs
+2.3 Client Acquisition
+Generate qualified business leads for:
+•Website Development
+•Application Development
+•Social Media Services
+•Consultancy
+•Digital Transformation
+•Custom Software Solutions
+2.4 Trust Building
+Showcase the elements that establish credibility with prospective students, parents, and business clients:
+•Company journey
+•Leadership
+•Team
+•Certifications
+•Projects
+•Clients
+•Testimonials
+•Success stories
+•Achievements
+2.5 Centralized Management
+Provide a full-featured admin dashboard so that non-technical staff can manage day-to-day website content without requiring developer involvement for routine changes.
+2.6 Digital Growth
+Establish a strong SEO and structured-content foundation to improve organic visibility, local discoverability, and long-term inbound traffic growth.
+3. Brand Information
+Attribute	Detail
+Company Name	NK SkillEdge Pvt. Ltd.
+Tagline	Shaping Skills, Building Futures
+Core Positioning	NK SkillEdge empowers students and professionals through practical training, industry exposure, and real-world learning, while also providing digital solutions to businesses and startups.
+4. Existing Website Content to Retain
+The new platform must retain and functionally improve the information currently available on the live site.
+4.1 Company Sections
+•Home
+•About
+•CEO
+•Director
+•Services
+•Training Programs
+•Clients & Projects
+•Success Stories
+•Team
+•Contact
+4.2 Current Business Services
+•App Development
+•Web Development
+•Social Media Solutions
+•Career Development
+•Consultancy Services
+•Career Guidance
+•Technical Workshops
+4.3 Existing Company Statistics
+Statistics must be displayed through an editable, admin-controlled system — not hard-coded in the frontend:
+•200+ Students Trained
+•50+ Students Placed
+•15+ Active Projects
+•30+ Happy Clients
+•50+ Projects Completed
+•10+ Upcoming Projects
+Requirement: Numbers must NOT be hard-coded inside the frontend; they must be sourced from the CMS statistics module.
+5. Target Users & Personas
+5.1 Students
+Searching for:
+•Internship
+•Industrial Training
+•Technical Courses
+•Career Guidance
+•Workshops
+•Certifications
+•Placement Support
+5.2 Parents
+Looking for:
+•Training details
+•Company credibility
+•Certifications
+•Student outcomes
+•Contact information
+5.3 Businesses
+Searching for:
+•Website Development
+•App Development
+•Social Media Marketing
+•Consultancy
+•Digital solutions
+5.4 Colleges & Institutions
+Looking for:
+•Industrial training
+•Workshops
+•Internship partnerships
+•Academic–industry collaboration
+•Technical sessions
+5.5 Job Seekers
+Looking for:
+•Career opportunities
+•Internships
+•Skill development
+•Job preparation
+5.6 Administrators
+Internal staff who manage:
+•Website content
+•Leads
+•Registrations
+•Projects
+•Courses
+•Testimonials
+•Team members
+•Blog
+•Media
+•Analytics
+6. Website Information Architecture
+Primary navigation (with dropdowns for larger sections):
+•Home
+•About Us
+•Leadership
+•Services
+•Training & Programs
+•Projects
+•Success Stories
+•Careers
+•Blog / Insights
+•Events & Workshops
+•Contact
+•Register / Apply
+7. Home Page — Hero Section
+The homepage is the primary conversion and branding surface. The hero section must include:
+Element	Content
+Headline	Shaping Skills, Building Futures
+Supporting statement	Empowering students through practical training, industry exposure and real-world learning.
+Primary CTA	Explore Programs
+Secondary CTA	Get a Business Consultation
+Optional CTA	Apply Now
+The hero section must support: image/video background, responsive layout, CTA click tracking, subtle animation, and fully editable content via the admin panel.
+8. Home Page — Section-by-Section Requirements
+Section 1 — Hero
+Professional brand introduction with primary/secondary CTA buttons (see Section 7).
+Section 2 — Company Overview
+Short introduction about NK SkillEdge with CTA: “Know More About Us”.
+Section 3 — Key Statistics
+Dynamic statistics pulled from the CMS:
+•Students Trained
+•Students Placed
+•Projects Completed
+•Happy Clients
+•Active Projects
+Section 4 — What We Do
+Business categories:
+•Technology Solutions
+•Skill Development
+•Career Development
+•Digital Marketing
+Section 5 — Business Services
+Cards for Website Development, Application Development, Social Media Services, Consultancy, and Digital Transformation. Each card requires:
+•Image/icon
+•Title
+•Short description
+•Key features
+•Starting price or “Request Quote”
+•“Learn More” link
+Section 6 — Training Programs
+Programs displayed:
+•Industrial Training
+•Web Development
+•App Development
+•AI/ML
+•IoT
+•Career Guidance
+•Personality Development
+•Technical Workshops
+•Certification Programs
+Section 7 — Why NK SkillEdge?
+Dedicated value-proposition block:
+•Practical Learning
+•Industry Exposure
+•Live Projects
+•Experienced Mentorship
+•Career Guidance
+•Project-Based Training
+•Certification
+•Professional Development
+Section 8 — Featured Projects
+Each project card requires:
+•Project image
+•Project name
+•Industry
+•Technologies
+•Short summary
+•Status
+•“Case Study” button
+Section 9 — Success Stories
+Testimonials and student outcome highlights.
+Section 10 — Leadership
+CEO and Director profile cards.
+Section 11 — Certifications & Recognitions
+•MSME
+•ISO
+•Government Certifications
+•GST and other approved certifications/recognitions
+Section 12 — Partners / Clients
+Logo-based client showcase.
+Section 13 — Latest Updates
+Dynamic feed of Blogs, Workshops, Announcements, and Events.
+Section 14 — Closing CTA
+“Ready to Shape Your Future?” with buttons: Apply for Training · Contact Us · Schedule a Call.
+9. About Us Page
+A detailed company profile page comprising:
+•Company Introduction
+•Our Journey
+•Vision
+•Mission
+•Core Values
+•Our Objectives
+•What Makes Us Different
+•Company Statistics
+•Leadership
+•Certifications
+•Growth Timeline
+10. Company Journey Timeline
+An editable timeline, e.g.:
+Founded → First Training Batch → Student Growth → Projects → Partnerships → Expansion → Future Roadmap
+Administrators must be able to add, edit, reorder, and remove timeline milestones.
+11. Vision & Mission
+Vision
+Build a trusted ecosystem that connects skills, technology, education, and career opportunities.
+Mission
+•Deliver practical, industry-oriented education
+•Build employment-ready talent
+•Create innovative software solutions
+•Support startups and businesses
+•Promote digital transformation
+•Encourage entrepreneurship
+•Develop a continuous learning culture
+Both sections must be fully editable from the admin dashboard.
+12. Leadership Page
+CEO — Mr. Kartik Mendhe
+Content requirements: profile photo, biography, leadership message, professional background, vision, responsibilities, LinkedIn/social links.
+Director & Co-Founder — Mr. Ayush Bhendarkar
+Content requirements: biography, responsibilities, leadership role, business-development contribution, profile image, social links.
+13. Team Page
+Team members must be fully dynamic (CMS-driven). Initial roster:
+Name	Role
+Mr. Madhusudan Madankar	Technical Head Officer
+Mr. Harsh Sagare	Social Media Manager
+Mr. Harshal Mendulkar	Chief Technology Officer
+Mr. Sandesh Lawhale	Web Developer
+Mr. Sujal Dhoke	Cyber Security Manager
+Admin capabilities required:
+•Add member
+•Edit member
+•Remove member
+•Change designation
+•Upload profile image
+•Add biography
+•Add social profile links
+•Set display order
+14. Services Module — Data Model
+Every service entity must support the following fields:
+•Service title
+•Slug
+•Category
+•Banner image
+•Short description
+•Detailed description
+•Benefits
+•Features
+•Technologies
+•Development process
+•Pricing type
+•Starting price
+•FAQs
+•CTA
+•Related projects
+•SEO metadata
+15. Business Services — Feature Breakdown
+Website Development
+•Custom websites
+•Responsive design
+•CMS
+•E-commerce
+•SEO integration
+•Maintenance
+•Support
+Application Development
+•Android
+•iOS
+•Cross-platform
+•API integration
+•Authentication
+•Deployment
+Social Media Services
+•Social media strategy
+•Content creation
+•Paid campaigns
+•Analytics
+•Brand management
+Consultancy
+•Startup consultancy
+•Digital strategy
+•Technology consultancy
+•Product planning
+16. Training Program Module
+Every training program must have a dedicated detail page with the following fields:
+•Program Name
+•Category
+•Duration
+•Mode
+•Location
+•Eligibility
+•Fees
+•Start Date
+•Batch Size
+•Description
+•Curriculum
+•Technologies
+•Learning Outcomes
+•Projects
+•Certificate
+•Placement Support
+•Mentor
+•FAQs
+•Registration CTA
+Example programs:
+•Industrial Training
+•Web Development
+•App Development
+•AI & Machine Learning
+•IoT
+•Career Development
+•Personality Development
+•Technical Workshops
+•Certification Programs
+17. Training Registration System
+Registration Form Fields
+•Full Name
+•Email
+•Mobile Number
+•College
+•Course
+•Branch
+•Year/Semester
+•Preferred Batch
+•Training Mode
+•City
+•Message
+Post-Submission Flow
+•Registration ID generated
+•Confirmation displayed
+•Confirmation email sent
+•Lead stored in database
+•Admin notified
+Optional Enhancements
+•Payment integration
+•Registration fee
+•Invoice
+•Payment receipt
+18. Internship Module
+Content Requirements
+•Internship Domains
+•Eligibility
+•Duration
+•Internship Benefits
+•Learning Methodology
+•Project Work
+•Certificate
+•Evaluation
+•Mentorship
+•Registration Process
+•FAQs
+Internship Application Form
+•Name
+•Email
+•Phone
+•College
+•Course
+•Year
+•Domain
+•Resume
+•Preferred duration
+19. Projects Module
+A portfolio / case-study system. Each project record requires:
+•Project title
+•Client
+•Industry
+•Project type
+•Short description
+•Problem statement
+•Solution
+•Technologies
+•Features
+•Screenshots
+•Results
+•Project status
+•Live URL
+•GitHub URL (where appropriate)
+•Case study
+Project filters: Web · Mobile · AI · IoT · Business Solutions · Education · Other
+20. Clients Module
+Displayed fields: client logos, client name, industry, project count, testimonials, case studies.
+Admin-controlled fields: Logo, Name, Website, Industry, Description, Display order.
+21. Success Stories
+A dedicated success-story platform with the following structure:
+•Student name
+•Profile image
+•Course
+•Internship
+•Achievement
+•Company/Organization
+•Testimonial
+•Video testimonial
+•Placement status
+Examples from existing content may be migrated after verification.
+22. Testimonial Module
+•Name
+•Photo
+•Role
+•Course/service
+•Rating
+•Testimonial
+•Video URL
+•Approval status
+Admin must approve testimonials before they are published to the public site.
+23. Blog / Knowledge Hub
+A new SEO-focused blog section. Categories:
+•Web Development
+•App Development
+•AI
+•IoT
+•Career
+•Student Guidance
+•Technology Trends
+•Business Technology
+•Internship
+•Programming
+Each article supports:
+•Title
+•Slug
+•Featured image
+•Author
+•Category
+•Content
+•Tags
+•Meta title
+•Meta description
+•Canonical URL
+•Publish date
+•SEO score/status
+•Related posts
+24. Events & Workshops
+Event listing and registration fields:
+•Event title
+•Banner
+•Date
+•Time
+•Venue
+•Online/offline
+•Speaker
+•Description
+•Agenda
+•Seats
+•Registration status
+•Registration form
+•Gallery
+25. Careers Page
+“Work With NK SkillEdge” section, comprising:
+•Current Openings
+•Internship Opportunities
+•Faculty/Trainer Openings
+•Technical Roles
+•Sales/Marketing Roles
+Job Opening Fields
+•Position
+•Department
+•Location
+•Employment type
+•Experience
+•Skills
+•Description
+•Responsibilities
+•Requirements
+•Application deadline
+Application Form
+•Name
+•Email
+•Phone
+•Position
+•Resume upload
+•Portfolio
+•Cover message
+26. Contact Page
+Channel	Detail
+Phone	7498784109 / 9356049629
+Email	hmendhe72@gmail.com
+Office	NK SkillEdge Pvt. Ltd., Near Gobade Hospital, Sakoli
+Additional elements: Google Maps embed, contact form, WhatsApp CTA, Call CTA, Email CTA.
+27. Contact / Lead Form
+•Full Name
+•Email
+•Phone
+•User Type
+•Service/Course
+•Message
+Optional fields: Budget, Preferred Contact Time, City.
+Lead status pipeline: New → Contacted → Qualified → Converted → Closed. Admin must be able to update lead status.
+28. WhatsApp Integration
+Dynamic WhatsApp CTAs for: Training inquiry, Business inquiry, General contact. The pre-filled message text must be generated dynamically based on the source page.
+29. Admin Panel
+The website must include a secure admin dashboard.
+Dashboard Metrics
+•Total Leads
+•New Leads
+•Training Registrations
+•Internship Applications
+•Job Applications
+•Projects
+•Students
+•Clients
+•Testimonials
+•Blog Posts
+•Events
+Dashboard Charts
+•Monthly leads
+•Registration trends
+•Popular programs
+•Service inquiries
+•Conversion statistics
+30. CMS Modules
+The admin must be able to manage the following content domains:
+•Company
+•Pages
+•Services
+•Training Programs
+•Internships
+•Projects
+•Clients
+•Testimonials
+•Success Stories
+•Team
+•Blogs
+•Events
+•Careers
+•FAQs
+•Certifications
+•Contact Information
+•Statistics
+•Social Links
+•SEO settings
+•Media Library
+31. Admin User Roles
+Role-Based Access Control (RBAC) is required.
+Role	Access Scope
+Super Admin	Full access
+Admin	Manage content and leads
+Content Manager	Manage pages, blogs, media, and testimonials
+Training Manager	Manage programs and registrations
+Recruitment Manager	Manage careers and applications
+Viewer	Read-only dashboard access
+32. Media Management
+A centralized media library supporting: Images, Videos, PDFs, Certificates, Logos, Documents.
+Required features:
+•Upload
+•Replace
+•Delete
+•Search
+•Folder/category organization
+•Alt text
+•File metadata
+Images should be optimized automatically where possible.
+33. Authentication & Security
+•Secure login
+•Password hashing
+•JWT/session-based authentication
+•Role-based access
+•Password reset
+•Strong password requirements
+•Rate limiting
+•Input validation
+•CSRF protection where applicable
+•XSS protection
+•Secure HTTP headers
+•Audit logs
+•Login monitoring
+Requirement: passwords must never be stored in plaintext.
+34. Database Requirements
+Recommended database: MongoDB.
+Core collections:
+•users
+•admins
+•pages
+•services
+•programs
+•internships
+•registrations
+•leads
+•projects
+•clients
+•testimonials
+•success_stories
+•team_members
+•blogs
+•categories
+•events
+•event_registrations
+•jobs
+•job_applications
+•faqs
+•certifications
+•media
+•notifications
+•contact_messages
+•site_settings
+•analytics
+•audit_logs
+The database must support indexing and a scalable schema design.
+35. Backend Architecture
+Recommended architecture: Node.js + Express.js.
+Client → Frontend → REST API → Node.js/Express.js → Controllers → Services → Models → MongoDB
+Recommended backend layers:
+•Routes
+•Controllers
+•Services
+•Models
+•Middleware
+•Validators
+•Utilities
+•Authentication
+•Configuration
+•Logging
+A modular architecture is required; business logic must not be placed directly in route files.
+36. API Requirements
+RESTful APIs must be created for all CMS modules. Representative examples:
+Authentication
+•POST /api/auth/login
+•POST /api/auth/logout
+•POST /api/auth/forgot-password
+Services
+•GET /api/services
+•GET /api/services/:slug
+•POST /api/services
+•PUT /api/services/:id
+•DELETE /api/services/:id
+Programs
+•GET /api/programs
+•GET /api/programs/:slug
+•POST /api/programs
+•PUT /api/programs/:id
+Registrations
+•POST /api/registrations
+•GET /api/registrations
+•PUT /api/registrations/:id
+Leads
+•POST /api/leads
+•GET /api/leads
+•PUT /api/leads/:id
+Similar CRUD APIs must be created for all remaining CMS modules (internships, projects, clients, testimonials, blogs, events, careers, FAQs, certifications, media).
+37. Email System
+Trigger	Recipient / Action
+Student Registration	Confirmation email to student
+New Registration	Alert email to admin
+Contact Form Submission	Inquiry notification to admin
+Career Application	Application confirmation to applicant
+Career Application	Notification to recruitment manager
+Event Registration	Confirmation email to attendee
+Email delivery can be configured through SMTP or a transactional email provider.
+38. SEO Requirements
+SEO must be treated as a core product feature, not an afterthought:
+•SEO-friendly URLs
+•Dynamic meta titles
+•Meta descriptions
+•Open Graph tags
+•Twitter/X cards
+•Canonical URLs
+•XML sitemap
+•Robots.txt
+•Structured data
+•Breadcrumb schema
+•Organization schema
+•Local business information where applicable
+•Article schema
+•Course/educational content schema where appropriate
+Every CMS page must expose editable SEO fields to administrators.
+39. Local SEO
+Optimize for relevant local and service-intent search queries, including:
+•NK SkillEdge
+•IT training in Sakoli
+•Software development in Sakoli
+•Web development training
+•App development training
+•Industrial training
+•IT internships
+•Career guidance
+•Technical workshops
+Keyword stuffing must be avoided; content should read naturally.
+40. Performance Requirements
+•Fast initial load
+•Image optimization
+•Lazy loading
+•Code splitting where applicable
+•Browser caching
+•Compression
+•Minification
+•CDN support
+•Efficient API responses
+•Database indexing
+Metric	Target
+Lighthouse Performance	90+ where practical
+Mobile Responsiveness	100%
+Core Web Vitals	Optimized
+41. Responsive Design
+The website must support mobile phones, tablets, laptops, desktop monitors, and large displays, tested against common breakpoints. Navigation must collapse into a mobile menu automatically, and all forms must be mobile-friendly.
+42. UI/UX Requirements
+Design language: Modern + Corporate + Technology + Youth-focused.
+Visual Characteristics
+•Clean layouts
+•Strong typography
+•Professional whitespace
+•Consistent cards
+•Subtle animations
+•Modern icons
+•High-quality imagery
+•Clear CTAs
+•Strong visual hierarchy
+Avoid
+•Excessive animations
+•Overcrowded screens
+•Generic templates
+•Too many gradients
+•Unnecessary popups
+43. Accessibility
+•Semantic HTML
+•Keyboard navigation
+•Accessible forms
+•Appropriate labels
+•Image alt text
+•Sufficient contrast
+•Visible focus states
+•Accessible navigation
+•Proper heading hierarchy
+44. Analytics
+Integrate: Google Analytics, Google Search Console, Meta Pixel (where appropriate).
+Track the following events:
+•Page views
+•Contact submissions
+•Training registrations
+•Internship applications
+•CTA clicks
+•WhatsApp clicks
+•Phone clicks
+•Program views
+•Lead source
+•Conversion rates
+45. Search Functionality
+Global site search must cover Services, Courses, Projects, Blogs, Events, and FAQs, with results returned in categorized groups.
+46. FAQ Module
+A fully dynamic, CMS-editable FAQ module. Representative examples:
+•What courses are available?
+•What is the internship duration?
+•Are certificates provided?
+•Is placement support available?
+•Do you provide live projects?
+•What are the training fees?
+•Is online training available?
+•How can businesses hire NK SkillEdge?
+47. Notification System
+Admin dashboard notifications for:
+•New lead
+•New registration
+•New contact message
+•New internship application
+•New career application
+•New event registration
+Notifications must support read/unread states.
+48. Audit Logs
+All admin actions must be tracked, recording:
+•Admin ID
+•Action
+•Module
+•Record ID
+•Timestamp
+•IP address where appropriate
+Example log entry: “Admin updated Website Development service.”
+49. Backup & Recovery
+•Automated database backups
+•Backup retention policy
+•Recovery procedure
+•Media backup
+•Environment configuration backup
+Backup frequency will be defined during deployment planning.
+50. Deployment Architecture
+User → CDN/DNS → Frontend → Node.js API → MongoDB
+Layer	Recommended Stack
+Frontend	Vercel (or equivalent)
+Backend	Render / DigitalOcean / AWS (or equivalent)
+Database	MongoDB Atlas
+Media	Cloudinary / S3-compatible storage
+Domain	nkskilledge.com
+Exact hosting vendor selection will be finalized based on budget, expected traffic, and operational requirements.
+51. Environment Configuration
+Required environment variables:
+•NODE_ENV
+•PORT
+•DATABASE_URL
+•JWT_SECRET
+•EMAIL_HOST
+•EMAIL_PORT
+•EMAIL_USER
+•EMAIL_PASSWORD
+•CLOUDINARY_URL
+•GOOGLE_ANALYTICS_ID
+•MAPS_API_KEY
+•WHATSAPP_NUMBER
+Sensitive credentials must never be committed to GitHub.
+52. Development Environments
+•Development — for active development
+•Staging — for testing/review
+•Production — for live users
+Deployment flow: Development → QA/Staging → Production.
+53. Version Control
+Use Git + GitHub with the following branching model:
+•main
+•develop
+•feature/*
+•hotfix/*
+Practices: meaningful commit messages, pull requests, code reviews, and a protected production branch.
+54. Testing Requirements
+Functional Testing
+Forms, navigation, CRUD operations, registrations.
+API Testing
+Using Postman or an equivalent tool.
+Security Testing
+Authentication, authorization, input validation.
+Responsive Testing
+Mobile, tablet, and desktop viewports.
+Browser Testing
+•Chrome
+•Edge
+•Firefox
+•Safari
+Performance Testing
+Page speed and API response-time benchmarks.
+55. Form Validation
+All public-facing forms require:
+•Client-side validation
+•Server-side validation
+•Required-field validation
+•Email validation
+•Phone validation
+•File validation
+•Rate limiting
+•Spam protection
+Potential implementation approaches: CAPTCHA, honeypot fields, API rate limits.
+56. Admin Content Workflow
+Content publication workflow: Draft → Review → Publish → Update → Archive.
+This workflow applies particularly to: Blogs, Events, Job posts, Programs, Testimonials.
+57. Future Features (Post-MVP Roadmap)
+The architecture must allow future integration of:
+•Student portal
+•LMS
+•Online course purchase
+•Payment gateway
+•Student dashboard
+•Attendance
+•Certificate verification
+•Online tests
+•Placement portal
+•CRM
+•WhatsApp API
+•AI chatbot
+•AI career assistant
+•Job portal
+•Franchise management
+•Institution portal
+58. Certificate Verification (Future-Ready Module)
+Users enter a Certificate ID; the system returns:
+•Student name
+•Course
+•Organization
+•Completion date
+•Certificate status
+Status values: Valid / Invalid / Revoked.
+59. FAQ Chatbot / AI Assistant (Future)
+A future AI assistant can answer questions about: Course information, Registration process, Training duration, Services, Contact information, General FAQs.
+Requirement: the AI must not invent company policies or pricing — answers must be grounded strictly in approved CMS content.
+60. Legal Pages
+•Privacy Policy
+•Terms & Conditions
+•Refund Policy
+•Internship Terms
+•Training Terms
+•Cookie Policy
+•Disclaimer
+All legal content must be editable through the CMS.
+61. Social Media Integration
+•Instagram
+•LinkedIn
+•Facebook
+•YouTube
+•WhatsApp
+Social links must be centrally managed through the admin panel.
+62. Footer
+Company
+•About
+•Leadership
+•Services
+•Projects
+Training
+•Industrial Training
+•Web Development
+•App Development
+•AI
+•IoT
+•Career Guidance
+Resources
+•Blog
+•Events
+•FAQs
+•Careers
+Contact
+•Phone
+•Email
+•Address
+•WhatsApp
+Certifications
+Display approved certifications/recognitions.
+Also Included
+•Social links
+•Copyright notice
+63. Migration from Old Website
+Existing website content must be audited before migration. Migration checklist:
+•Existing pages
+•Images
+•Leadership profiles
+•Team profiles
+•Projects
+•Testimonials
+•Training information
+•Contact information
+•Certifications
+•Social links
+•SEO metadata
+Old URLs must be mapped to new URLs, with 301 redirects implemented wherever the URL structure changes.
+64. Content Quality Requirements
+•Professional
+•Grammatically correct
+•Consistent
+•SEO-aware
+•Human-readable
+•Conversion-oriented
+•Factual
+•Easy to scan
+Exaggerated or unverifiable claims must be avoided. Statistics and certifications must be displayed only when current and accurate.
+65. Admin Dashboard Sidebar Structure
+Dashboard
+Content
+•Pages
+•Services
+•Programs
+•Internships
+•Projects
+•Clients
+•Testimonials
+•Success Stories
+•Team
+•Blogs
+•Events
+•FAQs
+•Certifications
+Leads
+•Contact Leads
+•Program Registrations
+•Internship Applications
+•Job Applications
+Other Top-Level Items
+•Media Library
+•Analytics
+•Notifications
+•SEO Settings
+•Site Settings
+•Users & Roles
+•Audit Logs
+66. Data Flow — Training Registration
+Student → Training Page → “Register Now” → Registration Form → Frontend Validation → Node.js API → Server Validation → MongoDB → Registration ID Generated → Email Confirmation → Admin Notification → Admin Dashboard
+67. Lead Management Flow
+Website Visitor → Inquiry Form → Lead Created → Admin Notification → Lead Assigned → Contacted → Qualified → Converted / Closed
+68. Acceptance Criteria
+The website will be considered ready for launch when the following criteria are met:
+Functional
+•All major pages work
+•All forms submit successfully
+•Admin CRUD functions work
+•Authentication works
+•Emails are delivered
+•Leads appear in the dashboard
+Design
+•Responsive across devices
+•Consistent corporate design
+•No broken layouts
+•Clear CTA hierarchy
+Performance
+•Optimized images
+•Fast page load
+•API responses are efficient
+•No major console errors
+SEO
+•Sitemap available
+•Robots configured
+•Metadata configured
+•Indexable pages follow SEO best practices
+Security
+•Admin routes protected
+•Passwords hashed
+•API validation implemented
+•Rate limiting enabled
+•Sensitive keys protected
+69. Project Phases
+Phase 1 — Discovery & Audit
+•Existing website audit
+•Content audit
+•SEO audit
+•Requirement finalization
+Phase 2 — UX/UI
+•Sitemap
+•Wireframes
+•Design system
+•Responsive layouts
+Phase 3 — Backend
+•Node.js setup
+•Express API
+•MongoDB schema
+•Authentication
+•CMS APIs
+Phase 4 — Frontend
+•Public pages
+•Forms
+•Services
+•Programs
+•Projects
+•Blog
+•Contact
+Phase 5 — Admin Dashboard
+•Dashboard
+•CMS
+•Lead management
+•User management
+•Analytics
+Phase 6 — Integrations
+•Email
+•WhatsApp
+•Maps
+•Analytics
+•Media storage
+Phase 7 — Testing
+•Functional
+•Security
+•Performance
+•Responsive
+•Cross-browser
+Phase 8 — Deployment
+•Production setup
+•Domain
+•SSL
+•Database
+•Backups
+•Monitoring
+Phase 9 — Launch
+•Final migration
+•SEO verification
+•Redirects
+•Production testing
+70. Deliverables
+1.Complete responsive website
+2.Node.js backend
+3.REST APIs
+4.MongoDB database
+5.Admin dashboard
+6.Authentication system
+7.CMS
+8.Lead-management system
+9.Training registration
+10.Internship application system
+11.Career application system
+12.Project portfolio
+13.Blog system
+14.Event system
+15.SEO implementation
+16.Analytics integration
+17.Email integration
+18.Media management
+19.Security implementation
+20.Deployment configuration
+21.Database backup configuration
+22.Source code repository
+23.API documentation
+24.Admin documentation
+25.Technical documentation
+71. Recommended Technology Stack
+Layer	Technology
+Frontend	React.js / Next.js
+Backend	Node.js + Express.js
+Database	MongoDB + MongoDB Atlas
+Authentication	JWT + Secure HTTP Cookies
+Media	Cloudinary / S3-compatible storage
+Email	SMTP / Transactional Email API
+Analytics	Google Analytics + Search Console
+Maps	Google Maps
+Version Control	Git + GitHub
+API Testing	Postman
+Deployment	Vercel + Render / DigitalOcean / AWS
+72. Non-Functional Requirements
+Quality	Requirement
+Scalable	Able to support increasing traffic and content
+Maintainable	Modular and clearly structured codebase
+Secure	Follows secure application development practices
+Performant	Fast frontend and optimized APIs
+Reliable	Proper error handling and monitoring
+Accessible	Usable by users with different accessibility needs
+SEO-Friendly	All public content crawlable and indexable where appropriate
+73. Important Implementation Rule
+The new website must be developed as a content-driven platform, not as a collection of hard-coded pages. Administrators must be able to change the following without any source-code changes:
+•Student statistics
+•Services
+•Program details
+•Team members
+•Projects
+•Testimonials
+•Blog posts
+•Events
+•Contact information
+•Certifications
+•SEO metadata
+74. Final Product Vision
+The renewed NK SkillEdge website should function as more than a company brochure — it should become a central digital platform for the organization, supporting:
+Branding + Student Acquisition + Training Registration + Internship Management + Client Acquisition + Project Portfolio + Content Marketing + Career Opportunities + Lead Management
+NK SkillEdge is not only a training organization; it is a technology, skill-development, and digital-solutions ecosystem focused on shaping skills and building futures.
+The new website must be modern enough for current users while maintaining an architecture capable of supporting future products such as an LMS, student portals, CRM, online payments, certificate verification, and AI-powered services.

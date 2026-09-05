@@ -1,0 +1,245 @@
+[
+  {
+    "_id": "srv_software_dev",
+    "title": "Software Development",
+    "slug": "software-development",
+    "category": "Client-Facing Services",
+    "shortDescription": "Custom Web, Android, Desktop, and Bespoke Enterprise Software engineered with modern UI/UX design.",
+    "detailedDescription": "From responsive web platforms to native Android applications, cross-platform desktop systems, and tailored enterprise software, NK SkillEdge delivers end-to-end software solutions designed for high performance, top-tier security, and modern UI/UX.",
+    "features": [
+      "Full Stack Web & Cloud Portals",
+      "Native & Cross-Platform Android Apps",
+      "Desktop Applications (Electron/C++)",
+      "Custom Enterprise Business Logic",
+      "High-Fidelity UI/UX Prototyping",
+      "Continuous Maintenance & SLAs"
+    ],
+    "technologies": [
+      "React.js",
+      "Next.js",
+      "Node.js",
+      "Flutter",
+      "Python",
+      "PostgreSQL",
+      "MongoDB"
+    ],
+    "startingPrice": "Request Quote",
+    "image": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80",
+    "detailImage": "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000&auto=format&fit=crop&q=80",
+    "icon": "Laptop",
+    "isFeatured": true,
+    "createdAt": "2026-09-05T08:24:06.125Z",
+    "updatedAt": "2026-09-05T08:24:06.125Z"
+  },
+  {
+    "_id": "srv_website_solutions",
+    "title": "Website Solutions",
+    "slug": "website-solutions",
+    "category": "Client-Facing Services",
+    "shortDescription": "Business websites, e-commerce stores, creative portfolios, dynamic CMS portals, and high-speed hosting.",
+    "detailedDescription": "Establish a dominant digital presence with custom business websites, high-conversion e-commerce systems, dynamic web applications, lightning-fast cloud hosting, and integrated payment gateways.",
+    "features": [
+      "Corporate & MSME Business Websites",
+      "E-Commerce & Payment Gateways",
+      "Creative Portfolio Sites",
+      "Dynamic CMS & Admin Control",
+      "Managed Cloud Hosting & SSL",
+      "SEO & Core Web Vitals Optimization"
+    ],
+    "technologies": [
+      "React.js",
+      "Next.js",
+      "WordPress/Node.js",
+      "Tailwind CSS",
+      "Stripe/Razorpay",
+      "Vercel/AWS"
+    ],
+    "startingPrice": "Request Quote",
+    "image": "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&auto=format&fit=crop&q=80",
+    "detailImage": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&auto=format&fit=crop&q=80",
+    "icon": "Globe",
+    "isFeatured": true,
+    "createdAt": "2026-09-05T08:24:06.126Z",
+    "updatedAt": "2026-09-05T08:24:06.126Z"
+  },
+  {
+    "_id": "srv_digital_marketing",
+    "title": "Digital Marketing",
+    "slug": "digital-marketing",
+    "category": "Client-Facing Services",
+    "shortDescription": "Data-driven Search Engine Optimization (SEO), social media marketing, Google Ads, and content growth funnels.",
+    "detailedDescription": "Drive measurable business growth and customer acquisitions through data-backed organic SEO, targeted paid Google & Meta ad campaigns, engaging content marketing, and conversion rate optimization.",
+    "features": [
+      "Technical & On-Page SEO",
+      "Google Search & Display Ads",
+      "Social Media Paid Campaigns (Meta/LinkedIn)",
+      "Content Marketing & Copywriting",
+      "Lead Generation Funnels",
+      "Transparent Analytics & ROI Reporting"
+    ],
+    "technologies": [
+      "Google Ads",
+      "Meta Ads Manager",
+      "Google Search Console",
+      "SEMrush",
+      "Google Analytics 4"
+    ],
+    "startingPrice": "Custom Plan",
+    "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80",
+    "detailImage": "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1000&auto=format&fit=crop&q=80",
+    "icon": "TrendingUp",
+    "isFeatured": true,
+    "createdAt": "2026-09-05T08:24:06.127Z",
+    "updatedAt": "2026-09-05T08:24:06.127Z"
+  },
+  {
+    "_id": "srv_graphic_designing",
+    "title": "Graphic Designing",
+    "slug": "graphic-designing",
+    "category": "Client-Facing Services",
+    "shortDescription": "Brand identity, modern logo design, social media banners, marketing brochures, and vector creatives.",
+    "detailedDescription": "Elevate your visual branding with handcrafted corporate logos, social media creatives, advertising banners, product brochures, and marketing collateral designed using industry-standard tools.",
+    "features": [
+      "Vector Logo Design & Brand Guidelines",
+      "Social Media Creatives & Ad Banners",
+      "Brochures, Pamphlets & Catalogs",
+      "Corporate Stationery & Business Cards",
+      "Packaging & Print Ready Vectors",
+      "Fast Iterations & Source Files Included"
+    ],
+    "technologies": [
+      "CorelDRAW",
+      "Adobe Photoshop",
+      "Adobe Illustrator",
+      "Figma",
+      "Canva Pro"
+    ],
+    "startingPrice": "Request Quote",
+    "image": "https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&auto=format&fit=crop&q=80",
+    "detailImage": "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1000&auto=format&fit=crop&q=80",
+    "icon": "Palette",
+    "isFeatured": true,
+    "createdAt": "2026-09-05T08:24:06.128Z",
+    "updatedAt": "2026-09-05T08:24:06.128Z"
+  },
+  {
+    "_id": "srv_it_support",
+    "title": "IT Support & Maintenance",
+    "slug": "it-support-maintenance",
+    "category": "Client-Facing Services",
+    "shortDescription": "Computer systems maintenance, network installation, hardware setup, IT infrastructure support, and Annual Maintenance Contracts (AMC).",
+    "detailedDescription": "Comprehensive IT infrastructure management for offices, colleges, and commercial setups. We provide computer hardware maintenance, LAN/Wi-Fi networking, software installations, cybersecurity audits, and ongoing AMC support.",
+    "features": [
+      "Preventive Hardware & PC Maintenance",
+      "Structured Cabling & Wi-Fi LAN Setup",
+      "OS & Enterprise Software Installation",
+      "Data Backup & Recovery Solutions",
+      "Onsite & Remote Technical Helpdesk",
+      "Annual Maintenance Contracts (AMC)"
+    ],
+    "technologies": [
+      "Cisco/TP-Link Networking",
+      "Windows Server",
+      "Linux Systems",
+      "Firewall Security",
+      "AMC Service Plans"
+    ],
+    "startingPrice": "AMC / Custom",
+    "image": "https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&auto=format&fit=crop&q=80",
+    "detailImage": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1000&auto=format&fit=crop&q=80",
+    "icon": "Wrench",
+    "isFeatured": true,
+    "createdAt": "2026-09-05T08:24:06.129Z",
+    "updatedAt": "2026-09-05T08:24:06.129Z"
+  },
+  {
+    "_id": "srv_app_dev",
+    "title": "Application Development",
+    "slug": "application-development",
+    "category": "Technology Solutions",
+    "shortDescription": "Native and cross-platform iOS & Android mobile apps engineered for fluid performance.",
+    "detailedDescription": "Transform your concept into an intuitive mobile experience. We build robust iOS and Android apps with high reliability, native hardware integrations, secure authentication, and seamless backend synchronization.",
+    "features": [
+      "Cross-Platform Flutter & React Native",
+      "Native iOS & Android Engineering",
+      "Cloud DB & Offline Sync",
+      "Push Notifications & Deep Linking",
+      "App Store & Play Store Publishing",
+      "Biometric & Secure Auth"
+    ],
+    "technologies": [
+      "Flutter",
+      "React Native",
+      "Kotlin",
+      "Swift",
+      "Firebase",
+      "Node.js REST API"
+    ],
+    "startingPrice": "Request Quote",
+    "image": "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80",
+    "detailImage": "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1000&q=80",
+    "icon": "Smartphone",
+    "isFeatured": true,
+    "createdAt": "2026-09-05T08:24:06.131Z",
+    "updatedAt": "2026-09-05T08:24:06.131Z"
+  },
+  {
+    "_id": "srv_social_media",
+    "title": "Social Media Solutions",
+    "slug": "social-media-solutions",
+    "category": "Digital Marketing",
+    "shortDescription": "Strategic social media campaigns, brand positioning, and content systems that drive organic client acquisition.",
+    "detailedDescription": "Build an authoritative digital brand footprint. We manage end-to-end social media channels with data-driven content calendars, custom creatives, targeted lead ads, and active audience engagement.",
+    "features": [
+      "Brand Positioning & Strategy",
+      "Creative Graphic Design & Reels",
+      "Paid Meta & LinkedIn Ad Campaigns",
+      "Audience Analytics & ROI Reporting",
+      "Community Management",
+      "Influencer Collabs"
+    ],
+    "technologies": [
+      "Meta Ads Manager",
+      "Canva Pro",
+      "Figma",
+      "Hootsuite",
+      "Google Analytics"
+    ],
+    "startingPrice": "Custom Plan",
+    "image": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80",
+    "detailImage": "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1000&q=80",
+    "icon": "Share2",
+    "isFeatured": true,
+    "createdAt": "2026-09-05T08:24:06.132Z",
+    "updatedAt": "2026-09-05T08:24:06.132Z"
+  },
+  {
+    "_id": "srv_consultancy",
+    "title": "Consultancy Services",
+    "slug": "consultancy-services",
+    "category": "Business Advisory",
+    "shortDescription": "Strategic technology and startup consulting to modernize workflows and guide digital ventures.",
+    "detailedDescription": "Empowering early-stage founders, colleges, and growing enterprises with actionable technology roadmaps, cloud architecture audits, agile product planning, and digital transformation playbooks.",
+    "features": [
+      "Startup Tech Roadmapping",
+      "Architecture & Security Audits",
+      "Vendor & Stack Evaluation",
+      "Product MVP Scoping",
+      "Digital Process Automation",
+      "Fractional CTO Support"
+    ],
+    "technologies": [
+      "Cloud Arch",
+      "Agile/Scrum",
+      "DevOps",
+      "Data Security"
+    ],
+    "startingPrice": "Hourly / Retainer",
+    "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+    "detailImage": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80",
+    "icon": "Compass",
+    "isFeatured": true,
+    "createdAt": "2026-09-05T08:24:06.133Z",
+    "updatedAt": "2026-09-05T08:24:06.133Z"
+  }
+]

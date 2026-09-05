@@ -1,0 +1,1041 @@
+const bcrypt = require('bcryptjs');
+
+async function getSeedData() {
+  const adminPasswordHash = await bcrypt.hash('Admin@NK2025!', 10);
+
+  return {
+    users: [
+      {
+        _id: 'usr_superadmin',
+        name: 'Super Administrator',
+        email: 'admin@nkskilledge.com',
+        password: adminPasswordHash,
+        role: 'super_admin',
+        designation: 'System Administrator',
+        createdAt: new Date().toISOString()
+      }
+    ],
+    site_settings: [
+      {
+        _id: 'settings_default',
+        companyName: 'NK SkillEdge Pvt. Ltd.',
+        tagline: 'Shaping Skills, Building Futures',
+        brandLine: 'One Company — Many Solutions — Unlimited Possibilities',
+        logo: 'https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png',
+        corePositioning: 'NK SkillEdge empowers students and professionals through practical training, industry exposure, and real-world learning, while also providing digital solutions to businesses and startups.',
+        phones: ['7498784109', '9356049629'],
+        email: 'hmendhe72@gmail.com',
+        office: 'NK SkillEdge Pvt. Ltd., Near Gobade Hospital, Sakoli',
+        city: 'Sakoli',
+        state: 'Maharashtra',
+        pincode: '441802',
+        whatsappNumber: '7498784109',
+        stats: {
+          studentsTrained: '200+',
+          studentsPlaced: '50+',
+          activeProjects: '15+',
+          happyClients: '30+',
+          projectsCompleted: '50+',
+          upcomingProjects: '10+'
+        },
+        socialLinks: {
+          linkedin: 'https://linkedin.com/company/nkskilledge',
+          instagram: 'https://instagram.com/nkskilledge',
+          facebook: 'https://facebook.com/nkskilledge',
+          youtube: 'https://youtube.com/@nkskilledge',
+          whatsapp: 'https://wa.me/917498784109'
+        },
+        journeyTimeline: [
+          { year: '2023', title: 'Foundation & Sakoli Launch', description: 'Established NK SkillEdge Pvt. Ltd. with the mission to bridge rural-urban tech skill gaps.' },
+          { year: '2023', title: 'First Training Batch', description: 'Conducted first industrial training batch with 40+ engineering and diploma students.' },
+          { year: '2024', title: 'Corporate Client Solutions', description: 'Launched dedicated IT development division delivering custom web and mobile apps for MSMEs.' },
+          { year: '2024', title: '150+ Students Placed & Trained', description: 'Achieved 50+ placement milestone with corporate tie-ups and internship drives.' },
+          { year: '2025', title: 'Next-Gen Tech Curriculum', description: 'Introduced hands-on training in AI, Machine Learning, and IoT with practical laboratories.' },
+          { year: '2026', title: 'Digital Platform Renewal', description: 'Expanded digital footprint with an integrated student portal, certification registry, and live projects.' }
+        ]
+      }
+    ],
+    leadership: [
+      {
+        _id: 'lead_kartik',
+        name: 'Mr. Kartik Mendhe',
+        role: 'Chief Executive Officer (CEO)',
+        designation: 'CEO & Founder',
+        image: 'https://i.ibb.co/MDwcPjPq/Whats-App-Image-2026-02-02-at-9-21-25-PM.jpg',
+        bio: 'Visionary entrepreneur and technology strategist committed to elevating regional technical education. Kartik leads executive operations, strategic alliances, and the core mission of making industrial grade engineering accessible to every aspiring student.',
+        leadershipMessage: 'At NK SkillEdge, we believe practical execution is the single greatest catalyst for young engineers. We shape genuine problem solvers who build real-world software and lead the technology revolution.',
+        responsibilities: 'Strategic direction, institutional partnerships, growth initiatives, and overarching educational quality.',
+        socialLinks: {
+          linkedin: 'https://linkedin.com/in/kartik-mendhe',
+          twitter: 'https://twitter.com/kartikmendhe',
+          email: 'kartik@nkskilledge.com'
+        },
+        order: 1,
+        isLeadership: true,
+        isActive: true
+      },
+      {
+        _id: 'lead_ayush',
+        name: 'Mr. Ayush Bhendarkar',
+        role: 'Director & Co-Founder',
+        designation: 'Director & Co-Founder',
+        image: 'https://i.ibb.co/jkdCkhwn/Ayu.png',
+        bio: 'Technology leader and business architect driving enterprise collaborations, client acquisition, and operational excellence across student development programs and software delivery.',
+        leadershipMessage: 'Bridging the disconnect between traditional academic syllabi and fast-paced modern industry stacks is what defines our ethos. Every student leaves NK SkillEdge equipped with live project portfolios.',
+        responsibilities: 'Business development, corporate alliances, software client delivery, and student career mentorship.',
+        socialLinks: {
+          linkedin: 'https://linkedin.com/in/ayush-bhendarkar',
+          twitter: 'https://twitter.com/ayushbhendarkar',
+          email: 'ayush@nkskilledge.com'
+        },
+        order: 2,
+        isLeadership: true,
+        isActive: true
+      }
+    ],
+    team_members: [
+      {
+        _id: 'tm_harshal',
+        name: 'Mr. Harshal Mendulkar',
+        role: 'Chief Technology Officer',
+        designation: 'Chief Technology Officer',
+        department: 'Engineering & Tech Architecture',
+        bio: 'Architecting scalable cloud microservices, software systems, and steering curriculum alignment with modern tech frameworks.',
+        image: 'https://i.ibb.co/vWCtyT7/HArshal.jpg',
+        skills: ['Full Stack Architecture', 'Node.js', 'React', 'Cloud Ops', 'System Design'],
+        socialLinks: { linkedin: 'https://linkedin.com' },
+        order: 1,
+        isLeadership: false,
+        isActive: true
+      },
+      {
+        _id: 'tm_madhusudan',
+        name: 'Mr. Madhusudan Madankar',
+        role: 'Technical Head Officer',
+        designation: 'Technical Head Officer',
+        department: 'Technical Operations & Training',
+        bio: 'Leading laboratory infrastructure, hands-on workshop execution, and student technical mentorship across industrial training cohorts.',
+        image: 'https://i.ibb.co/67JHV0hg/Madhusudan.jpg',
+        skills: ['Embedded Systems', 'IoT', 'Python', 'Firmware', 'Project Mentorship'],
+        socialLinks: { linkedin: 'https://linkedin.com' },
+        order: 2,
+        isLeadership: false,
+        isActive: true
+      },
+      {
+        _id: 'tm_harsh',
+        name: 'Mr. Harsh Sagare',
+        role: 'Social Media Manager',
+        designation: 'Social Media Manager',
+        department: 'Brand & Digital Outreach',
+        bio: 'Directing digital communications, brand storytelling, student community engagement, and digital acquisition campaigns.',
+        image: 'https://i.ibb.co/9kVD9pRf/harsh.png',
+        skills: ['Digital Marketing', 'Content Strategy', 'Social Outreach', 'Community Engagement'],
+        socialLinks: { linkedin: 'https://linkedin.com' },
+        order: 3,
+        isLeadership: false,
+        isActive: true
+      },
+      {
+        _id: 'tm_sandesh',
+        name: 'Mr. Sandesh Lawhale',
+        role: 'Web Developer',
+        designation: 'Web Developer',
+        department: 'Frontend & UI Engineering',
+        bio: 'Developing intuitive, accessible, and high-performance client web applications and internal learning platforms.',
+        image: 'https://i.ibb.co/N6JW8Wmg/Sandesh-Ramdas-Lawhale.jpg',
+        skills: ['React.js', 'Next.js', 'Tailwind', 'JavaScript', 'Responsive UI'],
+        socialLinks: { linkedin: 'https://linkedin.com' },
+        order: 4,
+        isLeadership: false,
+        isActive: true
+      },
+      {
+        _id: 'tm_sujal',
+        name: 'Mr. Sujal Dhoke',
+        role: 'Cyber Security Manager',
+        designation: 'Cyber Security Manager',
+        department: 'Security & Infrastructure',
+        bio: 'Guarding data security protocols, defensive cybersecurity training, and secure application development standards.',
+        image: 'https://i.ibb.co/SXWdfL52/Sujal-Sudhir-Dhoke.jpg',
+        skills: ['Network Security', 'Vulnerability Assessment', 'Ethical Hacking', 'OWASP'],
+        socialLinks: { linkedin: 'https://linkedin.com' },
+        order: 5,
+        isLeadership: false,
+        isActive: true
+      }
+    ],
+    services: [
+      {
+        _id: 'srv_software_dev',
+        title: 'Software Development',
+        slug: 'software-development',
+        category: 'Client-Facing Services',
+        shortDescription: 'Custom Web, Android, Desktop, and Bespoke Enterprise Software engineered with modern UI/UX design.',
+        detailedDescription: 'From responsive web platforms to native Android applications, cross-platform desktop systems, and tailored enterprise software, NK SkillEdge delivers end-to-end software solutions designed for high performance, top-tier security, and modern UI/UX.',
+        features: ['Full Stack Web & Cloud Portals', 'Native & Cross-Platform Android Apps', 'Desktop Applications (Electron/C++)', 'Custom Enterprise Business Logic', 'High-Fidelity UI/UX Prototyping', 'Continuous Maintenance & SLAs'],
+        technologies: ['React.js', 'Next.js', 'Node.js', 'Flutter', 'Python', 'PostgreSQL', 'MongoDB'],
+        startingPrice: 'Request Quote',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80',
+        detailImage: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1000&auto=format&fit=crop&q=80',
+        icon: 'Laptop',
+        isFeatured: true
+      },
+      {
+        _id: 'srv_website_solutions',
+        title: 'Website Solutions',
+        slug: 'website-solutions',
+        category: 'Client-Facing Services',
+        shortDescription: 'Business websites, e-commerce stores, creative portfolios, dynamic CMS portals, and high-speed hosting.',
+        detailedDescription: 'Establish a dominant digital presence with custom business websites, high-conversion e-commerce systems, dynamic web applications, lightning-fast cloud hosting, and integrated payment gateways.',
+        features: ['Corporate & MSME Business Websites', 'E-Commerce & Payment Gateways', 'Creative Portfolio Sites', 'Dynamic CMS & Admin Control', 'Managed Cloud Hosting & SSL', 'SEO & Core Web Vitals Optimization'],
+        technologies: ['React.js', 'Next.js', 'WordPress/Node.js', 'Tailwind CSS', 'Stripe/Razorpay', 'Vercel/AWS'],
+        startingPrice: 'Request Quote',
+        image: 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&auto=format&fit=crop&q=80',
+        detailImage: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1000&auto=format&fit=crop&q=80',
+        icon: 'Globe',
+        isFeatured: true
+      },
+      {
+        _id: 'srv_digital_marketing',
+        title: 'Digital Marketing',
+        slug: 'digital-marketing',
+        category: 'Client-Facing Services',
+        shortDescription: 'Data-driven Search Engine Optimization (SEO), social media marketing, Google Ads, and content growth funnels.',
+        detailedDescription: 'Drive measurable business growth and customer acquisitions through data-backed organic SEO, targeted paid Google & Meta ad campaigns, engaging content marketing, and conversion rate optimization.',
+        features: ['Technical & On-Page SEO', 'Google Search & Display Ads', 'Social Media Paid Campaigns (Meta/LinkedIn)', 'Content Marketing & Copywriting', 'Lead Generation Funnels', 'Transparent Analytics & ROI Reporting'],
+        technologies: ['Google Ads', 'Meta Ads Manager', 'Google Search Console', 'SEMrush', 'Google Analytics 4'],
+        startingPrice: 'Custom Plan',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
+        detailImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1000&auto=format&fit=crop&q=80',
+        icon: 'TrendingUp',
+        isFeatured: true
+      },
+      {
+        _id: 'srv_graphic_designing',
+        title: 'Graphic Designing',
+        slug: 'graphic-designing',
+        category: 'Client-Facing Services',
+        shortDescription: 'Brand identity, modern logo design, social media banners, marketing brochures, and vector creatives.',
+        detailedDescription: 'Elevate your visual branding with handcrafted corporate logos, social media creatives, advertising banners, product brochures, and marketing collateral designed using industry-standard tools.',
+        features: ['Vector Logo Design & Brand Guidelines', 'Social Media Creatives & Ad Banners', 'Brochures, Pamphlets & Catalogs', 'Corporate Stationery & Business Cards', 'Packaging & Print Ready Vectors', 'Fast Iterations & Source Files Included'],
+        technologies: ['CorelDRAW', 'Adobe Photoshop', 'Adobe Illustrator', 'Figma', 'Canva Pro'],
+        startingPrice: 'Request Quote',
+        image: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&auto=format&fit=crop&q=80',
+        detailImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1000&auto=format&fit=crop&q=80',
+        icon: 'Palette',
+        isFeatured: true
+      },
+      {
+        _id: 'srv_it_support',
+        title: 'IT Support & Maintenance',
+        slug: 'it-support-maintenance',
+        category: 'Client-Facing Services',
+        shortDescription: 'Computer systems maintenance, network installation, hardware setup, IT infrastructure support, and Annual Maintenance Contracts (AMC).',
+        detailedDescription: 'Comprehensive IT infrastructure management for offices, colleges, and commercial setups. We provide computer hardware maintenance, LAN/Wi-Fi networking, software installations, cybersecurity audits, and ongoing AMC support.',
+        features: ['Preventive Hardware & PC Maintenance', 'Structured Cabling & Wi-Fi LAN Setup', 'OS & Enterprise Software Installation', 'Data Backup & Recovery Solutions', 'Onsite & Remote Technical Helpdesk', 'Annual Maintenance Contracts (AMC)'],
+        technologies: ['Cisco/TP-Link Networking', 'Windows Server', 'Linux Systems', 'Firewall Security', 'AMC Service Plans'],
+        startingPrice: 'AMC / Custom',
+        image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&auto=format&fit=crop&q=80',
+        detailImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1000&auto=format&fit=crop&q=80',
+        icon: 'Wrench',
+        isFeatured: true
+      },
+      {
+        _id: 'srv_app_dev',
+        title: 'Application Development',
+        slug: 'application-development',
+        category: 'Technology Solutions',
+        shortDescription: 'Native and cross-platform iOS & Android mobile apps engineered for fluid performance.',
+        detailedDescription: 'Transform your concept into an intuitive mobile experience. We build robust iOS and Android apps with high reliability, native hardware integrations, secure authentication, and seamless backend synchronization.',
+        features: ['Cross-Platform Flutter & React Native', 'Native iOS & Android Engineering', 'Cloud DB & Offline Sync', 'Push Notifications & Deep Linking', 'App Store & Play Store Publishing', 'Biometric & Secure Auth'],
+        technologies: ['Flutter', 'React Native', 'Kotlin', 'Swift', 'Firebase', 'Node.js REST API'],
+        startingPrice: 'Request Quote',
+        image: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&q=80',
+        detailImage: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1000&q=80',
+        icon: 'Smartphone',
+        isFeatured: true
+      },
+      {
+        _id: 'srv_social_media',
+        title: 'Social Media Solutions',
+        slug: 'social-media-solutions',
+        category: 'Digital Marketing',
+        shortDescription: 'Strategic social media campaigns, brand positioning, and content systems that drive organic client acquisition.',
+        detailedDescription: 'Build an authoritative digital brand footprint. We manage end-to-end social media channels with data-driven content calendars, custom creatives, targeted lead ads, and active audience engagement.',
+        features: ['Brand Positioning & Strategy', 'Creative Graphic Design & Reels', 'Paid Meta & LinkedIn Ad Campaigns', 'Audience Analytics & ROI Reporting', 'Community Management', 'Influencer Collabs'],
+        technologies: ['Meta Ads Manager', 'Canva Pro', 'Figma', 'Hootsuite', 'Google Analytics'],
+        startingPrice: 'Custom Plan',
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80',
+        detailImage: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=1000&q=80',
+        icon: 'Share2',
+        isFeatured: true
+      },
+      {
+        _id: 'srv_consultancy',
+        title: 'Consultancy Services',
+        slug: 'consultancy-services',
+        category: 'Business Advisory',
+        shortDescription: 'Strategic technology and startup consulting to modernize workflows and guide digital ventures.',
+        detailedDescription: 'Empowering early-stage founders, colleges, and growing enterprises with actionable technology roadmaps, cloud architecture audits, agile product planning, and digital transformation playbooks.',
+        features: ['Startup Tech Roadmapping', 'Architecture & Security Audits', 'Vendor & Stack Evaluation', 'Product MVP Scoping', 'Digital Process Automation', 'Fractional CTO Support'],
+        technologies: ['Cloud Arch', 'Agile/Scrum', 'DevOps', 'Data Security'],
+        startingPrice: 'Hourly / Retainer',
+        image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+        detailImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=80',
+        icon: 'Compass',
+        isFeatured: true
+      }
+    ],
+    programs: [
+      {
+        _id: 'prg_industrial_training',
+        name: 'Industrial Training Program',
+        slug: 'industrial-training',
+        category: 'Engineering & Diploma',
+        duration: '1 Month to 6 Months',
+        mode: 'Hybrid (Offline Lab + Online Projects)',
+        location: 'Sakoli Campus & Digital Access',
+        eligibility: 'B.E., B.Tech, B.C.A., B.Sc., Diploma (Any Year/Graduates)',
+        fees: 'Affordable / Merit Scholarships Available',
+        batchSize: '25 Students Max',
+        shortDescription: 'Industry-standard internship and live project training tailored to curriculum requirements and placement success.',
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80',
+        curriculum: [
+          { module: 'Module 1: Software Development Lifecycle & Git', topics: ['Agile workflows', 'Git & GitHub collaboration', 'Linux basics'] },
+          { module: 'Module 2: Frontend Engineering', topics: ['Modern HTML5/CSS3', 'JavaScript ES6+', 'React.js component design'] },
+          { module: 'Module 3: Backend & API Engineering', topics: ['Node.js & Express.js', 'REST API Architecture', 'Database Modeling'] },
+          { module: 'Module 4: Live Industry Project & Deployment', topics: ['Real-world client project', 'Cloud deployment', 'Viva & certification'] }
+        ],
+        technologies: ['React.js', 'Node.js', 'MongoDB', 'Git', 'REST APIs', 'Postman'],
+        learningOutcomes: ['Build 3 production-grade applications', 'Complete industrial training certificate', 'Placement portfolio readiness', 'Mock interviews with tech leads'],
+        placementSupport: true,
+        isFeatured: true
+      },
+      {
+        _id: 'prg_full_stack_web',
+        name: 'Full Stack Web Development',
+        slug: 'web-development',
+        category: 'Software Engineering',
+        duration: '3 Months (Intensive)',
+        mode: 'Classroom & Hands-on Lab',
+        location: 'Sakoli Training Center',
+        eligibility: 'Beginners to intermediate coders passionate about web tech',
+        fees: 'Contact for Fee Structure',
+        batchSize: '20 Students',
+        shortDescription: 'Master the MERN stack (MongoDB, Express, React, Node.js) from absolute fundamentals to scalable cloud deployment.',
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=80',
+        curriculum: [
+          { module: 'Phase 1: Deep JavaScript & DOM', topics: ['Asynchronous JS', 'Promises/Async-Await', 'Modern ESNext'] },
+          { module: 'Phase 2: React.js & State Management', topics: ['Hooks', 'Context API', 'Component Architecture', 'Routing'] },
+          { module: 'Phase 3: Node & Express Backend', topics: ['Authentication (JWT/Bcrypt)', 'MVC architecture', 'Data security'] },
+          { module: 'Phase 4: Capstone Web Application', topics: ['E-Commerce or SaaS platform with payment gateway and deployment'] }
+        ],
+        technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Redux/Zustand', 'Vercel/Render'],
+        learningOutcomes: ['Full Stack Web Developer certification', 'GitHub portfolio with 4 projects', 'Resume reviews and referrals'],
+        placementSupport: true,
+        isFeatured: true
+      },
+      {
+        _id: 'prg_mobile_app',
+        name: 'Mobile App Development',
+        slug: 'app-development',
+        category: 'Mobile Engineering',
+        duration: '3 Months',
+        mode: 'Offline Hands-on Training',
+        location: 'Sakoli Training Center',
+        eligibility: 'Students with basic programming knowledge in OOP / JavaScript / Dart',
+        fees: 'Contact for Fee Structure',
+        batchSize: '20 Students',
+        shortDescription: 'Build high-performance cross-platform mobile apps for Android and iOS using Flutter & React Native.',
+        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1000&q=80',
+        curriculum: [
+          { module: 'Phase 1: Dart & Flutter Fundamentals', topics: ['Widget tree', 'Layout systems', 'State management'] },
+          { module: 'Phase 2: Device Hardware & APIs', topics: ['Camera', 'Location & Maps', 'Local storage', 'Push notifications'] },
+          { module: 'Phase 3: Backend Integration & Firebase', topics: ['Authentication', 'Firestore / REST APIs', 'Cloud storage'] },
+          { module: 'Phase 4: Store Submission & Capstone', topics: ['Play Store build generation', 'Release signing', 'Complete app demo'] }
+        ],
+        technologies: ['Flutter', 'Dart', 'React Native', 'Firebase', 'REST APIs'],
+        learningOutcomes: ['Publish an app to the Google Play Store', 'Mobile developer certificate', 'Portfolio of interactive mobile solutions'],
+        placementSupport: true,
+        isFeatured: true
+      },
+      {
+        _id: 'prg_ai_ml',
+        name: 'AI & Machine Learning',
+        slug: 'ai-machine-learning',
+        category: 'Data Science & Intelligence',
+        duration: '3 Months',
+        mode: 'Hybrid',
+        location: 'Sakoli Campus & Cloud Labs',
+        eligibility: 'Engineers, math/stats or CS students interested in AI',
+        fees: 'Contact for Fee Structure',
+        batchSize: '20 Students',
+        shortDescription: 'Learn Python data engineering, predictive modeling, machine learning algorithms, and real-world computer vision.',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80',
+        curriculum: [
+          { module: 'Phase 1: Python for Data Science', topics: ['NumPy', 'Pandas', 'Matplotlib & Seaborn data visualization'] },
+          { module: 'Phase 2: Classical Machine Learning', topics: ['Linear Regression', 'Classification', 'Decision Trees', 'Random Forests'] },
+          { module: 'Phase 3: Deep Learning & Neural Nets', topics: ['TensorFlow/Keras', 'CNNs for image classification'] },
+          { module: 'Phase 4: AI Model Deployment', topics: ['FastAPI / Streamlit apps', 'HuggingFace models', 'Model serving'] }
+        ],
+        technologies: ['Python', 'TensorFlow', 'Scikit-Learn', 'Pandas', 'OpenCV', 'Streamlit'],
+        learningOutcomes: ['Train predictive models on real datasets', 'AI Engineer Certificate', 'Model deployment skills'],
+        placementSupport: true,
+        isFeatured: true
+      },
+      {
+        _id: 'prg_iot',
+        name: 'Internet of Things (IoT)',
+        slug: 'iot-embedded-systems',
+        category: 'Hardware & Systems',
+        duration: '2 Months',
+        mode: 'Hardware Lab Training',
+        location: 'Sakoli IoT Hardware Lab',
+        eligibility: 'Electrical, Electronics, Mechanical & CS students',
+        fees: 'Contact for Fee Structure',
+        batchSize: '15 Students',
+        shortDescription: 'Interface microcontrollers, sensors, and cloud IoT platforms for smart automation and robotics.',
+        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop&q=80',
+        curriculum: [
+          { module: 'Phase 1: Microcontroller Fundamentals', topics: ['ESP32', 'Arduino IDE', 'GPIO programming & digital sensors'] },
+          { module: 'Phase 2: Sensor Interfacing & Protocols', topics: ['Temperature/Humidity/Ultrasonic', 'I2C', 'SPI', 'UART'] },
+          { module: 'Phase 3: IoT Cloud Protocols', topics: ['MQTT protocol', 'Blynk IoT', 'ThingSpeak & AWS IoT Core'] },
+          { module: 'Phase 4: Smart Automation Project', topics: ['Smart Agriculture or Smart Home live automated device'] }
+        ],
+        technologies: ['ESP32', 'Arduino', 'C/C++', 'MQTT', 'Cloud IoT Dashboards'],
+        learningOutcomes: ['Build physical IoT prototypes', 'Embedded systems certificate', 'Hardware-software integration experience'],
+        placementSupport: true,
+        isFeatured: true
+      },
+      {
+        _id: 'prg_career_guidance_course',
+        name: 'Career Guidance & Personality Development',
+        slug: 'career-guidance-personality',
+        category: 'Career Readiness',
+        duration: '1 Month',
+        mode: 'Interactive Workshops',
+        location: 'Sakoli Campus / Online',
+        eligibility: 'Final year students and fresh graduates seeking placements',
+        fees: 'Nominal Registration',
+        batchSize: '30 Students',
+        shortDescription: 'Master resume optimization, technical interview strategies, HR communication, and LinkedIn personal branding.',
+        image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1000&q=80',
+        curriculum: [
+          { module: 'Phase 1: Corporate Communication', topics: ['Public speaking', 'Group discussions', 'Email etiquette'] },
+          { module: 'Phase 2: ATS-Proof Resume Building', topics: ['Highlighting projects', 'GitHub & portfolio reviews'] },
+          { module: 'Phase 3: Technical & HR Mock Rounds', topics: ['Aptitude strategies', 'Live mock interview sessions with feedback'] }
+        ],
+        technologies: ['LinkedIn Branding', 'Canva Resume', 'Aptitude Prep', 'Mock Interview Drills'],
+        learningOutcomes: ['Polished interview-ready resume', 'Confident communication skills', 'Placement assistance'],
+        placementSupport: true,
+        isFeatured: false
+      },
+      {
+        _id: 'prg_cert_programs',
+        name: 'Certification Programs',
+        slug: 'certification-programs',
+        category: 'Accredited Certification',
+        duration: '2 to 4 Months',
+        mode: 'Classroom & Assessment',
+        location: 'Sakoli Campus',
+        eligibility: 'All Engineering, Diploma, and Tech Students',
+        fees: 'Contact for Structure',
+        batchSize: '25 Students',
+        shortDescription: 'Industry-recognized specialized certification modules with verifiable digital credentials.',
+        image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80',
+        curriculum: [
+          { module: 'Module 1: Deep Theory & Architecture', topics: ['System design principles', 'Security fundamentals'] },
+          { module: 'Module 2: Practical Implementation', topics: ['Laboratory projects', 'Code optimization'] },
+          { module: 'Module 3: Formal Assessment', topics: ['Project defense', 'Comprehensive exam', 'Digital credential issuance'] }
+        ],
+        technologies: ['Full Stack', 'Cloud', 'Data Systems'],
+        learningOutcomes: ['Official verifiable certificate', 'Transcript of assessment'],
+        placementSupport: true,
+        isFeatured: false
+      },
+      {
+        _id: 'prg_coding_classes',
+        name: 'Coding Classes (Foundation to Advanced)',
+        slug: 'coding-classes',
+        category: 'Programming Fundamentals',
+        duration: '2 to 3 Months',
+        mode: 'Classroom & Hands-on Coding Lab',
+        location: 'Sakoli Campus / Online',
+        eligibility: 'School, College & Diploma students from any stream',
+        fees: 'Affordable Monthly Structure',
+        batchSize: '20 Students',
+        shortDescription: 'C, C++, Java, Python, Android, Web Development, and Data Structures & Algorithms from foundational syntax to real problem solving.',
+        image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1000&auto=format&fit=crop&q=80',
+        curriculum: [
+          { module: 'Module 1: C & C++ Fundamentals', topics: ['Pointers, memory management, OOP principles, data structures basics'] },
+          { module: 'Module 2: Java & Python Core', topics: ['Collections framework, multi-threading, file handling, algorithmic thinking'] },
+          { module: 'Module 3: Data Structures & Algorithms', topics: ['Stacks, Queues, Linked Lists, Trees, Sorting, Searching'] },
+          { module: 'Module 4: Web & Android Starter', topics: ['Building mini desktop/mobile applications and terminal games'] }
+        ],
+        technologies: ['C', 'C++', 'Java', 'Python', 'DSA', 'VS Code', 'Git'],
+        learningOutcomes: ['Strong algorithmic coding fundamentals', 'Competitive programming readiness', 'Certification in Core Programming'],
+        placementSupport: true,
+        isFeatured: true
+      },
+      {
+        _id: 'prg_cyber_security',
+        name: 'Cyber Security Training',
+        slug: 'cyber-security-training',
+        category: 'Information Security',
+        duration: '3 Months',
+        mode: 'Hands-on Security Sandbox Lab',
+        location: 'Sakoli Campus / Hybrid',
+        eligibility: 'CS, IT, Electronics students and IT professionals',
+        fees: 'Contact for Fee Structure',
+        batchSize: '15 Students',
+        shortDescription: 'Ethical hacking, network security, penetration testing, vulnerability assessment, and live laboratory defensive exercises.',
+        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1000&auto=format&fit=crop&q=80',
+        curriculum: [
+          { module: 'Module 1: Networking & Protocol Fundamentals', topics: ['TCP/IP, OSI model, Wireshark packet analysis, port scanning'] },
+          { module: 'Module 2: Linux Security & Shell Scripting', topics: ['Kali Linux tools, privilege escalation, file permissions'] },
+          { module: 'Module 3: Web Application Penetration Testing', topics: ['OWASP Top 10, SQLi, XSS, CSRF, Burp Suite hands-on'] },
+          { module: 'Module 4: Defensive Security & Hardening', topics: ['Firewall setup, intrusion detection, security audit reporting'] }
+        ],
+        technologies: ['Kali Linux', 'Burp Suite', 'Wireshark', 'Nmap', 'Metasploit', 'OWASP ZAP'],
+        learningOutcomes: ['Ethical Hacking certification', 'Vulnerability assessment portfolio', 'Security analyst career readiness'],
+        placementSupport: true,
+        isFeatured: true
+      },
+      {
+        _id: 'prg_placement_assistance',
+        name: 'Placement Assistance & Interview Bootcamps',
+        slug: 'placement-assistance',
+        category: 'Career & Recruitment',
+        duration: '1 to 2 Months',
+        mode: 'Classroom & Online Drills',
+        location: 'Sakoli Campus & Digital Sessions',
+        eligibility: 'Graduating engineering & diploma candidates',
+        fees: 'Included with Training Programs / Standalone',
+        batchSize: '25 Students',
+        shortDescription: 'Resume building, industry interview guidance, mock technical coding rounds, and direct recruiter network referrals.',
+        image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1000&auto=format&fit=crop&q=80',
+        curriculum: [
+          { module: 'Module 1: ATS Resume & LinkedIn Polishing', topics: ['Impact bullet points, GitHub showcasing, personal portfolio'] },
+          { module: 'Module 2: Technical Interview Drills', topics: ['Data structures, live whiteboard coding, system design basics'] },
+          { module: 'Module 3: HR & Behavioral Readiness', topics: ['Situation-Task-Action-Result (STAR) technique, communication confidence'] },
+          { module: 'Module 4: Recruiter Connection', topics: ['Referrals to MSMEs and partner IT companies across Maharashtra'] }
+        ],
+        technologies: ['Mock Interviews', 'ATS Systems', 'GitHub Portfolios', 'LinkedIn Talent'],
+        learningOutcomes: ['Polished enterprise resume', 'High confidence in technical interviews', 'Placement interviews lined up'],
+        placementSupport: true,
+        isFeatured: true
+      }
+    ],
+    projects: [
+      {
+        _id: 'proj_smart_campus',
+        title: 'EduTrack - Institute ERP & Attendance System',
+        category: 'Web',
+        client: 'Regional Polytechnic & Degree Institutes',
+        industry: 'Education & Administration',
+        shortSummary: 'Comprehensive cloud portal automating student attendance, fee tracking, and academic analytics.',
+        problemStatement: 'Manual paper registers and disorganized fee tracking led to administrative delays and student status discrepancies.',
+        solution: 'Built a multi-tenant web application with role-based access for directors, faculty, and students featuring QR attendance and automated SMS reports.',
+        technologies: ['React.js', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],
+        features: ['Real-time QR Attendance', 'Automated Fee Invoicing', 'Academic Grade Sheets', 'Parent SMS Broadcast'],
+        results: 'Cut attendance processing time by 85% and eliminated fee record discrepancies across 1,200+ students.',
+        status: 'Completed & Live',
+        liveUrl: 'https://nkskilledge.com',
+        githubUrl: 'https://github.com/nkskilledge',
+        image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&auto=format&fit=crop&q=80',
+        isFeatured: true
+      },
+      {
+        _id: 'proj_agri_iot',
+        title: 'SmartAgri - Solar IoT Soil & Irrigation Monitor',
+        category: 'IoT',
+        client: 'Bhandara Agro Innovations',
+        industry: 'Agriculture & IoT',
+        shortSummary: 'Solar-powered telemetry node transmitting real-time soil moisture and automated pump actuation commands.',
+        problemStatement: 'Farmers struggled with irregular power grids and over-watering crops leading to yield damage.',
+        solution: 'Engineered an ESP32-based wireless sensor unit connected to a solar battery and cloud MQTT server with automated solenoid valve triggers.',
+        technologies: ['ESP32', 'C++', 'MQTT', 'React Dashboard', 'Node.js Backend'],
+        features: ['Solar Battery Operation', 'Soil Moisture & pH Telemetry', 'Automated Pump Relay', 'Mobile SMS Alerts'],
+        results: 'Saved 40% water consumption across 12 test farm plots with zero manual night valve inspections.',
+        status: 'Active Deployment',
+        liveUrl: 'https://nkskilledge.com',
+        image: 'https://images.unsplash.com/photo-1586771107445-d3ca888129ff?w=800&auto=format&fit=crop&q=80',
+        isFeatured: true
+      },
+      {
+        _id: 'proj_retail_ecommerce',
+        title: 'LocalKart - Hyperlocal Delivery & Billing App',
+        category: 'Mobile',
+        client: 'Sakoli Merchants Association',
+        industry: 'Retail & E-Commerce',
+        shortSummary: 'Mobile shopping app and vendor admin portal enabling neighborhood grocery stores to deliver in under 2 hours.',
+        problemStatement: 'Small local shopkeepers were losing neighborhood market share to massive centralized delivery aggregators.',
+        solution: 'Developed an easy-to-use vernacular mobile ordering application with live order tracking and Bluetooth thermal receipt printing.',
+        technologies: ['Flutter', 'Firebase', 'Node.js', 'Razorpay', 'Google Maps API'],
+        features: ['Bilingual UI (Marathi & English)', 'Cash on Delivery + UPI QR', 'Instant Delivery Route Maps', 'Thermal Printer Integration'],
+        results: 'Processed over 6,500 local orders in its first 4 months of operation.',
+        status: 'Completed',
+        liveUrl: 'https://nkskilledge.com',
+        image: 'https://images.unsplash.com/photo-1556742049-0a67c5574f73?w=800&auto=format&fit=crop&q=80',
+        isFeatured: true
+      },
+      {
+        _id: 'proj_ai_cv',
+        title: 'VisionGate - Automated License Plate Recognition',
+        category: 'AI',
+        client: 'Commercial Logistics Hub',
+        industry: 'Security & Logistics',
+        shortSummary: 'Computer vision pipeline detecting vehicle registration plates and logging security timestamps automatically.',
+        problemStatement: 'Security guards faced vehicle traffic bottlenecks manually noting truck numbers during peak delivery hours.',
+        solution: 'Trained a custom YOLOv8 model deployed on edge cameras connected to a central audit web dashboard.',
+        technologies: ['Python', 'YOLOv8', 'OpenCV', 'FastAPI', 'React'],
+        features: ['98.4% OCR Accuracy in Low Light', 'Instant Blacklist Vehicle Alarm', 'Automated Barrier Lift Signal'],
+        results: 'Reduced gate vehicle check-in time from 90 seconds to under 4 seconds.',
+        status: 'Completed',
+        liveUrl: 'https://nkskilledge.com',
+        image: 'https://images.unsplash.com/photo-1508962914676-134849a727f0?w=800&auto=format&fit=crop&q=80',
+        isFeatured: true
+      }
+    ],
+    clients: [
+      { _id: 'cl_1', name: 'Bhandara Agro Innovations', industry: 'AgriTech', projectCount: 2, logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=300&auto=format&fit=crop&q=80' },
+      { _id: 'cl_2', name: 'Sakoli Retail Hub', industry: 'Retail & MSME', projectCount: 3, logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=300&auto=format&fit=crop&q=80' },
+      { _id: 'cl_3', name: 'TechVision Solutions', industry: 'IT Services', projectCount: 4, logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=300&auto=format&fit=crop&q=80' },
+      { _id: 'cl_4', name: 'Vidarbha Engineering Institute', industry: 'Higher Education', projectCount: 2, logo: 'https://images.unsplash.com/photo-1599305445671-ac291c95aaa9?w=300&auto=format&fit=crop&q=80' }
+    ],
+    testimonials: [
+      {
+        _id: 'tst_1',
+        name: 'Prathamesh Kulkarni',
+        role: 'Full Stack Trainee (Batch of 2024)',
+        course: 'Full Stack Web Development',
+        company: 'Placed at TechVerge Labs',
+        rating: 5,
+        testimonial: 'The hands-on project training at NK SkillEdge changed everything for me. Unlike college theory, here we built real backend APIs and deployed actual web portals. That gave me immense confidence during tech interviews!',
+        status: 'approved',
+        image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&auto=format&fit=crop&q=80'
+      },
+      {
+        _id: 'tst_2',
+        name: 'Rupali Meshram',
+        role: 'Industrial Training Intern',
+        course: 'Industrial Training & Python',
+        company: 'Placed as Associate Developer',
+        rating: 5,
+        testimonial: 'Mentors like Mr. Harshal and Mr. Madhusudan took personal care of our doubts. Building a live project from scratch in Sakoli without traveling to Pune or Bangalore saved me time and money.',
+        status: 'approved',
+        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&auto=format&fit=crop&q=80'
+      },
+      {
+        _id: 'tst_3',
+        name: 'Sachin Bawankule',
+        role: 'Director, Bhandara Agro Innovations',
+        course: 'Client Service',
+        company: 'Client Partner',
+        rating: 5,
+        testimonial: 'NK SkillEdge delivered our IoT soil monitor ahead of schedule. Their technical head understood rural field challenges and built a rugged, reliable hardware-cloud solution.',
+        status: 'approved',
+        image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&auto=format&fit=crop&q=80'
+      }
+    ],
+    success_stories: [
+      {
+        _id: 'ss_1',
+        studentName: 'Prathamesh Kulkarni',
+        course: 'Full Stack Web Development (MERN)',
+        internship: '6 Months Live Industry Project',
+        company: 'TechVerge Labs',
+        package: '4.8 LPA',
+        achievement: 'Frontend Software Engineer',
+        testimonial: 'Learned MERN stack from scratch and landed my first role right after college.',
+        status: 'Placed',
+        image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format&fit=crop&q=80'
+      },
+      {
+        _id: 'ss_2',
+        studentName: 'Pooja Raut',
+        course: 'Mobile App Development (Flutter)',
+        internship: '4 Months Project Internship',
+        company: 'InnoApp Solutions',
+        package: '4.2 LPA',
+        achievement: 'Junior Flutter Developer',
+        testimonial: 'Published two live apps on the Google Play Store as part of the curriculum!',
+        status: 'Placed',
+        image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80'
+      },
+      {
+        _id: 'ss_3',
+        studentName: 'Nikhil Gajbhiye',
+        course: 'Industrial Training (IoT & Embedded)',
+        internship: '6 Months Industrial Apprenticeship',
+        company: 'SmartGrid Telemetry Systems',
+        package: '3.6 LPA',
+        achievement: 'Embedded Systems Engineer',
+        testimonial: 'Working directly with ESP32 and MQTT protocols in the hardware lab made all the difference.',
+        status: 'Placed',
+        image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80'
+      }
+    ],
+    blogs: [
+      {
+        _id: 'blog_1',
+        title: 'How to Choose the Right Industrial Training in 2025: A Practical Guide for Engineering Students',
+        slug: 'how-to-choose-industrial-training-2025',
+        author: 'Harshal Mendulkar (CTO)',
+        category: 'Student Guidance',
+        tags: ['Industrial Training', 'Engineering', 'Career', 'Internship'],
+        summary: 'A step-by-step breakdown of what engineering students must look for in an industrial training program to guarantee placement readiness.',
+        content: `Industrial training is no longer a mere paper formality to submit for college credits. Today, top tech recruiters look for proof of execution: verifiable GitHub repositories, live deployed web URLs, and understanding of standard engineering workflows like Git branching, pull requests, and Docker containers.\n\n### 1. Avoid Certificate-Only Mills\nIf an institute offers certificates without you writing a single line of real backend code or deploying your project on the cloud, employers will spot the gap in the first technical round. Look for programs with live project reviews and code audits.\n\n### 2. Focus on Foundational Depth over Framework Fads\nFrameworks change, but fundamentals like data structures, asynchronous JavaScript, and RESTful API architecture remain timeless. Master how data flows from client to server and back.\n\n### 3. Mentorship from Active Practitioners\nEnsure your trainers are actual developers who solve production bugs daily, not just instructors reciting decade-old textbooks. At NK SkillEdge, our developers mentor trainees directly on real client pipelines.`,
+        readingTime: '5 min read',
+        isPublished: true,
+        publishDate: '2025-01-15',
+        image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&auto=format&fit=crop&q=80'
+      },
+      {
+        _id: 'blog_2',
+        title: 'Mastering the MERN Stack: Why Full-Stack JavaScript Continues to Dominate Tech Hiring',
+        slug: 'mastering-mern-stack-web-development',
+        author: 'Sandesh Lawhale',
+        category: 'Web Development',
+        tags: ['MERN', 'React', 'Node.js', 'MongoDB', 'JavaScript'],
+        summary: 'Discover why the unified JavaScript ecosystem remains the top choice for startups and high-growth technology companies worldwide.',
+        content: `Full stack JavaScript enables a developer to navigate seamlessly between client state management and server microservices without context-switching between different programming syntaxes.\n\n### Why Startups Love MERN\n- Single language across frontend and backend (JavaScript / TypeScript)\n- Massive npm ecosystem with ready solutions for authentication, caching, and ORMs\n- Rapid prototyping from idea to cloud MVP in record time\n\nAt NK SkillEdge, our Web Development batch focuses on building real-world enterprise dashboards and e-commerce architectures so students stand out instantly to hiring managers.`,
+        readingTime: '6 min read',
+        isPublished: true,
+        publishDate: '2025-02-02',
+        image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&auto=format&fit=crop&q=80'
+      }
+    ],
+    events: [
+      {
+        _id: 'ev_workshop_ai',
+        title: 'Hands-on Workshop: Building Your First Generative AI & Web Agent',
+        banner: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
+        date: '2025-04-12',
+        time: '10:00 AM - 04:00 PM IST',
+        venue: 'NK SkillEdge Training Center, Near Gobade Hospital, Sakoli',
+        mode: 'Offline Hands-on Lab',
+        speaker: 'Mr. Harshal Mendulkar (CTO)',
+        description: 'An intensive, project-based Saturday workshop where students will build and deploy a real-time AI assistant integrated with a custom web dashboard.',
+        agenda: [
+          '10:00 AM: Introduction to LLMs & Prompt Engineering',
+          '11:30 AM: Building Python API bridges with FastAPI',
+          '01:00 PM: Networking Lunch & Tech Discussion',
+          '02:00 PM: Building the React UI & Streaming Responses',
+          '03:30 PM: Project Demos & Certificate Distribution'
+        ],
+        seats: 40,
+        registeredCount: 28,
+        registrationStatus: 'open'
+      }
+    ],
+    jobs: [
+      {
+        _id: 'job_web_trainer',
+        position: 'Full Stack Web Development Trainer / Mentor',
+        department: 'Training & Academic Operations',
+        location: 'Sakoli, Maharashtra',
+        employmentType: 'Full Time / Part Time',
+        experience: '1 - 3 Years',
+        skills: ['React.js', 'Node.js', 'Express', 'MongoDB', 'Git', 'Mentorship'],
+        description: 'We are looking for a passionate developer who loves mentoring students, leading hands-on lab sessions, and building live demonstration projects.',
+        responsibilities: [
+          'Deliver practical sessions on MERN stack and modern web fundamentals',
+          'Guide students through milestone capstone projects and code reviews',
+          'Help design real-world curriculum and evaluate student assignments'
+        ],
+        requirements: [
+          'Strong practical experience in React, Node, and REST API development',
+          'Clear communication skills in Hindi, Marathi, and English',
+          'Passion for teaching and community building'
+        ],
+        deadline: '2025-05-30',
+        isActive: true
+      },
+      {
+        _id: 'job_dev_intern',
+        position: 'Software Engineering Intern (Web / Mobile)',
+        department: 'Software Solutions Division',
+        location: 'Sakoli, Maharashtra',
+        employmentType: 'Internship (3-6 Months)',
+        experience: 'Fresher / Final Year Students',
+        skills: ['JavaScript', 'React', 'Flutter or Node.js basics'],
+        description: 'Work alongside senior engineers on live client projects, building user interfaces, database integrations, and automated testing.',
+        responsibilities: [
+          'Develop reusable frontend components',
+          'Test and debug REST API integrations',
+          'Participate in daily engineering standups'
+        ],
+        requirements: [
+          'Completed basic coursework in CS or related field',
+          'Demonstrable personal project on GitHub'
+        ],
+        deadline: '2025-06-15',
+        isActive: true
+      }
+    ],
+    faqs: [
+      {
+        _id: 'faq_1',
+        category: 'Training & Courses',
+        question: 'What courses and training programs are available at NK SkillEdge?',
+        answer: 'We offer comprehensive industrial training programs in Full Stack Web Development (MERN), Mobile App Development (Flutter/React Native), AI & Machine Learning, Internet of Things (IoT), Career Development, and Corporate Technical Workshops.'
+      },
+      {
+        _id: 'faq_2',
+        category: 'Training & Courses',
+        question: 'What is the duration of the Industrial Training and Internship programs?',
+        answer: 'Programs range from 1 Month (Fast-track technical sessions) to 3 Months (Full Stack modules) and 6 Months (Comprehensive Industrial Internship with Live Client Projects and placement mentorship).'
+      },
+      {
+        _id: 'faq_3',
+        category: 'Certifications',
+        question: 'Are certificates provided upon completion, and are they verifiable?',
+        answer: 'Yes! Every trainee who completes their project submissions receives an official ISO & MSME-recognized completion certificate featuring a unique Certificate ID that employers can verify in real-time on our online verification portal.'
+      },
+      {
+        _id: 'faq_4',
+        category: 'Placements',
+        question: 'Is placement support provided to students?',
+        answer: 'Yes. We provide dedicated placement assistance including ATS-friendly resume reviews, GitHub portfolio polishing, technical mock interviews, HR communication training, and referrals to partner IT firms across Maharashtra and Bangalore.'
+      },
+      {
+        _id: 'faq_5',
+        category: 'Business Services',
+        question: 'How can businesses and startups hire NK SkillEdge for software development?',
+        answer: 'You can submit a project inquiry via our "Request Quote" or Contact page, or message us directly on WhatsApp at 7498784109. Our team will schedule a discovery consultation to evaluate requirements, recommend the ideal tech stack, and share a transparent proposal.'
+      },
+      {
+        _id: 'faq_6',
+        category: 'Mode of Training',
+        question: 'Is online training available, or is it strictly offline at the Sakoli campus?',
+        answer: 'We offer flexible hybrid models. Students residing in Sakoli and nearby regions attend our equipped hardware and computer laboratories in person, while distant students can attend live interactive virtual sessions with code pairing and cloud lab access.'
+      }
+    ],
+    certifications: [
+      {
+        _id: 'cert_msme',
+        title: 'MSME Registered Enterprise',
+        authority: 'Ministry of Micro, Small & Medium Enterprises, Govt. of India',
+        code: 'UDYAM-MH-REG',
+        badge: 'Govt. Recognized',
+        image: 'https://i.ibb.co/FLNxpYs9/MSME.webp',
+        description: 'Officially registered as a technology and skill development enterprise under the Government of India.'
+      },
+      {
+        _id: 'cert_iso',
+        title: 'ISO 9001:2015 Certified',
+        authority: 'International Organization for Standardization',
+        code: 'ISO-9001-QMS',
+        badge: 'Quality Assured',
+        image: 'https://i.ibb.co/fd4tyhHN/ISO.jpg',
+        description: 'Adhering to international quality management benchmarks in IT education, practical training delivery, and digital solution standards.'
+      },
+      {
+        _id: 'cert_gov',
+        title: 'Government Certification',
+        authority: 'Directorate of Technical Education & Skill Development',
+        code: 'GOV-RECOG-IT',
+        badge: 'Recognized Center',
+        image: 'https://i.ibb.co/xtKK3Jv4/Gov.jpg',
+        description: 'Approved center for practical skill training and engineering apprenticeships.'
+      },
+      {
+        _id: 'cert_gst',
+        title: 'GST Registered & Compliant Entity',
+        authority: 'Department of Revenue, Govt. of India',
+        code: 'GST-APPROVED',
+        badge: 'Fully Compliant',
+        image: 'https://i.ibb.co/fGdCth1V/GST.png',
+        description: 'Legally compliant corporate entity authorized to provide IT services, enterprise consultancy, and industrial education.'
+      }
+    ],
+    certificates: [
+      {
+        _id: 'cert_demo_101',
+        certificateId: 'NKSK-2025-WD101',
+        studentName: 'Kartik Sharma',
+        course: 'Full Stack Web Development (MERN)',
+        issueDate: '2025-01-20',
+        completionDate: '2025-01-15',
+        grade: 'A+ (Distinction)',
+        status: 'Valid',
+        organization: 'NK SkillEdge Pvt. Ltd.',
+        verifiedBy: 'Mr. Kartik Mendhe (CEO)',
+        projectTitle: 'E-Commerce Cloud Portal with Payment Gateway'
+      },
+      {
+        _id: 'cert_demo_102',
+        certificateId: 'NKSK-2025-IT204',
+        studentName: 'Sneha Deshmukh',
+        course: 'Industrial Training Program (IoT & Embedded)',
+        issueDate: '2025-02-10',
+        completionDate: '2025-02-05',
+        grade: 'A',
+        status: 'Valid',
+        organization: 'NK SkillEdge Pvt. Ltd.',
+        verifiedBy: 'Mr. Harshal Mendulkar (CTO)',
+        projectTitle: 'Smart Home Automated Node'
+      }
+    ],
+    branches: [
+      {
+        _id: 'branch_sakoli',
+        name: 'Main Branch — NK SkillEdge Pvt. Ltd. Office (Head Office)',
+        address: 'Near Gobade Hospital, Sakoli, Dist. Bhandara, Maharashtra – 441802',
+        city: 'Sakoli',
+        district: 'Dist. Bhandara',
+        state: 'Maharashtra',
+        pincode: '441802',
+        isMainBranch: true,
+        phone: '+91 7498784109',
+        mapEmbedUrl: 'https://maps.google.com/maps?q=Gobade%20Hospital,%20Sakoli,%20Maharashtra%20441802&t=&z=15&ie=UTF8&iwloc=&output=embed',
+        displayOrder: 1,
+        createdAt: new Date().toISOString()
+      },
+      {
+        _id: 'branch_nagpur',
+        name: '2nd Branch — Nagpur Center',
+        address: 'Plot No. 9, Naik Nagar, Near NIT Garden, Nagpur, Maharashtra – 440009',
+        city: 'Nagpur',
+        district: 'Nagpur',
+        state: 'Maharashtra',
+        pincode: '440009',
+        isMainBranch: false,
+        phone: '+91 9356049629',
+        mapEmbedUrl: 'https://maps.google.com/maps?q=Naik%20Nagar,%20NIT%20Garden,%20Nagpur,%20Maharashtra%20440009&t=&z=15&ie=UTF8&iwloc=&output=embed',
+        displayOrder: 2,
+        createdAt: new Date().toISOString()
+      },
+      {
+        _id: 'branch_gondia',
+        name: '3rd Branch — IBM Center, GP Gondia Campus',
+        address: 'IBM Center, GP Gondia Campus, Government Polytechnic Gondia, Gondia, Maharashtra – 441601',
+        city: 'Gondia',
+        district: 'Gondia',
+        state: 'Maharashtra',
+        pincode: '441601',
+        isMainBranch: false,
+        phone: '+91 7498784109',
+        mapEmbedUrl: 'https://maps.google.com/maps?q=Government%20Polytechnic%20Gondia,%20Gondia,%20Maharashtra%20441601&t=&z=15&ie=UTF8&iwloc=&output=embed',
+        displayOrder: 3,
+        createdAt: new Date().toISOString()
+      }
+    ],
+    media: [
+      {
+        _id: 'med_logo',
+        name: 'Official Company Logo',
+        url: 'https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png',
+        folder: 'Brand',
+        altText: 'NK SkillEdge Pvt. Ltd. Official Logo',
+        mimeType: 'image/png',
+        size: '128 KB'
+      },
+      {
+        _id: 'med_ceo',
+        name: 'Mr. Kartik Mendhe - CEO',
+        url: 'https://i.ibb.co/MDwcPjPq/Whats-App-Image-2026-02-02-at-9-21-25-PM.jpg',
+        folder: 'Team',
+        altText: 'Mr. Kartik Mendhe, CEO of NK SkillEdge Pvt. Ltd.',
+        mimeType: 'image/jpeg',
+        size: '240 KB'
+      },
+      {
+        _id: 'med_director',
+        name: 'Mr. Ayush Bhendarkar - Director',
+        url: 'https://i.ibb.co/jkdCkhwn/Ayu.png',
+        folder: 'Team',
+        altText: 'Mr. Ayush Bhendarkar, Director & Co-Founder of NK SkillEdge Pvt. Ltd.',
+        mimeType: 'image/png',
+        size: '310 KB'
+      },
+      {
+        _id: 'med_cto',
+        name: 'Mr. Harshal Mendulkar - CTO',
+        url: 'https://i.ibb.co/vWCtyT7/HArshal.jpg',
+        folder: 'Team',
+        altText: 'Mr. Harshal Mendulkar, Chief Technology Officer',
+        mimeType: 'image/jpeg',
+        size: '195 KB'
+      },
+      {
+        _id: 'med_tech_head',
+        name: 'Mr. Madhusudan Madankar - Technical Head',
+        url: 'https://i.ibb.co/67JHV0hg/Madhusudan.jpg',
+        folder: 'Team',
+        altText: 'Mr. Madhusudan Madankar, Technical Head Officer',
+        mimeType: 'image/jpeg',
+        size: '210 KB'
+      },
+      {
+        _id: 'med_social_mgr',
+        name: 'Mr. Harsh Sagare - Social Media Manager',
+        url: 'https://i.ibb.co/9kVD9pRf/harsh.png',
+        folder: 'Team',
+        altText: 'Mr. Harsh Sagare, Social Media Manager',
+        mimeType: 'image/png',
+        size: '280 KB'
+      },
+      {
+        _id: 'med_web_dev',
+        name: 'Mr. Sandesh Lawhale - Web Developer',
+        url: 'https://i.ibb.co/N6JW8Wmg/Sandesh-Ramdas-Lawhale.jpg',
+        folder: 'Team',
+        altText: 'Mr. Sandesh Lawhale, Web Developer',
+        mimeType: 'image/jpeg',
+        size: '205 KB'
+      },
+      {
+        _id: 'med_security_mgr',
+        name: 'Mr. Sujal Dhoke - Cyber Security Manager',
+        url: 'https://i.ibb.co/SXWdfL52/Sujal-Sudhir-Dhoke.jpg',
+        folder: 'Team',
+        altText: 'Mr. Sujal Dhoke, Cyber Security Manager',
+        mimeType: 'image/jpeg',
+        size: '225 KB'
+      },
+      {
+        _id: 'med_msme',
+        name: 'MSME Registered Enterprise Certificate',
+        url: 'https://i.ibb.co/FLNxpYs9/MSME.webp',
+        folder: 'Certificates',
+        altText: 'Ministry of MSME Official Certificate',
+        mimeType: 'image/webp',
+        size: '110 KB'
+      },
+      {
+        _id: 'med_iso',
+        name: 'ISO 9001:2015 Quality Management Certificate',
+        url: 'https://i.ibb.co/fd4tyhHN/ISO.jpg',
+        folder: 'Certificates',
+        altText: 'ISO 9001:2015 Official Certification',
+        mimeType: 'image/jpeg',
+        size: '185 KB'
+      },
+      {
+        _id: 'med_gov',
+        name: 'Government IT Skill Recognition',
+        url: 'https://i.ibb.co/xtKK3Jv4/Gov.jpg',
+        folder: 'Certificates',
+        altText: 'Government Approved Skill Development Center Recognition',
+        mimeType: 'image/jpeg',
+        size: '175 KB'
+      },
+      {
+        _id: 'med_gst',
+        name: 'GST Registration Certificate',
+        url: 'https://i.ibb.co/fGdCth1V/GST.png',
+        folder: 'Certificates',
+        altText: 'GST Registered and Compliant Business Certificate',
+        mimeType: 'image/png',
+        size: '160 KB'
+      }
+    ]
+  };
+}
+
+module.exports = {
+  getSeedData
+};
