@@ -64,6 +64,7 @@ export default function App() {
   const [blogs, setBlogs] = useState([]);
   const [events, setEvents] = useState([]);
   const [faqs, setFaqs] = useState([]);
+  const [dataVersion, setDataVersion] = useState(0);
 
   // Hash change listener
   useEffect(() => {
@@ -165,7 +166,9 @@ export default function App() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [dataVersion]);
+
+  const refreshPublicData = () => setDataVersion(prev => prev + 1);
 
   const openRegister = (program = null) => {
     setActiveRegProgram(program);
@@ -202,7 +205,7 @@ export default function App() {
               user={adminUser} 
               token={adminToken} 
               onLogout={handleAdminLogout} 
-              onRefreshData={fetchData}
+              onRefreshData={refreshPublicData}
               themePreference={themePreference}
               onThemeChange={setThemePreference}
             />
