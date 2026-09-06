@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Shield, Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
 
 export default function AdminLogin({ onLoginSuccess }) {
-  const [email, setEmail] = useState('nkskilledge@gmail.com');
-  const [password, setPassword] = useState('151267@GK');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -59,10 +59,11 @@ export default function AdminLogin({ onLoginSuccess }) {
               <input 
                 type="email" 
                 required 
+                autoComplete="off"
                 className="form-input" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="nkskilledge@gmail.com"
+                placeholder="Enter admin email"
               />
             </div>
           </div>
@@ -74,10 +75,11 @@ export default function AdminLogin({ onLoginSuccess }) {
               <input 
                 type="password" 
                 required 
+                autoComplete="new-password"
                 className="form-input" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••••••"
+                placeholder="Enter password"
               />
             </div>
           </div>
