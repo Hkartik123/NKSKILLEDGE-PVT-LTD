@@ -111,7 +111,7 @@ async function runVerification() {
     console.log('\n[8] Admin Authentication:');
     const loginRes = await request(
       { host: 'localhost', port: 5000, path: '/api/auth/login', method: 'POST', headers: { 'Content-Type': 'application/json' } },
-      { email: 'admin@nkskilledge.com', password: 'Admin@NK2025!' }
+      { email: 'nkskilledge@gmail.com', password: '151267@GK' }
     );
     assert(loginRes.status === 200 && !!loginRes.body?.token, 'Super Admin login successful with JWT');
     const token = loginRes.body?.token;

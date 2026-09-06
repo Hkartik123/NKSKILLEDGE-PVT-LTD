@@ -1,14 +1,14 @@
 const bcrypt = require('bcryptjs');
 
 async function getSeedData() {
-  const adminPasswordHash = await bcrypt.hash('Admin@NK2025!', 10);
+  const adminPasswordHash = await bcrypt.hash('151267@GK', 10);
 
   return {
     users: [
       {
         _id: 'usr_superadmin',
         name: 'Super Administrator',
-        email: 'admin@nkskilledge.com',
+        email: 'nkskilledge@gmail.com',
         password: adminPasswordHash,
         role: 'super_admin',
         designation: 'System Administrator',

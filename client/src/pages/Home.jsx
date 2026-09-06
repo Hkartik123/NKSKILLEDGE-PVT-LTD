@@ -118,6 +118,18 @@ export default function Home({
     ? projects 
     : projects.filter(p => p.category?.toLowerCase() === activeProjectFilter.toLowerCase());
 
+  const activeSuccessStories = Array.isArray(successStories)
+    ? [...successStories]
+        .filter(story => !(story.isActive === false || story.status === 'Inactive' || story.status === 'inactive'))
+        .sort((a, b) => Number(a.display_order ?? a.order ?? 9999) - Number(b.display_order ?? b.order ?? 9999))
+    : [];
+
+  const activeTestimonials = Array.isArray(testimonials)
+    ? [...testimonials]
+        .filter(t => !(t.isActive === false || t.status === 'Inactive' || t.status === 'inactive'))
+        .sort((a, b) => Number(a.display_order ?? a.order ?? 9999) - Number(b.display_order ?? b.order ?? 9999))
+    : [];
+
   return (
     <div className="home-page-root" id="home">
       {/* Background Ambient Glow Orbs */}
@@ -659,18 +671,18 @@ export default function Home({
           </div>
 
           <div className="grid-3" style={{ marginBottom: '40px' }}>
-            {successStories.map((s) => (
+            {activeSuccessStories.map((s) => (
               <div key={s._id} className="card-interactive success-card">
                 <div className="success-profile-header">
                   <img 
-                    src={s.image} 
-                    alt={s.studentName} 
+                    src={s.image || s.profile_image || 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80'} 
+                    alt={s.studentName || s.name} 
                     className="student-avatar" 
                     loading="lazy"
                     onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80')}
                   />
                   <div>
-                    <h4>{s.studentName}</h4>
+                    <h4>{s.studentName || s.name}</h4>
                     <span className="student-course">{s.course}</span>
                   </div>
                 </div>
@@ -678,11 +690,16 @@ export default function Home({
                 <div className="placement-badge-box">
                   <Award size={16} className="text-emerald" />
                   <span>Placed at <strong>{s.company}</strong></span>
-                  <span className="package-tag">{s.package}</span>
+                  {s.package && <span className="package-tag">{s.package}</span>}
                 </div>
 
                 <p className="success-quote">"{s.testimonial}"</p>
-                <div className="student-role-tag">{s.achievement}</div>
+                <div className="student-role-tag">{s.achievement || s.designation || 'Career Success'}</div>
+                {s.video && (
+                  <a href={s.video} target="_blank" rel="noreferrer" className="btn btn-outline btn-sm" style={{ marginTop: '12px', width: 'fit-content' }}>
+                    Watch Video
+                  </a>
+                )}
               </div>
             ))}
           </div>
@@ -690,17 +707,17 @@ export default function Home({
           <div className="testimonials-sub-block">
             <h3 style={{ textAlign: 'center', marginBottom: '24px' }}>Client & Student Testimonials</h3>
             <div className="grid-3">
-              {testimonials.map((t) => (
+              {activeTestimonials.map((t) => (
                 <div key={t._id} className="glass-panel testimonial-mini-box">
                   <div className="stars-row">
-                    {[...Array(t.rating || 5)].map((_, i) => (
+                    {[...Array(Number(t.rating || 5))].map((_, i) => (
                       <Star key={i} size={15} className="star-filled" />
                     ))}
                   </div>
                   <p className="testi-text">"{t.testimonial}"</p>
                   <div className="testi-author">
                     <img 
-                      src={t.image} 
+                      src={t.image || t.profile_photo || 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&q=80'} 
                       alt={t.name} 
                       className="testi-avatar" 
                       loading="lazy"
@@ -708,9 +725,14 @@ export default function Home({
                     />
                     <div>
                       <strong>{t.name}</strong>
-                      <span>{t.role}</span>
+                      <span>{t.role || t.designation || t.company || 'Community Member'}</span>
                     </div>
                   </div>
+                  {t.video && (
+                    <a href={t.video} target="_blank" rel="noreferrer" className="btn btn-outline btn-sm" style={{ marginTop: '14px', width: 'fit-content' }}>
+                      Play Video
+                    </a>
+                  )}
                 </div>
               ))}
             </div>

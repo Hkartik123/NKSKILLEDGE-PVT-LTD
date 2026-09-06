@@ -42,6 +42,44 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
   });
   const [teamErrors, setTeamErrors] = useState({});
   const [editingTeamMemberId, setEditingTeamMemberId] = useState(null);
+  const [successStories, setSuccessStories] = useState([]);
+  const [successStoryForm, setSuccessStoryForm] = useState({
+    _id: '',
+    studentName: '',
+    course: '',
+    company: '',
+    package: '',
+    achievement: '',
+    testimonial: '',
+    batchYear: '',
+    image: '',
+    video: '',
+    status: 'Active',
+    featured: false,
+    displayOrder: '1'
+  });
+  const [successStoryErrors, setSuccessStoryErrors] = useState({});
+  const [editingSuccessStoryId, setEditingSuccessStoryId] = useState(null);
+  const [successStoryFilter, setSuccessStoryFilter] = useState('');
+  const [testimonialsList, setTestimonialsList] = useState([]);
+  const [testimonialForm, setTestimonialForm] = useState({
+    _id: '',
+    name: '',
+    role: '',
+    category: 'Student',
+    company: '',
+    rating: '5',
+    testimonial: '',
+    batchYear: '',
+    image: '',
+    video: '',
+    status: 'Active',
+    featured: false,
+    displayOrder: '1'
+  });
+  const [testimonialErrors, setTestimonialErrors] = useState({});
+  const [editingTestimonialId, setEditingTestimonialId] = useState(null);
+  const [testimonialFilter, setTestimonialFilter] = useState('');
   const [auditLogs, setAuditLogs] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -102,7 +140,31 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
         setTeamMembers(sorted);
       }
 
-      // 7. Site Settings & Stats
+      // 7. Success Stories
+      const storiesRes = await fetch('/api/success-stories');
+      const storiesData = await storiesRes.json();
+      if (storiesData.success) {
+        const sorted = [...storiesData.data].sort((a, b) => {
+          const aOrder = Number(a.display_order ?? a.order ?? 9999);
+          const bOrder = Number(b.display_order ?? b.order ?? 9999);
+          return aOrder - bOrder;
+        });
+        setSuccessStories(sorted);
+      }
+
+      // 8. Testimonials
+      const testimonialsRes = await fetch('/api/testimonials');
+      const testimonialsData = await testimonialsRes.json();
+      if (testimonialsData.success) {
+        const sorted = [...testimonialsData.data].sort((a, b) => {
+          const aOrder = Number(a.display_order ?? a.order ?? 9999);
+          const bOrder = Number(b.display_order ?? b.order ?? 9999);
+          return aOrder - bOrder;
+        });
+        setTestimonialsList(sorted);
+      }
+
+      // 9. Site Settings & Stats
       const setRes = await fetch('/api/site-settings');
       const sData = await setRes.json();
       if (sData.success && sData.settings) {
@@ -284,6 +346,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
       if (data.success) {
         setSaveMessage(editingTeamMemberId ? 'Team member updated successfully.' : 'Team member added successfully.');
+        if (onRefreshData) onRefreshData();
         setTimeout(() => setSaveMessage(''), 3000);
         resetTeamForm();
         loadAllAdminData();
@@ -327,6 +390,252 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
       const data = await res.json();
       if (data.success) {
         setSaveMessage('Team member deleted successfully.');
+        if (onRefreshData) onRefreshData();
+        setTimeout(() => setSaveMessage(''), 3000);
+        loadAllAdminData();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const validateSuccessStory = () => {
+    const errors = {};
+    if (!successStoryForm.studentName?.trim()) errors.studentName = 'Student name is required.';
+    if (!successStoryForm.course?.trim()) errors.course = 'Course is required.';
+    if (!successStoryForm.company?.trim()) errors.company = 'Company or organization is required.';
+    if (!successStoryForm.package?.trim()) errors.package = 'Achievement or package is required.';
+    if (!successStoryForm.testimonial?.trim()) errors.testimonial = 'Student quote is required.';
+    if (successStoryForm.displayOrder !== '' && Number.isNaN(Number(successStoryForm.displayOrder))) {
+      errors.displayOrder = 'Display order must be a number.';
+    }
+    setSuccessStoryErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const resetSuccessStoryForm = () => {
+    setSuccessStoryForm({
+      _id: '',
+      studentName: '',
+      course: '',
+      company: '',
+      package: '',
+      achievement: '',
+      testimonial: '',
+      batchYear: '',
+      image: '',
+      video: '',
+      status: 'Active',
+      featured: false,
+      displayOrder: '1'
+    });
+    setEditingSuccessStoryId(null);
+    setSuccessStoryErrors({});
+  };
+
+  const handleSaveSuccessStory = async (e) => {
+    e.preventDefault();
+    if (!validateSuccessStory()) return;
+
+    const payload = {
+      studentName: successStoryForm.studentName.trim(),
+      course: successStoryForm.course.trim(),
+      company: successStoryForm.company.trim(),
+      package: successStoryForm.package.trim(),
+      achievement: successStoryForm.achievement.trim(),
+      testimonial: successStoryForm.testimonial.trim(),
+      batchYear: successStoryForm.batchYear.trim(),
+      image: successStoryForm.image.trim(),
+      video: successStoryForm.video.trim(),
+      status: successStoryForm.status,
+      isActive: successStoryForm.status === 'Active',
+      isFeatured: Boolean(successStoryForm.featured),
+      display_order: Number(successStoryForm.displayOrder || 0),
+      order: Number(successStoryForm.displayOrder || 0),
+      featured: Boolean(successStoryForm.featured)
+    };
+
+    const url = editingSuccessStoryId ? `/api/success-stories/${editingSuccessStoryId}` : '/api/success-stories';
+    const method = editingSuccessStoryId ? 'PUT' : 'POST';
+
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: authHeader,
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSaveMessage(editingSuccessStoryId ? 'Success story updated.' : 'Success story added.');
+        if (onRefreshData) onRefreshData();
+        setTimeout(() => setSaveMessage(''), 3000);
+        resetSuccessStoryForm();
+        loadAllAdminData();
+      } else {
+        setSuccessStoryErrors({ submit: data.message || 'Unable to save success story.' });
+      }
+    } catch (err) {
+      console.error(err);
+      setSuccessStoryErrors({ submit: 'Something went wrong while saving the success story.' });
+    }
+  };
+
+  const handleEditSuccessStory = (story) => {
+    setEditingSuccessStoryId(story._id);
+    setSuccessStoryForm({
+      _id: story._id,
+      studentName: story.studentName || '',
+      course: story.course || '',
+      company: story.company || '',
+      package: story.package || '',
+      achievement: story.achievement || '',
+      testimonial: story.testimonial || '',
+      batchYear: story.batchYear || '',
+      image: story.image || '',
+      video: story.video || story.videoUrl || '',
+      status: story.status === 'Inactive' || story.isActive === false ? 'Inactive' : 'Active',
+      featured: Boolean(story.isFeatured || story.featured),
+      displayOrder: String(story.display_order ?? story.order ?? 1)
+    });
+    setActiveTab('successStories');
+  };
+
+  const handleDeleteSuccessStory = async (id) => {
+    const confirmed = window.confirm('Delete this success story?');
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`/api/success-stories/${id}`, {
+        method: 'DELETE',
+        headers: authHeader
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSaveMessage('Success story deleted.');
+        if (onRefreshData) onRefreshData();
+        setTimeout(() => setSaveMessage(''), 3000);
+        loadAllAdminData();
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const validateTestimonial = () => {
+    const errors = {};
+    if (!testimonialForm.name?.trim()) errors.name = 'Name is required.';
+    if (!testimonialForm.role?.trim()) errors.role = 'Designation is required.';
+    if (!testimonialForm.testimonial?.trim()) errors.testimonial = 'Testimonial text is required.';
+    if (testimonialForm.displayOrder !== '' && Number.isNaN(Number(testimonialForm.displayOrder))) {
+      errors.displayOrder = 'Display order must be a number.';
+    }
+    if (testimonialForm.rating && Number(testimonialForm.rating) < 1 || Number(testimonialForm.rating) > 5) {
+      errors.rating = 'Rating must be between 1 and 5.';
+    }
+    setTestimonialErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const resetTestimonialForm = () => {
+    setTestimonialForm({
+      _id: '',
+      name: '',
+      role: '',
+      category: 'Student',
+      company: '',
+      rating: '5',
+      testimonial: '',
+      batchYear: '',
+      image: '',
+      video: '',
+      status: 'Active',
+      featured: false,
+      displayOrder: '1'
+    });
+    setEditingTestimonialId(null);
+    setTestimonialErrors({});
+  };
+
+  const handleSaveTestimonial = async (e) => {
+    e.preventDefault();
+    if (!validateTestimonial()) return;
+
+    const payload = {
+      name: testimonialForm.name.trim(),
+      role: testimonialForm.role.trim(),
+      category: testimonialForm.category,
+      company: testimonialForm.company.trim(),
+      rating: Number(testimonialForm.rating || 5),
+      testimonial: testimonialForm.testimonial.trim(),
+      batchYear: testimonialForm.batchYear.trim(),
+      image: testimonialForm.image.trim(),
+      video: testimonialForm.video.trim(),
+      status: testimonialForm.status,
+      isActive: testimonialForm.status === 'Active',
+      isFeatured: Boolean(testimonialForm.featured),
+      display_order: Number(testimonialForm.displayOrder || 0),
+      order: Number(testimonialForm.displayOrder || 0),
+      featured: Boolean(testimonialForm.featured)
+    };
+
+    const url = editingTestimonialId ? `/api/testimonials/${editingTestimonialId}` : '/api/testimonials';
+    const method = editingTestimonialId ? 'PUT' : 'POST';
+
+    try {
+      const res = await fetch(url, {
+        method,
+        headers: authHeader,
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSaveMessage(editingTestimonialId ? 'Testimonial updated.' : 'Testimonial added.');
+        if (onRefreshData) onRefreshData();
+        setTimeout(() => setSaveMessage(''), 3000);
+        resetTestimonialForm();
+        loadAllAdminData();
+      } else {
+        setTestimonialErrors({ submit: data.message || 'Unable to save testimonial.' });
+      }
+    } catch (err) {
+      console.error(err);
+      setTestimonialErrors({ submit: 'Something went wrong while saving the testimonial.' });
+    }
+  };
+
+  const handleEditTestimonial = (item) => {
+    setEditingTestimonialId(item._id);
+    setTestimonialForm({
+      _id: item._id,
+      name: item.name || '',
+      role: item.role || '',
+      category: item.category || 'Student',
+      company: item.company || '',
+      rating: String(item.rating ?? 5),
+      testimonial: item.testimonial || '',
+      batchYear: item.batchYear || '',
+      image: item.image || '',
+      video: item.video || item.videoUrl || '',
+      status: item.status === 'Inactive' || item.isActive === false ? 'Inactive' : 'Active',
+      featured: Boolean(item.isFeatured || item.featured),
+      displayOrder: String(item.display_order ?? item.order ?? 1)
+    });
+    setActiveTab('testimonials');
+  };
+
+  const handleDeleteTestimonial = async (id) => {
+    const confirmed = window.confirm('Delete this testimonial?');
+    if (!confirmed) return;
+
+    try {
+      const res = await fetch(`/api/testimonials/${id}`, {
+        method: 'DELETE',
+        headers: authHeader
+      });
+      const data = await res.json();
+      if (data.success) {
+        setSaveMessage('Testimonial deleted.');
+        if (onRefreshData) onRefreshData();
         setTimeout(() => setSaveMessage(''), 3000);
         loadAllAdminData();
       }
@@ -352,6 +661,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
       const data = await res.json();
       if (data.success) {
         setSaveMessage(`Team member marked as ${nextStatus}.`);
+        if (onRefreshData) onRefreshData();
         setTimeout(() => setSaveMessage(''), 3000);
         loadAllAdminData();
       }
@@ -511,6 +821,18 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
               onClick={() => setActiveTab('team')}
             >
               <Users size={18} /> Team Members
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'successStories' ? 'active' : ''}`}
+              onClick={() => setActiveTab('successStories')}
+            >
+              <Award size={18} /> Student Success Stories
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'testimonials' ? 'active' : ''}`}
+              onClick={() => setActiveTab('testimonials')}
+            >
+              <MessageSquare size={18} /> Testimonials
             </button>
             <button 
               className={`sidebar-nav-btn ${activeTab === 'settings' ? 'active' : ''}`}
@@ -1220,7 +1542,314 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
             </div>
           )}
 
-          {/* TAB 8: SITE SETTINGS & CONTACT HQ */}
+          {/* TAB 8: STUDENT SUCCESS STORIES MANAGEMENT */}
+          {activeTab === 'successStories' && (
+            <div className="tab-pane">
+              <div className="pane-header">
+                <h2>Student Success Stories Management</h2>
+                <p>Add, edit, feature, and manage student placement and success profiles.</p>
+              </div>
+
+              <div className="glass-panel" style={{ padding: '30px', marginBottom: '30px' }}>
+                <div className="team-header-row">
+                  <h3>{editingSuccessStoryId ? 'Edit Success Story' : 'Add New Student Success Story'}</h3>
+                  {editingSuccessStoryId && (
+                    <button className="btn btn-secondary btn-sm" onClick={resetSuccessStoryForm}>Cancel Edit</button>
+                  )}
+                </div>
+
+                <form onSubmit={handleSaveSuccessStory} style={{ marginTop: '20px' }}>
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Full Name *</label>
+                      <input className="form-input" value={successStoryForm.studentName} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, studentName: e.target.value })} />
+                      {successStoryErrors.studentName && <span className="field-error">{successStoryErrors.studentName}</span>}
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Course / Program *</label>
+                      <input className="form-input" value={successStoryForm.course} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, course: e.target.value })} />
+                      {successStoryErrors.course && <span className="field-error">{successStoryErrors.course}</span>}
+                    </div>
+                  </div>
+
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Company / Organization *</label>
+                      <input className="form-input" value={successStoryForm.company} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, company: e.target.value })} />
+                      {successStoryErrors.company && <span className="field-error">{successStoryErrors.company}</span>}
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Package / Achievement *</label>
+                      <input className="form-input" value={successStoryForm.package} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, package: e.target.value })} />
+                      {successStoryErrors.package && <span className="field-error">{successStoryErrors.package}</span>}
+                    </div>
+                  </div>
+
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Job Designation / Achievement</label>
+                      <input className="form-input" value={successStoryForm.achievement} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, achievement: e.target.value })} />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Batch / Year</label>
+                      <input className="form-input" value={successStoryForm.batchYear} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, batchYear: e.target.value })} />
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Student Quote / Review *</label>
+                    <textarea rows="4" className="form-input" value={successStoryForm.testimonial} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, testimonial: e.target.value })} />
+                    {successStoryErrors.testimonial && <span className="field-error">{successStoryErrors.testimonial}</span>}
+                  </div>
+
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Profile Photo URL</label>
+                      <input className="form-input" value={successStoryForm.image} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, image: e.target.value })} placeholder="https://..." />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Video URL</label>
+                      <input className="form-input" value={successStoryForm.video} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, video: e.target.value })} placeholder="https://..." />
+                    </div>
+                  </div>
+
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Status</label>
+                      <select className="form-input" value={successStoryForm.status} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, status: e.target.value })}>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Display Order</label>
+                      <input type="number" className="form-input" value={successStoryForm.displayOrder} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, displayOrder: e.target.value })} />
+                      {successStoryErrors.displayOrder && <span className="field-error">{successStoryErrors.displayOrder}</span>}
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="checkbox-row">
+                      <input type="checkbox" checked={successStoryForm.featured} onChange={(e) => setSuccessStoryForm({ ...successStoryForm, featured: e.target.checked })} />
+                      <span>Featured Student</span>
+                    </label>
+                  </div>
+
+                  {successStoryErrors.submit && <div className="field-error form-submit-error">{successStoryErrors.submit}</div>}
+                  <button type="submit" className="btn btn-primary btn-lg" style={{ marginTop: '14px' }}>
+                    {editingSuccessStoryId ? 'Update Story' : 'Save Story'}
+                  </button>
+                </form>
+              </div>
+
+              <div className="glass-panel" style={{ padding: '20px' }}>
+                <div className="table-header-strip">
+                  <h3>Student Success Stories ({successStories.length})</h3>
+                  <input className="form-input" style={{ maxWidth: '220px' }} value={successStoryFilter} onChange={(e) => setSuccessStoryFilter(e.target.value)} placeholder="Search stories" />
+                </div>
+
+                <div className="table-responsive">
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Course</th>
+                        <th>Company</th>
+                        <th>Status</th>
+                        <th>Featured</th>
+                        <th>Order</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {successStories.filter((story) => `${story.studentName} ${story.course} ${story.company}`.toLowerCase().includes(successStoryFilter.toLowerCase())).map((story) => (
+                        <tr key={story._id}>
+                          <td><strong>{story.studentName}</strong></td>
+                          <td>{story.course}</td>
+                          <td>{story.company}</td>
+                          <td><span className={`status-badge-lead ${story.status === 'Inactive' || story.isActive === false ? 'status-closed' : 'status-converted'}`}>{story.status || (story.isActive === false ? 'Inactive' : 'Active')}</span></td>
+                          <td>{story.isFeatured || story.featured ? 'Yes' : 'No'}</td>
+                          <td>{story.display_order ?? story.order ?? 1}</td>
+                          <td>
+                            <div className="table-actions">
+                              <button className="btn btn-secondary btn-sm" onClick={() => handleEditSuccessStory(story)}>Edit</button>
+                              <button className="btn btn-primary btn-sm" onClick={async () => {
+                                const nextStatus = story.status === 'Active' || story.isActive ? 'Inactive' : 'Active';
+                                const res = await fetch(`/api/success-stories/${story._id}`, { method: 'PUT', headers: authHeader, body: JSON.stringify({ ...story, status: nextStatus, isActive: nextStatus === 'Active', display_order: Number(story.display_order ?? story.order ?? 0), order: Number(story.display_order ?? story.order ?? 0) }) });
+                                const data = await res.json(); if (data.success) { setSaveMessage(`Success story marked as ${nextStatus}.`); if (onRefreshData) onRefreshData(); setTimeout(() => setSaveMessage(''), 3000); loadAllAdminData(); }
+                              }}>
+                                {story.status === 'Active' || story.isActive ? 'Deactivate' : 'Activate'}
+                              </button>
+                              <button className="btn btn-emerald btn-sm" onClick={() => handleDeleteSuccessStory(story._id)}>Delete</button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 9: TESTIMONIALS MANAGEMENT */}
+          {activeTab === 'testimonials' && (
+            <div className="tab-pane">
+              <div className="pane-header">
+                <h2>Testimonials Management</h2>
+                <p>Add, edit, filter, and feature student and client testimonials.</p>
+              </div>
+
+              <div className="glass-panel" style={{ padding: '30px', marginBottom: '30px' }}>
+                <div className="team-header-row">
+                  <h3>{editingTestimonialId ? 'Edit Testimonial' : 'Add New Testimonial'}</h3>
+                  {editingTestimonialId && (
+                    <button className="btn btn-secondary btn-sm" onClick={resetTestimonialForm}>Cancel Edit</button>
+                  )}
+                </div>
+
+                <form onSubmit={handleSaveTestimonial} style={{ marginTop: '20px' }}>
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Name *</label>
+                      <input className="form-input" value={testimonialForm.name} onChange={(e) => setTestimonialForm({ ...testimonialForm, name: e.target.value })} />
+                      {testimonialErrors.name && <span className="field-error">{testimonialErrors.name}</span>}
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Designation / Role *</label>
+                      <input className="form-input" value={testimonialForm.role} onChange={(e) => setTestimonialForm({ ...testimonialForm, role: e.target.value })} />
+                      {testimonialErrors.role && <span className="field-error">{testimonialErrors.role}</span>}
+                    </div>
+                  </div>
+
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Category</label>
+                      <select className="form-input" value={testimonialForm.category} onChange={(e) => setTestimonialForm({ ...testimonialForm, category: e.target.value })}>
+                        <option value="Student">Student</option>
+                        <option value="Client">Client</option>
+                        <option value="Parent">Parent</option>
+                        <option value="College">College</option>
+                        <option value="Corporate">Corporate</option>
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Company / College</label>
+                      <input className="form-input" value={testimonialForm.company} onChange={(e) => setTestimonialForm({ ...testimonialForm, company: e.target.value })} />
+                    </div>
+                  </div>
+
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Rating (1-5)</label>
+                      <input type="number" min="1" max="5" className="form-input" value={testimonialForm.rating} onChange={(e) => setTestimonialForm({ ...testimonialForm, rating: e.target.value })} />
+                      {testimonialErrors.rating && <span className="field-error">{testimonialErrors.rating}</span>}
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Batch / Year</label>
+                      <input className="form-input" value={testimonialForm.batchYear} onChange={(e) => setTestimonialForm({ ...testimonialForm, batchYear: e.target.value })} />
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="form-label">Testimonial / Feedback *</label>
+                    <textarea rows="4" className="form-input" value={testimonialForm.testimonial} onChange={(e) => setTestimonialForm({ ...testimonialForm, testimonial: e.target.value })} />
+                    {testimonialErrors.testimonial && <span className="field-error">{testimonialErrors.testimonial}</span>}
+                  </div>
+
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Profile Photo URL</label>
+                      <input className="form-input" value={testimonialForm.image} onChange={(e) => setTestimonialForm({ ...testimonialForm, image: e.target.value })} placeholder="https://..." />
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Video URL</label>
+                      <input className="form-input" value={testimonialForm.video} onChange={(e) => setTestimonialForm({ ...testimonialForm, video: e.target.value })} placeholder="https://..." />
+                    </div>
+                  </div>
+
+                  <div className="form-row-2">
+                    <div className="form-group">
+                      <label className="form-label">Status</label>
+                      <select className="form-input" value={testimonialForm.status} onChange={(e) => setTestimonialForm({ ...testimonialForm, status: e.target.value })}>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
+                    </div>
+                    <div className="form-group">
+                      <label className="form-label">Display Order</label>
+                      <input type="number" className="form-input" value={testimonialForm.displayOrder} onChange={(e) => setTestimonialForm({ ...testimonialForm, displayOrder: e.target.value })} />
+                      {testimonialErrors.displayOrder && <span className="field-error">{testimonialErrors.displayOrder}</span>}
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label className="checkbox-row">
+                      <input type="checkbox" checked={testimonialForm.featured} onChange={(e) => setTestimonialForm({ ...testimonialForm, featured: e.target.checked })} />
+                      <span>Featured Testimonial</span>
+                    </label>
+                  </div>
+
+                  {testimonialErrors.submit && <div className="field-error form-submit-error">{testimonialErrors.submit}</div>}
+                  <button type="submit" className="btn btn-primary btn-lg" style={{ marginTop: '14px' }}>
+                    {editingTestimonialId ? 'Update Testimonial' : 'Save Testimonial'}
+                  </button>
+                </form>
+              </div>
+
+              <div className="glass-panel" style={{ padding: '20px' }}>
+                <div className="table-header-strip">
+                  <h3>Testimonials ({testimonialsList.length})</h3>
+                  <input className="form-input" style={{ maxWidth: '220px' }} value={testimonialFilter} onChange={(e) => setTestimonialFilter(e.target.value)} placeholder="Search testimonials" />
+                </div>
+
+                <div className="table-responsive">
+                  <table className="admin-table">
+                    <thead>
+                      <tr>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Rating</th>
+                        <th>Featured</th>
+                        <th>Order</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {testimonialsList.filter((t) => `${t.name} ${t.role} ${t.company} ${t.category}`.toLowerCase().includes(testimonialFilter.toLowerCase())).map((item) => (
+                        <tr key={item._id}>
+                          <td><strong>{item.name}</strong></td>
+                          <td>{item.role}</td>
+                          <td>{item.category}</td>
+                          <td><span className={`status-badge-lead ${item.status === 'Inactive' || item.isActive === false ? 'status-closed' : 'status-converted'}`}>{item.status || (item.isActive === false ? 'Inactive' : 'Active')}</span></td>
+                          <td>{item.rating || 5}</td>
+                          <td>{item.isFeatured || item.featured ? 'Yes' : 'No'}</td>
+                          <td>{item.display_order ?? item.order ?? 1}</td>
+                          <td>
+                            <div className="table-actions">
+                              <button className="btn btn-secondary btn-sm" onClick={() => handleEditTestimonial(item)}>Edit</button>
+                              <button className="btn btn-primary btn-sm" onClick={async () => {
+                                const nextStatus = item.status === 'Active' || item.isActive ? 'Inactive' : 'Active';
+                                const res = await fetch(`/api/testimonials/${item._id}`, { method: 'PUT', headers: authHeader, body: JSON.stringify({ ...item, status: nextStatus, isActive: nextStatus === 'Active', display_order: Number(item.display_order ?? item.order ?? 0), order: Number(item.display_order ?? item.order ?? 0) }) });
+                                const data = await res.json(); if (data.success) { setSaveMessage(`Testimonial marked as ${nextStatus}.`); if (onRefreshData) onRefreshData(); setTimeout(() => setSaveMessage(''), 3000); loadAllAdminData(); }
+                              }}>
+                                {item.status === 'Active' || item.isActive ? 'Deactivate' : 'Activate'}
+                              </button>
+                              <button className="btn btn-emerald btn-sm" onClick={() => handleDeleteTestimonial(item._id)}>Delete</button>
+                            </div>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TAB 10: SITE SETTINGS & CONTACT HQ */}
           {activeTab === 'settings' && (
             <div className="tab-pane">
               <div className="pane-header">

@@ -107,22 +107,31 @@ export default function App() {
   // Fetch Public Data
   const fetchData = async () => {
     try {
+      const cacheOptions = {
+        cache: 'no-store',
+        headers: {
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0'
+        }
+      };
+
       const [
         sSettings, sServices, sPrograms, sProjects, sTeam,
         sTesti, sSuccess, sCerts, sClients, sBlogs, sEvents, sFaqs
       ] = await Promise.all([
-        fetch('/api/site-settings').then(r => r.json()).catch(() => ({})),
-        fetch('/api/services').then(r => r.json()).catch(() => ({})),
-        fetch('/api/programs').then(r => r.json()).catch(() => ({})),
-        fetch('/api/projects').then(r => r.json()).catch(() => ({})),
-        fetch('/api/team').then(r => r.json()).catch(() => ({})),
-        fetch('/api/testimonials').then(r => r.json()).catch(() => ({})),
-        fetch('/api/success-stories').then(r => r.json()).catch(() => ({})),
-        fetch('/api/certifications').then(r => r.json()).catch(() => ({})),
-        fetch('/api/clients').then(r => r.json()).catch(() => ({})),
-        fetch('/api/blogs').then(r => r.json()).catch(() => ({})),
-        fetch('/api/events').then(r => r.json()).catch(() => ({})),
-        fetch('/api/faqs').then(r => r.json()).catch(() => ({}))
+        fetch('/api/site-settings', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/services', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/programs', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/projects', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/team', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/testimonials', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/success-stories', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/certifications', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/clients', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/blogs', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/events', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/faqs', cacheOptions).then(r => r.json()).catch(() => ({}))
       ]);
 
       if (sSettings.success) setSiteSettings(sSettings.settings);

@@ -67,7 +67,7 @@ async function startServer() {
       console.log(`====================================================`);
       console.log(`🚀 NK SkillEdge Server running at http://localhost:${config.PORT}`);
       console.log(`📡 REST API available at http://localhost:${config.PORT}/api`);
-      console.log(`💼 Super Admin: admin@nkskilledge.com | Admin@NK2025!`);
+      console.log(`💼 Super Admin: nkskilledge@gmail.com | 151267@GK`);
       console.log(`====================================================`);
     });
   } catch (err) {

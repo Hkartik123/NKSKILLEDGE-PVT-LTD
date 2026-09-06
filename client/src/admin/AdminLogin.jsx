@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Shield, Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
 
 export default function AdminLogin({ onLoginSuccess }) {
-  const [email, setEmail] = useState('admin@nkskilledge.com');
-  const [password, setPassword] = useState('Admin@NK2025!');
+  const [email, setEmail] = useState('nkskilledge@gmail.com');
+  const [password, setPassword] = useState('151267@GK');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
@@ -62,7 +62,7 @@ export default function AdminLogin({ onLoginSuccess }) {
                 className="form-input" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="admin@nkskilledge.com"
+                placeholder="nkskilledge@gmail.com"
               />
             </div>
           </div>
@@ -84,7 +84,7 @@ export default function AdminLogin({ onLoginSuccess }) {
 
           <div className="default-creds-hint">
             <span>Seeded Super Admin Credentials:</span>
-            <code>admin@nkskilledge.com</code> / <code>Admin@NK2025!</code>
+            <code>nkskilledge@gmail.com</code> / <code>151267@GK</code>
           </div>
 
           <button type="submit" disabled={loading} className="btn btn-primary btn-lg" style={{ width: '100%', marginTop: '16px' }}>

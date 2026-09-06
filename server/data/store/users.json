@@ -2,11 +2,11 @@
   {
     "_id": "usr_superadmin",
     "name": "Super Administrator",
-    "email": "admin@nkskilledge.com",
-    "password": "$2a$10$u.B81qM2RruOLCPFHc/1t.W9B9eDyeBi9/J7xiIkw8m1wm/k408Sy",
+    "email": "nkskilledge@gmail.com",
+    "password": "$2a$10$eepDVhN8dBSXOBJbO2h5cufyR5kaJK3gB9XFy4XWqMmpOJl0/4r6W",
     "role": "super_admin",
     "designation": "System Administrator",
     "createdAt": "2026-09-04T05:44:55.347Z",
-    "updatedAt": "2026-09-04T05:44:55.355Z"
+    "updatedAt": "2026-09-06T00:00:00.000Z"
   }
 ]

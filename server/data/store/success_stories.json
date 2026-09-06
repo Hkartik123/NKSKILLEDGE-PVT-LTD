@@ -8,10 +8,17 @@
     "package": "4.8 LPA",
     "achievement": "Frontend Software Engineer",
     "testimonial": "Learned MERN stack from scratch and landed my first role right after college.",
-    "status": "Placed",
-    "image": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format&fit=crop&q=80",
+    "status": "Active",
+    "image": "https://media.licdn.com/dms/image/v2/D5603AQGyQ32SinV6VA/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1682700143745?e=1790208000&v=beta&t=onacKCbEErhpENz59zbhtNljZrx5V767CA1NmYKq0Ko",
     "createdAt": "2026-09-04T05:44:55.394Z",
-    "updatedAt": "2026-09-04T05:44:55.394Z"
+    "updatedAt": "2026-09-05T11:55:01.935Z",
+    "batchYear": "",
+    "video": "",
+    "isActive": true,
+    "isFeatured": false,
+    "display_order": 1,
+    "order": 1,
+    "featured": false
   },
   {
     "_id": "ss_2",
@@ -22,10 +29,17 @@
     "package": "4.2 LPA",
     "achievement": "Junior Flutter Developer",
     "testimonial": "Published two live apps on the Google Play Store as part of the curriculum!",
-    "status": "Placed",
-    "image": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80",
+    "status": "Active",
+    "image": "https://media.licdn.com/dms/image/v2/D4D03AQFi196HS6Pf0Q/profile-displayphoto-scale_400_400/B4DZ8OkjMgHgAk-/0/1782655892852?e=1790208000&v=beta&t=2YO5BEcsSJGOm9DxW7Fz8JUQ9Ml5noCsR6Aev1f7OS8",
     "createdAt": "2026-09-04T05:44:55.394Z",
-    "updatedAt": "2026-09-04T05:44:55.394Z"
+    "updatedAt": "2026-09-05T11:45:45.822Z",
+    "batchYear": "",
+    "video": "",
+    "isActive": true,
+    "isFeatured": false,
+    "display_order": 1,
+    "order": 1,
+    "featured": false
   },
   {
     "_id": "ss_3",
@@ -36,9 +50,16 @@
     "package": "3.6 LPA",
     "achievement": "Embedded Systems Engineer",
     "testimonial": "Working directly with ESP32 and MQTT protocols in the hardware lab made all the difference.",
-    "status": "Placed",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80",
+    "status": "Active",
+    "image": "https://media.licdn.com/dms/image/v2/D5603AQHFDA-CHlSjRQ/profile-displayphoto-scale_400_400/B56Zp3o_l.HkAg-/0/1762943829393?e=1790208000&v=beta&t=D51LjXYjEpkuFXc0m9omFOHBBnw8MMrycRqJzo_AzQ4",
     "createdAt": "2026-09-04T05:44:55.395Z",
-    "updatedAt": "2026-09-04T05:44:55.395Z"
+    "updatedAt": "2026-09-05T11:46:39.867Z",
+    "batchYear": "",
+    "video": "",
+    "isActive": true,
+    "isFeatured": false,
+    "display_order": 1,
+    "order": 1,
+    "featured": false
   }
 ]

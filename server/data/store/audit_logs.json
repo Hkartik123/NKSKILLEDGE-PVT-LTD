@@ -117,5 +117,75 @@
     "timestamp": "2026-09-05T08:59:16.757Z",
     "createdAt": "2026-09-05T08:59:16.757Z",
     "updatedAt": "2026-09-05T08:59:16.757Z"
+  },
+  {
+    "_id": "id_1788608528800_m80tynv",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "LOGIN",
+    "module": "Authentication",
+    "details": {
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-05T11:42:08.798Z",
+    "createdAt": "2026-09-05T11:42:08.800Z",
+    "updatedAt": "2026-09-05T11:42:08.800Z"
+  },
+  {
+    "_id": "id_1788608697173_4yvadaw",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "UPDATE_SUCCESSSTORIES",
+    "module": "SuccessStories",
+    "details": {
+      "id": "ss_1"
+    },
+    "timestamp": "2026-09-05T11:44:57.173Z",
+    "createdAt": "2026-09-05T11:44:57.173Z",
+    "updatedAt": "2026-09-05T11:44:57.173Z"
+  },
+  {
+    "_id": "id_1788608745825_8vdpcl1",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "UPDATE_SUCCESSSTORIES",
+    "module": "SuccessStories",
+    "details": {
+      "id": "ss_2"
+    },
+    "timestamp": "2026-09-05T11:45:45.825Z",
+    "createdAt": "2026-09-05T11:45:45.825Z",
+    "updatedAt": "2026-09-05T11:45:45.825Z"
+  },
+  {
+    "_id": "id_1788608799869_uu84syc",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "UPDATE_SUCCESSSTORIES",
+    "module": "SuccessStories",
+    "details": {
+      "id": "ss_3"
+    },
+    "timestamp": "2026-09-05T11:46:39.869Z",
+    "createdAt": "2026-09-05T11:46:39.869Z",
+    "updatedAt": "2026-09-05T11:46:39.869Z"
+  },
+  {
+    "_id": "id_1788609301942_3oli7xa",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "admin@nkskilledge.com",
+    "action": "UPDATE_SUCCESSSTORIES",
+    "module": "SuccessStories",
+    "details": {
+      "id": "ss_1"
+    },
+    "timestamp": "2026-09-05T11:55:01.942Z",
+    "createdAt": "2026-09-05T11:55:01.943Z",
+    "updatedAt": "2026-09-05T11:55:01.943Z"
   }
 ]
