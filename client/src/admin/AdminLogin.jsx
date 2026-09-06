@@ -82,11 +82,6 @@ export default function AdminLogin({ onLoginSuccess }) {
             </div>
           </div>
 
-          <div className="default-creds-hint">
-            <span>Seeded Super Admin Credentials:</span>
-            <code>nkskilledge@gmail.com</code> / <code>151267@GK</code>
-          </div>
-
           <button type="submit" disabled={loading} className="btn btn-primary btn-lg" style={{ width: '100%', marginTop: '16px' }}>
             {loading ? 'Authenticating...' : 'Sign In to Dashboard'}
             <ArrowRight size={18} />
