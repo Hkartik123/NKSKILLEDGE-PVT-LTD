@@ -187,5 +187,47 @@
     "timestamp": "2026-09-05T11:55:01.942Z",
     "createdAt": "2026-09-05T11:55:01.943Z",
     "updatedAt": "2026-09-05T11:55:01.943Z"
+  },
+  {
+    "_id": "id_1788679312360_s77scev",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "nkskilledge@gmail.com",
+    "action": "LOGIN",
+    "module": "Authentication",
+    "details": {
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-06T07:21:52.358Z",
+    "createdAt": "2026-09-06T07:21:52.361Z",
+    "updatedAt": "2026-09-06T07:21:52.361Z"
+  },
+  {
+    "_id": "id_1788679312427_a5tu3ck",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "nkskilledge@gmail.com",
+    "action": "CREATE_TEAM",
+    "module": "Team",
+    "details": {
+      "id": "id_1788679312426_90qe958"
+    },
+    "timestamp": "2026-09-06T07:21:52.427Z",
+    "createdAt": "2026-09-06T07:21:52.427Z",
+    "updatedAt": "2026-09-06T07:21:52.427Z"
+  },
+  {
+    "_id": "id_1788679312434_lj3qj3u",
+    "adminId": "usr_superadmin",
+    "adminName": "Super Administrator",
+    "adminEmail": "nkskilledge@gmail.com",
+    "action": "CREATE_SUCCESSSTORIES",
+    "module": "SuccessStories",
+    "details": {
+      "id": "id_1788679312434_e181dst"
+    },
+    "timestamp": "2026-09-06T07:21:52.434Z",
+    "createdAt": "2026-09-06T07:21:52.434Z",
+    "updatedAt": "2026-09-06T07:21:52.434Z"
   }
 ]

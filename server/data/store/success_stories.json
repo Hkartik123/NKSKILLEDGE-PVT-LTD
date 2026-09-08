@@ -61,5 +61,24 @@
     "display_order": 1,
     "order": 1,
     "featured": false
+  },
+  {
+    "_id": "id_1788679312434_e181dst",
+    "course": "React UI",
+    "isFeatured": true,
+    "achievement": "Frontend Lead",
+    "image": "https://example.com/story.jpg",
+    "company": "Live Company",
+    "testimonial": "Admin-added item persisted on backend",
+    "featured": true,
+    "order": 999,
+    "status": "Active",
+    "display_order": 999,
+    "studentName": "Live Test Student",
+    "batchYear": "2026",
+    "package": "7 LPA",
+    "isActive": true,
+    "createdAt": "2026-09-06T07:21:52.434Z",
+    "updatedAt": "2026-09-06T07:21:52.434Z"
   }
 ]

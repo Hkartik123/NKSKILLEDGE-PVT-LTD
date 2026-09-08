@@ -156,5 +156,21 @@
     "isActive": true,
     "createdAt": "2026-09-05T08:24:06.114Z",
     "updatedAt": "2026-09-05T08:24:06.114Z"
+  },
+  {
+    "_id": "id_1788679312426_90qe958",
+    "image": "https://example.com/team.jpg",
+    "isLeadership": false,
+    "display_order": 999,
+    "status": "Active",
+    "bio": "Persisted via API",
+    "name": "Live Test Member",
+    "designation": "UI Engineer",
+    "isActive": true,
+    "profile_image": "https://example.com/team.jpg",
+    "phone": "9999999999",
+    "email": "live@example.com",
+    "createdAt": "2026-09-06T07:21:52.426Z",
+    "updatedAt": "2026-09-06T07:21:52.426Z"
   }
 ]

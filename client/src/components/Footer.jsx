@@ -18,29 +18,7 @@ export default function Footer({ siteSettings, branches = [], onOpenRegister }) 
   const brandLine = siteSettings?.brandLine || 'One Company — Many Solutions — Unlimited Possibilities';
 
   // Fallback branches if not yet fetched from API
-  const displayBranches = branches.length > 0 ? branches : [
-    {
-      _id: 'branch_sakoli',
-      name: 'Main Branch — Head Office',
-      address: 'Near Gobade Hospital, Sakoli, Dist. Bhandara, Maharashtra – 441802',
-      isMainBranch: true,
-      phone: '+91 7498784109'
-    },
-    {
-      _id: 'branch_nagpur',
-      name: '2nd Branch — Nagpur',
-      address: 'Plot No. 9, Naik Nagar, Near NIT Garden, Nagpur, Maharashtra – 440009',
-      isMainBranch: false,
-      phone: '+91 9356049629'
-    },
-    {
-      _id: 'branch_gondia',
-      name: '3rd Branch — Gondia',
-      address: 'IBM Center, GP Gondia Campus, Government Polytechnic Gondia, Gondia, Maharashtra – 441601',
-      isMainBranch: false,
-      phone: '+91 7498784109'
-    }
-  ];
+  const displayBranches = branches || [];
 
   return (
     <footer className="footer-root">

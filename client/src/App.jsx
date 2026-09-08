@@ -64,6 +64,7 @@ export default function App() {
   const [blogs, setBlogs] = useState([]);
   const [events, setEvents] = useState([]);
   const [faqs, setFaqs] = useState([]);
+  const [branches, setBranches] = useState([]);
   const [dataVersion, setDataVersion] = useState(0);
 
   // Hash change listener
@@ -132,7 +133,8 @@ export default function App() {
         fetch('/api/clients', cacheOptions).then(r => r.json()).catch(() => ({})),
         fetch('/api/blogs', cacheOptions).then(r => r.json()).catch(() => ({})),
         fetch('/api/events', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/faqs', cacheOptions).then(r => r.json()).catch(() => ({}))
+        fetch('/api/faqs', cacheOptions).then(r => r.json()).catch(() => ({})),
+        fetch('/api/branches', cacheOptions).then(r => r.json()).catch(() => ({}))
       ]);
 
       if (sSettings.success) setSiteSettings(sSettings.settings);
@@ -159,6 +161,7 @@ export default function App() {
       if (sBlogs.success) setBlogs(sBlogs.data);
       if (sEvents.success) setEvents(sEvents.data);
       if (sFaqs.success) setFaqs(sFaqs.data);
+      if (sBranches && sBranches.success) setBranches(sBranches.branches || sBranches.data || []);
     } catch (err) {
       console.error('Error fetching public portal data:', err);
     }
@@ -238,6 +241,7 @@ export default function App() {
               clients={clients}
               blogs={blogs}
               events={events}
+              branches={branches}
               faqs={faqs}
               onOpenRegister={openRegister}
               onOpenQuote={(service) => openRegister(null)}
@@ -253,6 +257,7 @@ export default function App() {
           <Footer 
             siteSettings={siteSettings} 
             onOpenRegister={openRegister} 
+            branches={branches}
           />
 
           <WhatsAppFloatingButton phoneNumber={siteSettings?.phones?.[0] || '7498784109'} />

@@ -39,32 +39,7 @@ export default function Home({
   const [openFaq, setOpenFaq] = useState(0);
 
   // Fallback branches if not yet loaded from backend
-  const displayBranches = branches.length > 0 ? branches : [
-    {
-      _id: 'branch_sakoli',
-      name: 'Main Branch — NK SkillEdge Pvt. Ltd. Office',
-      address: 'Near Gobade Hospital, Sakoli, Dist. Bhandara, Maharashtra – 441802',
-      isMainBranch: true,
-      phone: '+91 7498784109',
-      mapEmbedUrl: 'https://maps.google.com/maps?q=Gobade%20Hospital,%20Sakoli,%20Maharashtra%20441802&t=&z=15&ie=UTF8&iwloc=&output=embed'
-    },
-    {
-      _id: 'branch_nagpur',
-      name: '2nd Branch — Nagpur Center',
-      address: 'Plot No. 9, Naik Nagar, Near NIT Garden, Nagpur, Maharashtra – 440009',
-      isMainBranch: false,
-      phone: '+91 9356049629',
-      mapEmbedUrl: 'https://maps.google.com/maps?q=Naik%20Nagar,%20NIT%20Garden,%20Nagpur,%20Maharashtra%20440009&t=&z=15&ie=UTF8&iwloc=&output=embed'
-    },
-    {
-      _id: 'branch_gondia',
-      name: '3rd Branch — IBM Center, GP Gondia Campus',
-      address: 'IBM Center, GP Gondia Campus, Government Polytechnic Gondia, Gondia, Maharashtra – 441601',
-      isMainBranch: false,
-      phone: '+91 7498784109',
-      mapEmbedUrl: 'https://maps.google.com/maps?q=Government%20Polytechnic%20Gondia,%20Gondia,%20Maharashtra%20441601&t=&z=15&ie=UTF8&iwloc=&output=embed'
-    }
-  ];
+  const displayBranches = branches || [];
 
   // Fallback handler for external image load errors
   const handleImageError = (e, fallbackSrc) => {
