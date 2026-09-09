@@ -1892,28 +1892,6 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                     />
                   </div>
 
-                  <div className="theme-settings-block" style={{ marginTop: '18px' }}>
-                    <label className="form-label">Theme</label>
-                    <div className="theme-option-group">
-                      {[
-                        { value: 'light', label: '☀️ Light' },
-                        { value: 'dark', label: '🌙 Dark' },
-                        { value: 'system', label: '📱 System Default' }
-                      ].map((option) => (
-                        <label key={option.value} className={`theme-option ${themePreference === option.value ? 'selected' : ''}`}>
-                          <input
-                            type="radio"
-                            name="theme-option"
-                            value={option.value}
-                            checked={themePreference === option.value}
-                            onChange={() => onThemeChange && onThemeChange(option.value)}
-                          />
-                          <span>{option.label}</span>
-                        </label>
-                      ))}
-                    </div>
-                  </div>
-
                   <button type="submit" className="btn btn-primary btn-lg" style={{ marginTop: '14px' }}>
                     <Save size={18} /> Update Official Contact Settings
                   </button>
@@ -2137,41 +2115,6 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
         /* Table */
         .table-card {
           padding: 24px;
-        }
-        .theme-settings-block {
-          margin-bottom: 18px;
-        }
-        .theme-option-group {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 12px;
-          margin-top: 10px;
-        }
-        .theme-option {
-          display: flex;
-          align-items: center;
-          gap: 10px;
-          padding: 12px 14px;
-          border-radius: var(--radius-md);
-          border: 1px solid var(--border-light);
-          background: rgba(255, 255, 255, 0.02);
-          cursor: pointer;
-          transition: all 0.2s ease;
-          color: var(--text-primary);
-          font-weight: 600;
-        }
-        .theme-option input {
-          accent-color: var(--primary);
-        }
-        .theme-option.selected {
-          background: rgba(14, 165, 233, 0.12);
-          border-color: rgba(14, 165, 233, 0.4);
-          box-shadow: 0 0 0 1px rgba(14, 165, 233, 0.2);
-        }
-        @media (max-width: 640px) {
-          .theme-option-group {
-            grid-template-columns: 1fr;
-          }
         }
         .team-header-row {
           display: flex;

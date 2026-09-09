@@ -23,14 +23,7 @@ const getSystemTheme = () => (
     : 'light'
 );
 
-const getInitialThemePreference = () => {
-  try {
-    const saved = localStorage.getItem(THEME_STORAGE_KEY);
-    return saved || 'system';
-  } catch {
-    return 'system';
-  }
-};
+const getInitialThemePreference = () => 'system';
 
 export default function App() {
   const [currentHash, setCurrentHash] = useState(window.location.hash || '#home');
@@ -38,6 +31,14 @@ export default function App() {
   const [regModalOpen, setRegModalOpen] = useState(false);
   const [activeRegProgram, setActiveRegProgram] = useState(null);
   const [themePreference, setThemePreference] = useState(getInitialThemePreference);
+
+  useEffect(() => {
+    try {
+      localStorage.removeItem(THEME_STORAGE_KEY);
+    } catch {
+      // Ignore localStorage write failures in restricted environments.
+    }
+  }, []);
 
   // Admin Auth State
   const [adminUser, setAdminUser] = useState(() => {
@@ -79,14 +80,9 @@ export default function App() {
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const applyTheme = () => {
-      const resolvedTheme = themePreference === 'system' ? getSystemTheme() : themePreference;
+      const resolvedTheme = getSystemTheme();
       document.documentElement.setAttribute('data-theme', resolvedTheme);
       document.documentElement.style.colorScheme = resolvedTheme;
-      try {
-        localStorage.setItem(THEME_STORAGE_KEY, themePreference);
-      } catch {
-        // Ignore localStorage write failures in restricted environments.
-      }
     };
 
     applyTheme();
