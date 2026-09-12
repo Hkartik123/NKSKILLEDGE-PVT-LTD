@@ -2,8 +2,21 @@ import React, { useState, useEffect } from 'react';
 import { 
   LayoutDashboard, Users, UserCheck, BookOpen, Laptop, FolderGit2, 
   Award, MessageSquare, Briefcase, FileText, Settings, ShieldCheck, 
-  Activity, Bell, LogOut, CheckCircle, Clock, AlertCircle, Save, Plus, Trash2, Edit
+  Activity, Bell, LogOut, CheckCircle, Clock, AlertCircle, Save, Plus, Trash2, Edit,
+  Sparkles, MapPin, HelpCircle, Calendar, Megaphone, Target
 } from 'lucide-react';
+
+import HeroAnnouncementCMS from './components/HeroAnnouncementCMS';
+import AboutCMS from './components/AboutCMS';
+import ServicesCMS from './components/ServicesCMS';
+import ProgramsCMS from './components/ProgramsCMS';
+import ProjectsCMS from './components/ProjectsCMS';
+import CertificationsCMS from './components/CertificationsCMS';
+import ClientsCMS from './components/ClientsCMS';
+import BlogsCMS from './components/BlogsCMS';
+import EventsCMS from './components/EventsCMS';
+import FaqsCMS from './components/FaqsCMS';
+import BranchesCMS from './components/BranchesCMS';
 
 export default function AdminDashboard({ user, token, onLogout, onRefreshData, themePreference = 'system', onThemeChange }) {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -12,6 +25,16 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
   const [registrations, setRegistrations] = useState([]);
   const [internships, setInternships] = useState([]);
   const [certificates, setCertificates] = useState([]);
+  const [services, setServices] = useState([]);
+  const [programs, setPrograms] = useState([]);
+  const [projects, setProjects] = useState([]);
+  const [certifications, setCertifications] = useState([]);
+  const [clients, setClients] = useState([]);
+  const [blogs, setBlogs] = useState([]);
+  const [events, setEvents] = useState([]);
+  const [faqs, setFaqs] = useState([]);
+  const [branches, setBranches] = useState([]);
+  const [siteSettings, setSiteSettings] = useState(null);
   const [statsForm, setStatsForm] = useState({
     studentsTrained: '200+',
     studentsPlaced: '50+',
@@ -100,6 +123,11 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
     'Authorization': `Bearer ${token}`
   };
 
+  const showToast = (msg) => {
+    setSaveMessage(msg);
+    setTimeout(() => setSaveMessage(''), 3500);
+  };
+
   const loadAllAdminData = async () => {
     setLoading(true);
     try {
@@ -168,6 +196,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
       const setRes = await fetch('/api/site-settings');
       const sData = await setRes.json();
       if (sData.success && sData.settings) {
+        setSiteSettings(sData.settings);
         if (sData.settings.stats) setStatsForm(sData.settings.stats);
         setSiteSettingsForm({
           phones: sData.settings.phones ? sData.settings.phones.join(', ') : '7498784109, 9356049629',
@@ -176,12 +205,37 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
         });
       }
 
-      // 8. Audit logs
+      // 10. All other CMS modules in parallel
+      const [
+        srvRes, prgRes, prjRes, certRes2, clRes, blRes, evRes, faqRes, brRes
+      ] = await Promise.all([
+        fetch('/api/services').then(r => r.json()).catch(() => ({})),
+        fetch('/api/programs').then(r => r.json()).catch(() => ({})),
+        fetch('/api/projects').then(r => r.json()).catch(() => ({})),
+        fetch('/api/certifications').then(r => r.json()).catch(() => ({})),
+        fetch('/api/clients').then(r => r.json()).catch(() => ({})),
+        fetch('/api/blogs').then(r => r.json()).catch(() => ({})),
+        fetch('/api/events').then(r => r.json()).catch(() => ({})),
+        fetch('/api/faqs').then(r => r.json()).catch(() => ({})),
+        fetch('/api/branches').then(r => r.json()).catch(() => ({}))
+      ]);
+
+      if (srvRes.success) setServices(srvRes.data || []);
+      if (prgRes.success) setPrograms(prgRes.data || []);
+      if (prjRes.success) setProjects(prjRes.data || []);
+      if (certRes2.success) setCertifications(certRes2.data || []);
+      if (clRes.success) setClients(clRes.data || []);
+      if (blRes.success) setBlogs(blRes.data || []);
+      if (evRes.success) setEvents(evRes.data || []);
+      if (faqRes.success) setFaqs(faqRes.data || []);
+      if (brRes.success) setBranches(brRes.branches || brRes.data || []);
+
+      // 11. Audit logs
       const auditRes = await fetch('/api/analytics/audit-logs', { headers: authHeader });
       const aData = await auditRes.json();
       if (aData.success) setAuditLogs(aData.logs);
 
-      // 8. Notifications
+      // 12. Notifications
       const notifRes = await fetch('/api/analytics/notifications', { headers: authHeader });
       const nData = await notifRes.json();
       if (nData.success) setNotifications(nData.notifications);
@@ -803,7 +857,19 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           </div>
 
           <div className="sidebar-group">
-            <span className="sidebar-group-title">Content & Verification</span>
+            <span className="sidebar-group-title">Website Presentation CMS</span>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'hero' ? 'active' : ''}`}
+              onClick={() => setActiveTab('hero')}
+            >
+              <Sparkles size={18} /> Hero & Top Banner
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'about' ? 'active' : ''}`}
+              onClick={() => setActiveTab('about')}
+            >
+              <Target size={18} /> About Us & Story
+            </button>
             <button 
               className={`sidebar-nav-btn ${activeTab === 'stats' ? 'active' : ''}`}
               onClick={() => setActiveTab('stats')}
@@ -811,34 +877,96 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
               <Activity size={18} /> Dynamic Statistics
             </button>
             <button 
-              className={`sidebar-nav-btn ${activeTab === 'certificates' ? 'active' : ''}`}
-              onClick={() => setActiveTab('certificates')}
+              className={`sidebar-nav-btn ${activeTab === 'branches' ? 'active' : ''}`}
+              onClick={() => setActiveTab('branches')}
             >
-              <ShieldCheck size={18} /> Issue & Manage Certificates
-            </button>
-            <button 
-              className={`sidebar-nav-btn ${activeTab === 'team' ? 'active' : ''}`}
-              onClick={() => setActiveTab('team')}
-            >
-              <Users size={18} /> Team Members
-            </button>
-            <button 
-              className={`sidebar-nav-btn ${activeTab === 'successStories' ? 'active' : ''}`}
-              onClick={() => setActiveTab('successStories')}
-            >
-              <Award size={18} /> Student Success Stories
-            </button>
-            <button 
-              className={`sidebar-nav-btn ${activeTab === 'testimonials' ? 'active' : ''}`}
-              onClick={() => setActiveTab('testimonials')}
-            >
-              <MessageSquare size={18} /> Testimonials
+              <MapPin size={18} /> Branch Offices ({branches.length})
             </button>
             <button 
               className={`sidebar-nav-btn ${activeTab === 'settings' ? 'active' : ''}`}
               onClick={() => setActiveTab('settings')}
             >
               <Settings size={18} /> HQ & Contact Settings
+            </button>
+          </div>
+
+          <div className="sidebar-group">
+            <span className="sidebar-group-title">Offerings & Portfolio</span>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'services' ? 'active' : ''}`}
+              onClick={() => setActiveTab('services')}
+            >
+              <Briefcase size={18} /> Enterprise Services ({services.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'programs' ? 'active' : ''}`}
+              onClick={() => setActiveTab('programs')}
+            >
+              <BookOpen size={18} /> Training Programs ({programs.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'projects' ? 'active' : ''}`}
+              onClick={() => setActiveTab('projects')}
+            >
+              <FolderGit2 size={18} /> Projects & Case Studies ({projects.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'clients' ? 'active' : ''}`}
+              onClick={() => setActiveTab('clients')}
+            >
+              <Users size={18} /> Corporate Clients ({clients.length})
+            </button>
+          </div>
+
+          <div className="sidebar-group">
+            <span className="sidebar-group-title">Trust & Engagement</span>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'certificates' ? 'active' : ''}`}
+              onClick={() => setActiveTab('certificates')}
+            >
+              <ShieldCheck size={18} /> Student Certificates ({certificates.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'team' ? 'active' : ''}`}
+              onClick={() => setActiveTab('team')}
+            >
+              <UserCheck size={18} /> Team Members ({teamMembers.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'successStories' ? 'active' : ''}`}
+              onClick={() => setActiveTab('successStories')}
+            >
+              <Award size={18} /> Success Stories ({successStories.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'testimonials' ? 'active' : ''}`}
+              onClick={() => setActiveTab('testimonials')}
+            >
+              <MessageSquare size={18} /> Testimonials ({testimonialsList.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'certifications' ? 'active' : ''}`}
+              onClick={() => setActiveTab('certifications')}
+            >
+              <Award size={18} /> Govt Accreditations ({certifications.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'events' ? 'active' : ''}`}
+              onClick={() => setActiveTab('events')}
+            >
+              <Calendar size={18} /> Events & Workshops ({events.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'blogs' ? 'active' : ''}`}
+              onClick={() => setActiveTab('blogs')}
+            >
+              <Megaphone size={18} /> Articles & Blogs ({blogs.length})
+            </button>
+            <button 
+              className={`sidebar-nav-btn ${activeTab === 'faqs' ? 'active' : ''}`}
+              onClick={() => setActiveTab('faqs')}
+            >
+              <HelpCircle size={18} /> FAQs & Answers ({faqs.length})
             </button>
             <button 
               className={`sidebar-nav-btn ${activeTab === 'audit' ? 'active' : ''}`}
@@ -1898,6 +2026,117 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                 </form>
               </div>
             </div>
+          )}
+
+          {/* CMS TABS */}
+          {activeTab === 'hero' && (
+            <HeroAnnouncementCMS 
+              siteSettings={siteSettings}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'about' && (
+            <AboutCMS 
+              siteSettings={siteSettings}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'services' && (
+            <ServicesCMS 
+              services={services}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'programs' && (
+            <ProgramsCMS 
+              programs={programs}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'projects' && (
+            <ProjectsCMS 
+              projects={projects}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'certifications' && (
+            <CertificationsCMS 
+              certifications={certifications}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'clients' && (
+            <ClientsCMS 
+              clients={clients}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'blogs' && (
+            <BlogsCMS 
+              blogs={blogs}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'events' && (
+            <EventsCMS 
+              events={events}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'faqs' && (
+            <FaqsCMS 
+              faqs={faqs}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
+          )}
+
+          {activeTab === 'branches' && (
+            <BranchesCMS 
+              branches={branches}
+              token={token}
+              onRefresh={loadAllAdminData}
+              onRefreshPublic={onRefreshData}
+              showToast={showToast}
+            />
           )}
 
           {/* TAB 9: AUDIT LOGS */}

@@ -11,6 +11,7 @@ class JsonCollection {
   constructor(name) {
     this.name = name;
     this.filePath = path.join(STORE_DIR, `${name}.json`);
+    this.tmpFilePath = path.join(STORE_DIR, `${name}.json.tmp`);
     this.data = this._load();
   }
 
@@ -21,20 +22,49 @@ class JsonCollection {
         return JSON.parse(raw);
       }
     } catch (err) {
-      console.error(`Error loading store ${this.name}:`, err.message);
+      console.error(`[Store] Error loading store ${this.name}:`, err.message);
+      // Attempt recovery from tmp file if available
+      try {
+        if (fs.existsSync(this.tmpFilePath)) {
+          const rawTmp = fs.readFileSync(this.tmpFilePath, 'utf-8');
+          return JSON.parse(rawTmp);
+        }
+      } catch (tmpErr) {
+        console.error(`[Store] Tmp recovery failed for ${this.name}:`, tmpErr.message);
+      }
     }
     return [];
   }
 
   _save() {
     try {
-      fs.writeFileSync(this.filePath, JSON.stringify(this.data, null, 2), 'utf-8');
+      const serialized = JSON.stringify(this.data, null, 2);
+      // Safe write: write to temp file then copy to destination to avoid data corruption
+      fs.writeFileSync(this.tmpFilePath, serialized, 'utf-8');
+      fs.copyFileSync(this.tmpFilePath, this.filePath);
+      try {
+        fs.unlinkSync(this.tmpFilePath);
+      } catch {
+        // Ignore unlink error
+      }
     } catch (err) {
-      console.error(`Error saving store ${this.name}:`, err.message);
+      console.error(`[Store] Error saving store ${this.name}:`, err.message);
+      // Fallback: direct write
+      try {
+        fs.writeFileSync(this.filePath, JSON.stringify(this.data, null, 2), 'utf-8');
+      } catch (fatalErr) {
+        console.error(`[Store] Fatal fallback save error for ${this.name}:`, fatalErr.message);
+      }
     }
   }
 
+  reload() {
+    this.data = this._load();
+    return this.data;
+  }
+
   async find(query = {}) {
+    this.reload();
     let results = this.data.filter(item => {
       for (const key in query) {
         if (query[key] !== undefined && item[key] !== query[key]) {
@@ -43,11 +73,11 @@ class JsonCollection {
       }
       return true;
     });
-    // Return objects with helper methods
     return results.map(item => ({ ...item }));
   }
 
   async findOne(query = {}) {
+    this.reload();
     const item = this.data.find(item => {
       for (const key in query) {
         if (query[key] !== undefined && item[key] !== query[key]) {
@@ -64,6 +94,7 @@ class JsonCollection {
   }
 
   async create(doc) {
+    this.reload();
     const _id = doc._id || 'id_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
     const newDoc = {
       _id,
@@ -86,6 +117,7 @@ class JsonCollection {
   }
 
   async findByIdAndUpdate(id, updates, options = { new: true }) {
+    this.reload();
     const index = this.data.findIndex(item => item._id === id);
     if (index === -1) return null;
     
@@ -99,6 +131,7 @@ class JsonCollection {
   }
 
   async findOneAndUpdate(query, updates, options = { new: true, upsert: false }) {
+    this.reload();
     const index = this.data.findIndex(item => {
       for (const key in query) {
         if (query[key] !== undefined && item[key] !== query[key]) return false;
@@ -123,6 +156,7 @@ class JsonCollection {
   }
 
   async findByIdAndDelete(id) {
+    this.reload();
     const index = this.data.findIndex(item => item._id === id);
     if (index === -1) return null;
     const removed = this.data.splice(index, 1)[0];
@@ -136,6 +170,7 @@ class JsonCollection {
   }
 
   async deleteMany(query = {}) {
+    this.reload();
     const beforeCount = this.data.length;
     const keys = Object.keys(query);
     if (keys.length === 0) {

@@ -16,6 +16,54 @@
     "state": "Maharashtra",
     "pincode": "441802",
     "whatsappNumber": "7498784109",
+    "hero": {
+      "badgeText": "Government Recognized & ISO 9001:2015 Certified Center",
+      "title": "Shaping Skills, Building Futures.",
+      "subtitle": "One Company — Many Solutions — Unlimited Possibilities",
+      "brandLine": "One Company — Many Solutions — Unlimited Possibilities",
+      "description": "Empowering students through practical training, industry exposure and real-world learning, while architecting modern digital solutions for businesses and startups.",
+      "ctaPrimaryText": "Explore Programs",
+      "ctaPrimaryLink": "#programs",
+      "ctaSecondaryText": "Get a Business Consultation",
+      "ctaSecondaryLink": "#contact",
+      "applyBtnText": "Apply Now",
+      "trustSignals": [
+        "Sakoli Hardware & Tech Lab",
+        "Live Client Software Projects",
+        "100% Verifiable Credentials"
+      ],
+      "terminalTag": "NK SkillEdge • Terminal",
+      "terminalDomain": "Full Stack / AI / IoT",
+      "terminalMode": "Live Industry Execution",
+      "terminalOutcome": "Employment-Ready Engineer",
+      "isVisible": true
+    },
+    "announcementBar": {
+      "enabled": false,
+      "text": "Admissions Open: Industrial Training & MERN Stack Engineering Batch 2026! Limited Seats Available.",
+      "link": "#programs",
+      "badge": "NEW BATCH",
+      "priority": 1
+    },
+    "about": {
+      "overviewTitle": "Building the Future of Regional Tech Education & Enterprise Software",
+      "overviewText": "Headquartered in Sakoli, Maharashtra, NK SkillEdge Pvt. Ltd. bridges the critical divide between textbook engineering curricula and modern tech industry demands. We nurture aspiring engineers through project-based industrial apprenticeships while delivering robust, secure digital solutions to businesses.",
+      "quoteText": "Our mission is straightforward: Every student trained at NK SkillEdge must possess verifiable code repositories and the practical confidence to solve real business challenges from day one.",
+      "quoteAuthor": "Mr. Kartik Mendhe",
+      "quoteRole": "Chief Executive Officer (CEO)",
+      "quoteImage": "https://i.ibb.co/MDwcPjPq/Whats-App-Image-2026-02-02-at-9-21-25-PM.jpg",
+      "foundingStory": "Founded in Sakoli, Maharashtra, NK SkillEdge Pvt. Ltd. was born out of a clear realization: talented engineering and diploma students in regional districts frequently lacked access to production-grade software development environments, enterprise mentorship, and live client pipelines.",
+      "foundingStorySecond": "Instead of requiring students to travel to saturated metros like Pune or Bangalore, we created a localized powerhouse: a modern innovation center providing high-speed hardware labs, cloud sandboxes, and experienced software engineers who train students on live commercial applications.",
+      "corePositioning": "NK SkillEdge empowers students and professionals through practical training, industry exposure, and real-world learning, while also providing digital solutions to businesses and startups.",
+      "visionText": "Build a trusted ecosystem that seamlessly connects skills, technology, education, and career opportunities for every aspiring technologist. We envision a technology landscape where geographic location is never a barrier to world-class software engineering excellence.",
+      "missionList": [
+        "Deliver practical, industry-oriented education without theoretical fluff.",
+        "Build employment-ready engineering talent with live project portfolios.",
+        "Create innovative, secure software solutions for businesses and startups.",
+        "Promote local digital transformation and rural-urban tech equality.",
+        "Cultivate a culture of lifelong learning, mentorship, and ethical engineering."
+      ]
+    },
     "stats": {
       "studentsTrained": "200+",
       "studentsPlaced": "50+",
@@ -64,6 +112,6 @@
       }
     ],
     "createdAt": "2026-09-05T08:24:06.104Z",
-    "updatedAt": "2026-09-05T08:24:06.104Z"
+    "updatedAt": "2026-09-12T14:00:00.000Z"
   }
 ]

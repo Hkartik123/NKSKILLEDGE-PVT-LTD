@@ -132,6 +132,9 @@ router.put('/certificates/:id', authenticate, authorize('super_admin', 'admin', 
 router.get('/site-settings', settingsCtrl.getSettings);
 router.put('/site-settings', authenticate, authorize('super_admin', 'admin'), settingsCtrl.updateSettings);
 router.put('/site-settings/stats', authenticate, authorize('super_admin', 'admin'), settingsCtrl.updateStats);
+router.put('/site-settings/hero', authenticate, authorize('super_admin', 'admin'), settingsCtrl.updateHero);
+router.put('/site-settings/announcement', authenticate, authorize('super_admin', 'admin'), settingsCtrl.updateAnnouncement);
+router.put('/site-settings/about', authenticate, authorize('super_admin', 'admin'), settingsCtrl.updateAbout);
 
 // --- Global Search (PRD Section 45) ---
 router.get('/search', searchCtrl.globalSearch);

@@ -25,17 +25,17 @@ export default function About({ siteSettings }) {
             <div className="glass-panel about-card">
               <h3>Our Founding Story</h3>
               <p>
-                Founded in Sakoli, Maharashtra, <strong>NK SkillEdge Pvt. Ltd.</strong> was born out of a clear realization: talented engineering and diploma students in regional districts frequently lacked access to production-grade software development environments, enterprise mentorship, and live client pipelines.
+                {siteSettings?.about?.foundingStory || 'Founded in Sakoli, Maharashtra, NK SkillEdge Pvt. Ltd. was born out of a clear realization: talented engineering and diploma students in regional districts frequently lacked access to production-grade software development environments, enterprise mentorship, and live client pipelines.'}
               </p>
               <p style={{ marginTop: '12px' }}>
-                Instead of requiring students to travel to saturated metros like Pune or Bangalore, we created a localized powerhouse: a modern innovation center providing high-speed hardware labs, cloud sandboxes, and experienced software engineers who train students on live commercial applications.
+                {siteSettings?.about?.foundingStorySecond || 'Instead of requiring students to travel to saturated metros like Pune or Bangalore, we created a localized powerhouse: a modern innovation center providing high-speed hardware labs, cloud sandboxes, and experienced software engineers who train students on live commercial applications.'}
               </p>
             </div>
 
             <div className="glass-panel about-card">
               <h3>Core Positioning</h3>
               <p>
-                NK SkillEdge empowers students and professionals through practical training, industry exposure, and real-world learning, while also providing digital solutions to businesses and startups.
+                {siteSettings?.about?.corePositioning || siteSettings?.corePositioning || 'NK SkillEdge empowers students and professionals through practical training, industry exposure, and real-world learning, while also providing digital solutions to businesses and startups.'}
               </p>
               <div className="positioning-highlights">
                 <div className="pos-item">
@@ -64,7 +64,7 @@ export default function About({ siteSettings }) {
               <div className="vm-icon"><Target size={30} /></div>
               <h2>Our Vision</h2>
               <p className="vm-statement">
-                Build a trusted ecosystem that seamlessly connects skills, technology, education, and career opportunities for every aspiring technologist.
+                {siteSettings?.about?.visionText || 'Build a trusted ecosystem that seamlessly connects skills, technology, education, and career opportunities for every aspiring technologist.'}
               </p>
               <p>
                 We envision a technology landscape where geographic location is never a barrier to world-class software engineering excellence.
@@ -75,11 +75,15 @@ export default function About({ siteSettings }) {
               <div className="vm-icon"><Compass size={30} /></div>
               <h2>Our Mission</h2>
               <ul className="mission-checklist">
-                <li><CheckCircle2 size={16} className="text-emerald" /> Deliver practical, industry-oriented education without theoretical fluff.</li>
-                <li><CheckCircle2 size={16} className="text-emerald" /> Build employment-ready engineering talent with live project portfolios.</li>
-                <li><CheckCircle2 size={16} className="text-emerald" /> Create innovative, secure software solutions for businesses and startups.</li>
-                <li><CheckCircle2 size={16} className="text-emerald" /> Promote local digital transformation and rural-urban tech equality.</li>
-                <li><CheckCircle2 size={16} className="text-emerald" /> Cultivate a culture of lifelong learning, mentorship, and ethical engineering.</li>
+                {(siteSettings?.about?.missionList || [
+                  'Deliver practical, industry-oriented education without theoretical fluff.',
+                  'Build employment-ready engineering talent with live project portfolios.',
+                  'Create innovative, secure software solutions for businesses and startups.',
+                  'Promote local digital transformation and rural-urban tech equality.',
+                  'Cultivate a culture of lifelong learning, mentorship, and ethical engineering.'
+                ]).map((m, idx) => (
+                  <li key={idx}><CheckCircle2 size={16} className="text-emerald" /> {m}</li>
+                ))}
               </ul>
             </div>
           </div>

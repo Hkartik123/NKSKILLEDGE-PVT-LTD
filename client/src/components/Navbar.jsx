@@ -55,20 +55,47 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
     setActiveDropdown(null);
   };
 
+  const [announcementDismissed, setAnnouncementDismissed] = useState(false);
+  const announcement = siteSettings?.announcementBar;
+  const brandName = siteSettings?.companyName || 'NK SkillEdge';
+  const brandTagline = siteSettings?.tagline || 'Shaping Skills, Building Futures';
+
   return (
     <>
+      {announcement?.enabled && !announcementDismissed && (
+        <div className="announcement-top-bar">
+          <div className="container announcement-inner">
+            {announcement.badge && <span className="announcement-badge">{announcement.badge}</span>}
+            <span className="announcement-text">{announcement.text}</span>
+            {announcement.link && (
+              <a href={announcement.link} className="announcement-link">
+                Explore Now &rarr;
+              </a>
+            )}
+            <button 
+              type="button"
+              className="announcement-close-btn" 
+              onClick={() => setAnnouncementDismissed(true)} 
+              aria-label="Dismiss announcement"
+            >
+              <X size={14} />
+            </button>
+          </div>
+        </div>
+      )}
+
       <header className={`navbar-wrapper ${isScrolled ? 'navbar-scrolled' : ''}`}>
         <div className="container navbar-container">
-          <a href="#home" className="brand-logo" onClick={navItemClick} aria-label="NK SkillEdge Pvt. Ltd. Home">
+          <a href="#home" className="brand-logo" onClick={navItemClick} aria-label={`${brandName} Home`}>
             <img
               src={logoUrl}
-              alt="NK SkillEdge Pvt. Ltd. Official Logo"
+              alt={`${brandName} Official Logo`}
               className="brand-logo-img"
               loading="eager"
             />
             <div className="brand-text">
-              <span className="brand-name">NK SkillEdge</span>
-              <span className="brand-tagline">Shaping Skills, Building Futures</span>
+              <span className="brand-name">{brandName}</span>
+              <span className="brand-tagline">{brandTagline}</span>
             </div>
           </a>
 
@@ -504,6 +531,56 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           .mobile-menu-backdrop { inset: 72px 0 0 0; }
           .mobile-drawer-inner { gap: 10px; }
           .mobile-link { font-size: 0.98rem; }
+        }
+        .announcement-top-bar {
+          background: linear-gradient(90deg, rgba(14, 165, 233, 0.22), rgba(99, 102, 241, 0.22));
+          border-bottom: 1px solid rgba(14, 165, 233, 0.35);
+          padding: 8px 16px;
+          font-size: 0.84rem;
+          color: #f8fafc;
+          position: sticky;
+          top: 0;
+          z-index: 1000;
+          backdrop-filter: blur(12px);
+        }
+        .announcement-inner {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 12px;
+          flex-wrap: wrap;
+        }
+        .announcement-badge {
+          background: var(--primary);
+          color: #fff;
+          font-size: 0.7rem;
+          font-weight: 700;
+          padding: 2px 8px;
+          border-radius: 9999px;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+        .announcement-text {
+          font-weight: 500;
+        }
+        .announcement-link {
+          color: var(--primary-hover);
+          font-weight: 600;
+          text-decoration: underline;
+          text-underline-offset: 3px;
+        }
+        .announcement-close-btn {
+          background: none;
+          border: none;
+          color: var(--text-muted);
+          cursor: pointer;
+          display: inline-flex;
+          align-items: center;
+          padding: 2px;
+          margin-left: 8px;
+        }
+        .announcement-close-btn:hover {
+          color: #fff;
         }
         @keyframes slideUp {
           from { opacity: 0; transform: translateY(-8px); }

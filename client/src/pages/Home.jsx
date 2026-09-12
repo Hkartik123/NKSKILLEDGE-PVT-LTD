@@ -120,54 +120,65 @@ export default function Home({
           <div className="hero-content">
             <div className="hero-badge">
               <Sparkles size={15} />
-              <span>Government Recognized & ISO 9001:2015 Certified Center</span>
+              <span>{siteSettings?.hero?.badgeText || 'Government Recognized & ISO 9001:2015 Certified Center'}</span>
             </div>
 
             <h1 className="hero-title">
-              Shaping Skills, <br />
-              <span className="gradient-text">Building Futures.</span>
+              {siteSettings?.hero?.title ? (
+                siteSettings.hero.title.includes(',') ? (
+                  <>
+                    {siteSettings.hero.title.split(',')[0]}, <br />
+                    <span className="gradient-text">{siteSettings.hero.title.split(',').slice(1).join(',')}</span>
+                  </>
+                ) : (
+                  <span className="gradient-text">{siteSettings.hero.title}</span>
+                )
+              ) : (
+                <>
+                  Shaping Skills, <br />
+                  <span className="gradient-text">Building Futures.</span>
+                </>
+              )}
             </h1>
 
             <p className="hero-brand-line" style={{ color: 'var(--primary-hover)', fontWeight: 600, fontSize: '1rem', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '8px' }}>
-              One Company — Many Solutions — Unlimited Possibilities
+              {siteSettings?.hero?.brandLine || siteSettings?.brandLine || 'One Company — Many Solutions — Unlimited Possibilities'}
             </p>
 
             <p className="hero-statement">
-              Empowering students through practical training, industry exposure and real-world learning, while architecting modern digital solutions for businesses and startups.
+              {siteSettings?.hero?.description || 'Empowering students through practical training, industry exposure and real-world learning, while architecting modern digital solutions for businesses and startups.'}
             </p>
 
             <div className="hero-cta-group">
-              <a href="#programs" className="btn btn-primary btn-lg">
-                <span>Explore Programs</span>
+              <a href={siteSettings?.hero?.ctaPrimaryLink || '#programs'} className="btn btn-primary btn-lg">
+                <span>{siteSettings?.hero?.ctaPrimaryText || 'Explore Programs'}</span>
                 <ArrowRight size={18} />
               </a>
 
-              <a href="#contact" className="btn btn-secondary btn-lg">
-                <span>Get a Business Consultation</span>
+              <a href={siteSettings?.hero?.ctaSecondaryLink || '#contact'} className="btn btn-secondary btn-lg">
+                <span>{siteSettings?.hero?.ctaSecondaryText || 'Get a Business Consultation'}</span>
               </a>
 
               <button 
                 onClick={() => onOpenRegister(null)} 
                 className="btn btn-outline btn-lg"
               >
-                Apply Now
+                {siteSettings?.hero?.applyBtnText || 'Apply Now'}
               </button>
             </div>
 
             {/* Quick Micro-Trust Signals */}
             <div className="hero-trust-signals">
-              <div className="trust-item">
-                <CheckCircle2 size={16} className="text-emerald" />
-                <span>Sakoli Hardware & Tech Lab</span>
-              </div>
-              <div className="trust-item">
-                <CheckCircle2 size={16} className="text-emerald" />
-                <span>Live Client Software Projects</span>
-              </div>
-              <div className="trust-item">
-                <CheckCircle2 size={16} className="text-emerald" />
-                <span>100% Verifiable Credentials</span>
-              </div>
+              {(siteSettings?.hero?.trustSignals || [
+                'Sakoli Hardware & Tech Lab',
+                'Live Client Software Projects',
+                '100% Verifiable Credentials'
+              ]).map((sig, idx) => (
+                <div key={idx} className="trust-item">
+                  <CheckCircle2 size={16} className="text-emerald" />
+                  <span>{sig}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -261,9 +272,9 @@ export default function Home({
           <div className="company-intro-split">
             <div className="intro-text">
               <span className="badge badge-emerald">Who We Are</span>
-              <h2>Building the Future of Regional Tech Education & Enterprise Software</h2>
+              <h2>{siteSettings?.about?.overviewTitle || 'Building the Future of Regional Tech Education & Enterprise Software'}</h2>
               <p>
-                Headquartered in Sakoli, Maharashtra, <strong>NK SkillEdge Pvt. Ltd.</strong> bridges the critical divide between textbook engineering curricula and modern tech industry demands. We nurture aspiring engineers through project-based industrial apprenticeships while delivering robust, secure digital solutions to businesses.
+                {siteSettings?.about?.overviewText || 'Headquartered in Sakoli, Maharashtra, NK SkillEdge Pvt. Ltd. bridges the critical divide between textbook engineering curricula and modern tech industry demands. We nurture aspiring engineers through project-based industrial apprenticeships while delivering robust, secure digital solutions to businesses.'}
               </p>
               <div className="intro-bullet-points">
                 <div className="bullet-item">
@@ -291,18 +302,18 @@ export default function Home({
               <div className="glass-panel intro-quote-box">
                 <div className="quote-mark">“</div>
                 <p className="quote-text">
-                  Our mission is straightforward: Every student trained at NK SkillEdge must possess verifiable code repositories and the practical confidence to solve real business challenges from day one.
+                  {siteSettings?.about?.quoteText || 'Our mission is straightforward: Every student trained at NK SkillEdge must possess verifiable code repositories and the practical confidence to solve real business challenges from day one.'}
                 </p>
                 <div className="quote-author">
                   <img 
-                    src="https://i.ibb.co/MDwcPjPq/Whats-App-Image-2026-02-02-at-9-21-25-PM.jpg" 
-                    alt="Mr. Kartik Mendhe – CEO, NK SkillEdge Pvt. Ltd." 
+                    src={siteSettings?.about?.quoteImage || "https://i.ibb.co/MDwcPjPq/Whats-App-Image-2026-02-02-at-9-21-25-PM.jpg"} 
+                    alt={`${siteSettings?.about?.quoteAuthor || 'Mr. Kartik Mendhe'} – ${siteSettings?.about?.quoteRole || 'CEO'}`} 
                     className="author-thumb" 
                     onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80')}
                   />
                   <div>
-                    <strong>Mr. Kartik Mendhe</strong>
-                    <span>Chief Executive Officer (CEO)</span>
+                    <strong>{siteSettings?.about?.quoteAuthor || 'Mr. Kartik Mendhe'}</strong>
+                    <span>{siteSettings?.about?.quoteRole || 'Chief Executive Officer (CEO)'}</span>
                   </div>
                 </div>
               </div>
@@ -1003,38 +1014,57 @@ export default function Home({
                   <MapPin size={22} className="text-cyan" />
                   <div>
                     <strong>Headquarters & Innovation Lab</strong>
-                    <span>NK SkillEdge Pvt. Ltd., Near Gobade Hospital, Sakoli, Maharashtra 441802</span>
+                    <span>{siteSettings?.office || 'NK SkillEdge Pvt. Ltd., Near Gobade Hospital, Sakoli, Maharashtra 441802'}</span>
                   </div>
                 </div>
                 <div className="point-item">
                   <PhoneCall size={22} className="text-cyan" />
                   <div>
                     <strong>Helpline & Counseling</strong>
-                    <span>+91 7498784109 / +91 9356049629</span>
+                    <span>{siteSettings?.phones?.join(' / ') || '+91 7498784109 / +91 9356049629'}</span>
                   </div>
                 </div>
                 <div className="point-item">
                   <Send size={22} className="text-cyan" />
                   <div>
                     <strong>Official Email</strong>
-                    <span>hmendhe72@gmail.com</span>
+                    <span>{siteSettings?.email || 'hmendhe72@gmail.com'}</span>
                   </div>
                 </div>
               </div>
 
               <div className="direct-cta-actions">
                 <a 
-                  href="https://wa.me/917498784109?text=Hello%20NK%20SkillEdge,%20I%20would%20like%20to%20schedule%20a%20consultation."
+                  href={`https://wa.me/91${siteSettings?.whatsappNumber || '7498784109'}?text=Hello%20NK%20SkillEdge,%20I%20would%20like%20to%20schedule%20a%20consultation.`}
                   target="_blank"
                   rel="noreferrer"
                   className="btn btn-emerald"
                 >
                   <MessageSquare size={16} /> WhatsApp Direct Chat
                 </a>
-                <a href="tel:7498784109" className="btn btn-secondary">
+                <a href={`tel:${siteSettings?.phones?.[0] || '7498784109'}`} className="btn btn-secondary">
                   <PhoneCall size={16} /> Call Counselors
                 </a>
               </div>
+
+              {displayBranches && displayBranches.length > 0 && (
+                <div className="home-branches-strip" style={{ marginTop: '28px', borderTop: '1px solid rgba(148, 163, 184, 0.15)', paddingTop: '20px' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--primary-hover)', display: 'block', marginBottom: '10px' }}>
+                    Regional Centers & Laboratories
+                  </span>
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {displayBranches.map((br) => (
+                      <div key={br._id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
+                        <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                          <MapPin size={13} className="text-cyan" />
+                          <strong style={{ color: '#fff' }}>{br.name}:</strong> {br.address}, {br.city}
+                        </span>
+                        {br.phone && <span style={{ color: 'var(--text-muted)', fontSize: '0.78rem' }}>{br.phone}</span>}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
             <div className="contact-form-col">

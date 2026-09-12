@@ -102,6 +102,9 @@ export default function App() {
     return () => mediaQuery.removeListener(handleSystemThemeChange);
   }, [themePreference]);
 
+  const [dbError, setDbError] = useState(null);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
   // Fetch Public Data
   const fetchData = async () => {
     try {
@@ -116,24 +119,30 @@ export default function App() {
 
       const [
         sSettings, sServices, sPrograms, sProjects, sTeam,
-        sTesti, sSuccess, sCerts, sClients, sBlogs, sEvents, sFaqs
+        sTesti, sSuccess, sCerts, sClients, sBlogs, sEvents, sFaqs, sBranches
       ] = await Promise.all([
-        fetch('/api/site-settings', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/services', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/programs', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/projects', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/team', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/testimonials', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/success-stories', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/certifications', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/clients', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/blogs', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/events', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/faqs', cacheOptions).then(r => r.json()).catch(() => ({})),
-        fetch('/api/branches', cacheOptions).then(r => r.json()).catch(() => ({}))
+        fetch('/api/site-settings', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/services', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/programs', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/projects', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/team', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/testimonials', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/success-stories', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/certifications', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/clients', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/blogs', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/events', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/faqs', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message })),
+        fetch('/api/branches', cacheOptions).then(r => r.json()).catch(err => ({ error: err.message }))
       ]);
 
-      if (sSettings.success) setSiteSettings(sSettings.settings);
+      if (sSettings.success) {
+        setSiteSettings(sSettings.settings);
+        setDbError(null);
+      } else if (sSettings.error) {
+        setDbError('Unable to connect to database server. Please ensure the backend is running.');
+      }
+
       if (sServices.success) setServices(sServices.data);
       if (sPrograms.success) setPrograms(sPrograms.data);
       if (sProjects.success) setProjects(sProjects.data);
@@ -158,8 +167,10 @@ export default function App() {
       if (sEvents.success) setEvents(sEvents.data);
       if (sFaqs.success) setFaqs(sFaqs.data);
       if (sBranches && sBranches.success) setBranches(sBranches.branches || sBranches.data || []);
+      setDataLoaded(true);
     } catch (err) {
       console.error('Error fetching public portal data:', err);
+      setDbError('Error communicating with database API.');
     }
   };
 
