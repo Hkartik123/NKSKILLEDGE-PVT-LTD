@@ -1,10 +1,11 @@
 const dotenv = require('dotenv');
-dotenv.config();
+const path = require('path');
+dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
 module.exports = {
   PORT: process.env.PORT || 5000,
   NODE_ENV: process.env.NODE_ENV || 'development',
-  MONGODB_URI: process.env.MONGODB_URI || process.env.DATABASE_URL || '',
+  MONGODB_URI: process.env.MONGODB_URI || '',
   JWT_SECRET: process.env.JWT_SECRET || 'nkskilledge_super_secret_jwt_key_2025',
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
   OFFICIAL_INFO: {

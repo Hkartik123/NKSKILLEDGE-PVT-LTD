@@ -1,5 +1,5 @@
 const { getSeedData } = require('./data/seedData');
-const { getCollection } = require('./config/store');
+const { getCollection } = require('./config/db');
 
 async function sync() {
   console.log('Syncing official assets and images into persistent store...');
