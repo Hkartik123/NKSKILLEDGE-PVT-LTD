@@ -830,6 +830,39 @@ export default function Home({
         </div>
       </section>
 
+      <section className="section featured-reel-section" id="featured-reel">
+        <div className="container">
+          <div className="section-header">
+            <span className="badge badge-purple">Featured Reel</span>
+            <h2>In the Spotlight</h2>
+            <p>
+              Discover the journey and vision behind NK SkillEdge in this feature on
+              Kartik Mendhe, Marathi Businessman.
+            </p>
+          </div>
+
+          <div className="featured-reel-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/fS9nubtQmN8"
+              title="Kartik Mendhe | Marathi Businessman — NK SkillEdge featured reel"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
+            />
+          </div>
+
+          <a
+            className="featured-reel-link"
+            href="https://youtu.be/fS9nubtQmN8"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Watch on YouTube <ExternalLink size={15} />
+          </a>
+        </div>
+      </section>
+
       {/* =========================================================================
           SECTION 11: CERTIFICATIONS & RECOGNITIONS (PRD Section 8.11)
           ========================================================================= */}
