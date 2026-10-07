@@ -91,6 +91,7 @@ async function seedDatabase() {
     console.log('✅ Seed data successfully imported!');
   } catch (err) {
     console.error('❌ Error seeding database:', err);
+    throw err;
   }
 }
 
