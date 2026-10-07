@@ -1,5 +1,15 @@
 {
   "installCommand": "npm install --include=dev && npm install --prefix server --include=dev && npm install --prefix client --include=dev",
   "buildCommand": "npm run db:generate --prefix server && npm run build",
-  "outputDirectory": "client/dist"
+  "outputDirectory": "client/dist",
+  "rewrites": [
+    {
+      "source": "/api",
+      "destination": "/api/index?__nks_api_path="
+    },
+    {
+      "source": "/api/:apiPath*",
+      "destination": "/api/index?__nks_api_path=:apiPath*"
+    }
+  ]
 }

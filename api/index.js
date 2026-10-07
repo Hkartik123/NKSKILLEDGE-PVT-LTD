@@ -13,6 +13,14 @@ module.exports = async function handler(req, res) {
     }
 
     await databaseConnection;
+
+    const requestUrl = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
+    const apiPath = requestUrl.searchParams.get('__nks_api_path') || '';
+    requestUrl.searchParams.delete('__nks_api_path');
+    const encodedPath = apiPath.split('/').map(encodeURIComponent).join('/');
+    const query = requestUrl.searchParams.toString();
+    req.url = `/api/${encodedPath}${query ? `?${query}` : ''}`;
+
     return app(req, res);
   } catch (error) {
     const errorCode = error && typeof error === 'object' && 'code' in error
