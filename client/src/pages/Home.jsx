@@ -847,7 +847,7 @@ export default function Home({
               title="Kartik Mendhe | Marathi Businessman — NK SkillEdge featured reel"
               loading="lazy"
               referrerPolicy="strict-origin-when-cross-origin"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
           </div>
