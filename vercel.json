@@ -1,5 +1,5 @@
 {
-  "installCommand": "npm run install-all",
-  "buildCommand": "npm run build",
+  "installCommand": "npm install --include=dev && npm install --prefix server --include=dev && npm install --prefix client --include=dev",
+  "buildCommand": "npm run db:generate --prefix server && npm run build",
   "outputDirectory": "client/dist"
 }
