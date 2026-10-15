@@ -14,8 +14,12 @@ export default function Footer({ siteSettings, branches = [], onOpenRegister }) 
 
   const phones = siteSettings?.phones || ['7498784109', '9356049629'];
   const email = siteSettings?.email || 'hmendhe72@gmail.com';
-  const logoUrl = siteSettings?.logo || 'https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png';
-  const brandLine = siteSettings?.brandLine || 'One Company — Many Solutions — Unlimited Possibilities';
+  const logoUrl = '/nkskilledge-logo.png';
+  const originalBrandLine = 'One Company — Many Solutions — Unlimited Possibilities';
+  const savedBrandLine = siteSettings?.brandLine;
+  const brandLine = savedBrandLine && savedBrandLine !== originalBrandLine
+    ? savedBrandLine
+    : `${originalBrandLine}.`;
 
   // Fallback branches if not yet fetched from API
   const displayBranches = branches || [];
@@ -54,19 +58,19 @@ export default function Footer({ siteSettings, branches = [], onOpenRegister }) 
           {/* Column 1: Company Profile */}
           <div className="footer-col brand-col">
             <div className="brand-logo" style={{ marginBottom: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-              <img 
+              <img
                 src={logoUrl} 
-                alt="NK SkillEdge Pvt. Ltd. Official Logo" 
+                alt="NKSKILLEDGE official logo"
                 className="footer-logo-img"
                 loading="lazy"
               />
               <div className="brand-text">
-                <span className="brand-name" style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)' }}>NK SkillEdge</span>
+                <span className="brand-name" style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--text-primary)' }}>NKSKILLEDGE Pvt. Ltd.</span>
                 <span className="brand-tagline" style={{ fontSize: '0.72rem', color: 'var(--primary-hover)', letterSpacing: '0.04em', textTransform: 'uppercase', fontWeight: 600 }}>Shaping Skills, Building Futures</span>
               </div>
             </div>
             <p className="footer-description">
-              Empowering students through practical engineering, live project exposure, and real-world software development while architecting modern digital solutions for businesses.
+              Empowering students through practical training, industry exposure and real-world learning, while building modern digital solutions for businesses and startups.
             </p>
             
             <div className="footer-accreditations">
@@ -183,19 +187,22 @@ export default function Footer({ siteSettings, branches = [], onOpenRegister }) 
 
       <style>{`
         .footer-root {
-          background: #04070d;
+          background: var(--bg-surface);
           border-top: 1px solid var(--border-subtle);
           position: relative;
         }
         .footer-logo-img {
-          height: 48px;
+          height: 64px;
           width: auto;
-          max-width: 56px;
+          max-width: 64px;
           object-fit: contain;
-          filter: drop-shadow(0 2px 8px rgba(14, 165, 233, 0.35));
+          padding: 3px;
+          border-radius: 12px;
+          background: #ffffff;
+          box-shadow: 0 3px 14px rgba(0, 0, 0, 0.16);
         }
         .footer-stats-bar {
-          background: rgba(14, 165, 233, 0.04);
+          background: rgba(22, 119, 255, 0.08);
           border-bottom: 1px solid var(--border-subtle);
           padding: 30px 0;
         }
@@ -231,18 +238,18 @@ export default function Footer({ siteSettings, branches = [], onOpenRegister }) 
         }
         .footer-columns-grid {
           display: grid;
-          grid-template-columns: 2fr 1.2fr 1.2fr 1.2fr 2fr;
-          gap: 40px;
+          grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1.2fr)) minmax(0, 2fr);
+          gap: clamp(18px, 3vw, 40px);
           margin-bottom: 50px;
         }
         @media (max-width: 1024px) {
           .footer-columns-grid {
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
           }
         }
         @media (max-width: 640px) {
           .footer-columns-grid {
-            grid-template-columns: 1fr;
+            grid-template-columns: minmax(0, 1fr);
             gap: 32px;
           }
         }
@@ -272,7 +279,7 @@ export default function Footer({ siteSettings, branches = [], onOpenRegister }) 
         .footer-heading {
           font-size: 1.05rem;
           font-weight: 700;
-          color: #ffffff;
+          color: var(--text-primary);
           margin-bottom: 20px;
           position: relative;
           padding-bottom: 8px;
@@ -344,6 +351,7 @@ export default function Footer({ siteSettings, branches = [], onOpenRegister }) 
           display: flex;
           align-items: center;
           gap: 10px;
+          flex-wrap: wrap;
         }
         .legal-links a:hover {
           color: var(--text-light);

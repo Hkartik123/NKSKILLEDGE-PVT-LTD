@@ -209,7 +209,7 @@ export default function App() {
       {isAdminRoute ? (
         <div className="admin-view-wrapper">
           <div className="admin-return-ribbon">
-            <span>NK SkillEdge Staff Portal</span>
+            <span>NKSKILLEDGE Staff Portal</span>
             <a href="#home" className="return-link">← Return to Public Website</a>
           </div>
           {adminUser && adminToken ? (
@@ -296,8 +296,8 @@ export default function App() {
           min-height: 100vh;
         }
         .admin-return-ribbon {
-          background: rgba(14, 165, 233, 0.15);
-          border-bottom: 1px solid rgba(14, 165, 233, 0.3);
+          background: rgba(22, 119, 255, 0.15);
+          border-bottom: 1px solid rgba(22, 119, 255, 0.3);
           padding: 8px 24px;
           display: flex;
           justify-content: space-between;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
+import { Lock, Mail, ArrowRight, AlertCircle } from 'lucide-react';
 
 export default function AdminLogin({ onLoginSuccess }) {
   const [email, setEmail] = useState('');
@@ -37,11 +37,9 @@ export default function AdminLogin({ onLoginSuccess }) {
     <div className="admin-login-overlay">
       <div className="admin-login-box glass-panel">
         <div className="login-header">
-          <div className="login-badge-icon">
-            <Shield size={28} />
-          </div>
+          <img src="/nkskilledge-logo.png" alt="NKSKILLEDGE logo" className="login-brand-logo" />
           <h2>Staff & Admin Portal</h2>
-          <p>NK SkillEdge Pvt. Ltd. Centralized CMS & Lead Pipeline</p>
+          <p>NKSKILLEDGE Pvt. Ltd. Centralized CMS & Lead Pipeline</p>
         </div>
 
         {error && (
@@ -104,24 +102,22 @@ export default function AdminLogin({ onLoginSuccess }) {
           width: 100%;
           padding: 40px;
           border-radius: var(--radius-xl);
-          background: rgba(11, 17, 32, 0.95);
-          box-shadow: var(--shadow-lg), 0 0 35px rgba(14, 165, 233, 0.15);
+          background: rgba(16, 42, 86, 0.96);
+          box-shadow: var(--shadow-lg), 0 0 35px rgba(22, 119, 255, 0.15);
         }
         .login-header {
           text-align: center;
           margin-bottom: 28px;
         }
-        .login-badge-icon {
-          width: 56px;
-          height: 56px;
-          border-radius: 50%;
-          background: rgba(14, 165, 233, 0.12);
-          color: var(--primary-hover);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto 16px auto;
-          border: 1px solid rgba(14, 165, 233, 0.3);
+        .login-brand-logo {
+          width: 80px;
+          height: 80px;
+          object-fit: contain;
+          padding: 4px;
+          border-radius: 16px;
+          background: #ffffff;
+          box-shadow: var(--shadow-md);
+          margin: 0 auto 16px;
         }
         .login-header h2 {
           font-size: 1.5rem;

@@ -6,6 +6,8 @@ import {
   Target, Rocket, CheckCheck, Clock, MapPin, Send
 } from 'lucide-react';
 
+const IMAGE_FALLBACK = '/nkskilledge-media-placeholder.svg';
+
 export default function Home({ 
   siteSettings, 
   services = [], 
@@ -32,6 +34,15 @@ export default function Home({
     projectsCompleted: '50+',
     upcomingProjects: '10+'
   };
+  const originalBrandLine = 'One Company — Many Solutions — Unlimited Possibilities';
+  const configuredBrandLine = siteSettings?.hero?.brandLine || siteSettings?.brandLine;
+  const heroBrandLine = configuredBrandLine && configuredBrandLine !== originalBrandLine
+    ? configuredBrandLine
+    : `${originalBrandLine}.`;
+  const originalHeroDescription = 'Empowering students through practical training, industry exposure and real-world learning, while architecting modern digital solutions for businesses and startups.';
+  const heroDescription = siteSettings?.hero?.description && siteSettings.hero.description !== originalHeroDescription
+    ? siteSettings.hero.description
+    : 'Empowering students through practical training, industry exposure and real-world learning, while building modern digital solutions for businesses and startups.';
 
   const [activeProjectFilter, setActiveProjectFilter] = useState('All');
   const [selectedCaseStudy, setSelectedCaseStudy] = useState(null);
@@ -41,10 +52,10 @@ export default function Home({
   // Fallback branches if not yet loaded from backend
   const displayBranches = branches || [];
 
-  // Fallback handler for external image load errors
-  const handleImageError = (e, fallbackSrc) => {
-    e.target.onerror = null;
-    e.target.src = fallbackSrc || 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80';
+  const handleImageError = (event) => {
+    const image = event.currentTarget;
+    image.onerror = null;
+    image.src = IMAGE_FALLBACK;
   };
 
   // Contact Form State
@@ -110,7 +121,7 @@ export default function Home({
       {/* Background Ambient Glow Orbs */}
       <div className="glow-orb glow-orb-cyan" style={{ top: '5%', left: '10%' }}></div>
       <div className="glow-orb glow-orb-blue" style={{ top: '25%', right: '5%' }}></div>
-      <div className="glow-orb glow-orb-purple" style={{ top: '60%', left: '15%' }}></div>
+      <div className="glow-orb glow-orb-blue" style={{ top: '60%', left: '15%' }}></div>
 
       {/* =========================================================================
           SECTION 1: HERO SECTION (PRD Section 7 & Section 8.1)
@@ -141,12 +152,12 @@ export default function Home({
               )}
             </h1>
 
-            <p className="hero-brand-line" style={{ color: 'var(--primary-hover)', fontWeight: 600, fontSize: '1rem', letterSpacing: '0.04em', textTransform: 'uppercase', marginBottom: '8px' }}>
-              {siteSettings?.hero?.brandLine || siteSettings?.brandLine || 'One Company — Many Solutions — Unlimited Possibilities'}
+            <p className="hero-brand-line" style={{ color: 'var(--primary-hover)', fontWeight: 600, fontSize: '1rem', letterSpacing: '0.01em', marginBottom: '8px' }}>
+              {heroBrandLine}
             </p>
 
             <p className="hero-statement">
-              {siteSettings?.hero?.description || 'Empowering students through practical training, industry exposure and real-world learning, while architecting modern digital solutions for businesses and startups.'}
+              {heroDescription}
             </p>
 
             <div className="hero-cta-group">
@@ -191,7 +202,7 @@ export default function Home({
                     <span className="dot yellow"></span>
                     <span className="dot green"></span>
                   </div>
-                  <span className="card-tag">NK SkillEdge • Terminal</span>
+                  <span className="card-tag">NKSKILLEDGE • Terminal</span>
                 </div>
                 <div className="terminal-code">
                   <p className="code-line"><span className="code-keyword">const</span> <span className="code-var">candidate</span> = <span className="code-keyword">await</span> SkillEdge.<span className="code-func">enroll</span>(&#123;</p>
@@ -306,10 +317,10 @@ export default function Home({
                 </p>
                 <div className="quote-author">
                   <img 
-                    src={siteSettings?.about?.quoteImage || "https://i.ibb.co/MDwcPjPq/Whats-App-Image-2026-02-02-at-9-21-25-PM.jpg"} 
+                    src={siteSettings?.about?.quoteImage || IMAGE_FALLBACK}
                     alt={`${siteSettings?.about?.quoteAuthor || 'Mr. Kartik Mendhe'} – ${siteSettings?.about?.quoteRole || 'CEO'}`} 
                     className="author-thumb" 
-                    onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&q=80')}
+                    onError={handleImageError}
                   />
                   <div>
                     <strong>{siteSettings?.about?.quoteAuthor || 'Mr. Kartik Mendhe'}</strong>
@@ -386,7 +397,7 @@ export default function Home({
                       alt={`${s.title} - NK SkillEdge Pvt. Ltd.`} 
                       className="service-card-img"
                       loading="lazy"
-                      onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&q=80')}
+                      onError={handleImageError}
                     />
                   </div>
                 )}
@@ -461,7 +472,7 @@ export default function Home({
                       alt={`${p.name} - NK SkillEdge Pvt. Ltd.`} 
                       className="program-card-img"
                       loading="lazy"
-                      onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1000&q=80')}
+                      onError={handleImageError}
                     />
                   </div>
                 )}
@@ -605,7 +616,7 @@ export default function Home({
                     alt={p.title} 
                     className="project-img" 
                     loading="lazy"
-                    onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&q=80')}
+                    onError={handleImageError}
                   />
                   <span className="project-category-badge">{p.category}</span>
                 </div>
@@ -661,11 +672,11 @@ export default function Home({
               <div key={s._id} className="card-interactive success-card">
                 <div className="success-profile-header">
                   <img 
-                    src={s.image || s.profile_image || 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80'} 
+                    src={s.image || s.profile_image || IMAGE_FALLBACK}
                     alt={s.studentName || s.name} 
                     className="student-avatar" 
                     loading="lazy"
-                    onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&q=80')}
+                    onError={handleImageError}
                   />
                   <div>
                     <h4>{s.studentName || s.name}</h4>
@@ -703,11 +714,11 @@ export default function Home({
                   <p className="testi-text">"{t.testimonial}"</p>
                   <div className="testi-author">
                     <img 
-                      src={t.image || t.profile_photo || 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&q=80'} 
+                      src={t.image || t.profile_photo || IMAGE_FALLBACK}
                       alt={t.name} 
                       className="testi-avatar" 
                       loading="lazy"
-                      onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=200&q=80')}
+                      onError={handleImageError}
                     />
                     <div>
                       <strong>{t.name}</strong>
@@ -747,7 +758,7 @@ export default function Home({
                     alt={`${leader.name} - ${leader.role}`} 
                     className="leader-img" 
                     loading="lazy"
-                    onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&q=80')}
+                    onError={handleImageError}
                   />
                 </div>
                 <div className="leader-info-col">
@@ -782,7 +793,7 @@ export default function Home({
 
             <div className="grid-4">
               {team.map((m) => {
-                const profileImage = m.profile_image || m.image || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80';
+                const profileImage = m.profile_image || m.image || IMAGE_FALLBACK;
                 const role = m.designation || m.role || 'Team Member';
                 const bio = m.bio || m.about || 'Dedicated team member contributing to NK SkillEdge growth and student outcomes.';
                 const socialLinks = m.socialLinks || {};
@@ -795,7 +806,7 @@ export default function Home({
                         alt={`${m.name} – ${role}`} 
                         className="team-avatar" 
                         loading="lazy"
-                        onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80')}
+                        onError={handleImageError}
                       />
                     </div>
                     <h4>{m.name}</h4>
@@ -830,6 +841,39 @@ export default function Home({
         </div>
       </section>
 
+      <section className="section featured-reel-section" id="featured-reel">
+        <div className="container">
+          <div className="section-header">
+            <span className="badge badge-purple">Featured Reel</span>
+            <h2>In the Spotlight</h2>
+            <p>
+              Discover the journey and vision behind NK SkillEdge in this feature on
+              Kartik Mendhe, Marathi Businessman.
+            </p>
+          </div>
+
+          <div className="featured-reel-frame">
+            <iframe
+              src="https://www.youtube-nocookie.com/embed/fS9nubtQmN8"
+              title="Kartik Mendhe | Marathi Businessman — NK SkillEdge featured reel"
+              loading="lazy"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+
+          <a
+            className="featured-reel-link"
+            href="https://youtu.be/fS9nubtQmN8"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Watch on YouTube <ExternalLink size={15} />
+          </a>
+        </div>
+      </section>
+
       {/* =========================================================================
           SECTION 11: CERTIFICATIONS & RECOGNITIONS (PRD Section 8.11)
           ========================================================================= */}
@@ -851,7 +895,7 @@ export default function Home({
                       alt={`${c.title} - NK SkillEdge Pvt. Ltd.`} 
                       className="cert-official-img"
                       loading="lazy"
-                      onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&q=80')}
+                      onError={handleImageError}
                     />
                   ) : (
                     <div className="cert-fallback-icon"><ShieldCheck size={36} className="text-amber" /></div>
@@ -913,7 +957,7 @@ export default function Home({
                   alt={events[0].title} 
                   className="event-img" 
                   loading="lazy"
-                  onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&q=80')}
+                  onError={handleImageError}
                 />
               </div>
               <div className="event-info-col">
@@ -943,7 +987,7 @@ export default function Home({
                   alt={b.title} 
                   className="blog-thumb" 
                   loading="lazy"
-                  onError={(e) => handleImageError(e, 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&q=80')}
+                  onError={handleImageError}
                 />
                 <div className="blog-body">
                   <div className="blog-meta">
@@ -1269,8 +1313,8 @@ export default function Home({
           display: inline-flex;
           align-items: center;
           gap: 8px;
-          background: rgba(14, 165, 233, 0.1);
-          border: 1px solid rgba(14, 165, 233, 0.3);
+          background: rgba(22, 119, 255, 0.1);
+          border: 1px solid rgba(22, 119, 255, 0.3);
           color: var(--primary-hover);
           padding: 6px 14px;
           border-radius: var(--radius-full);
@@ -1314,7 +1358,7 @@ export default function Home({
         .hero-main-card {
           padding: 24px;
           border-radius: var(--radius-xl);
-          box-shadow: var(--shadow-lg), 0 0 30px rgba(14, 165, 233, 0.15);
+          box-shadow: var(--shadow-lg), 0 0 30px rgba(22, 119, 255, 0.15);
         }
         .card-header-bar {
           display: flex;
@@ -1347,8 +1391,8 @@ export default function Home({
           line-height: 1.7;
         }
         .code-keyword { color: #f43f5e; font-weight: 600; }
-        .code-var { color: #38bdf8; }
-        .code-func { color: #a78bfa; }
+        .code-var { color: #00C2FF; }
+        .code-func { color: #00C2FF; }
         .code-key { color: #fbbf24; }
         .code-str { color: #34d399; }
         .code-comment { color: #64748b; font-style: italic; margin-top: 10px; }
@@ -1512,7 +1556,7 @@ export default function Home({
           width: 54px;
           height: 54px;
           border-radius: var(--radius-md);
-          background: rgba(14, 165, 233, 0.1);
+          background: rgba(22, 119, 255, 0.1);
           color: var(--primary-hover);
           display: flex;
           align-items: center;
@@ -1563,7 +1607,7 @@ export default function Home({
           width: 48px;
           height: 48px;
           border-radius: var(--radius-md);
-          background: rgba(14, 165, 233, 0.12);
+          background: rgba(22, 119, 255, 0.12);
           color: var(--primary-hover);
           display: flex;
           align-items: center;
@@ -1667,7 +1711,7 @@ export default function Home({
           font-family: var(--font-heading);
           font-size: 1.8rem;
           font-weight: 800;
-          color: rgba(14, 165, 233, 0.4);
+          color: rgba(0, 194, 255, 0.55);
           margin-bottom: 8px;
         }
         .why-card h4 {

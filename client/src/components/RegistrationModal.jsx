@@ -239,7 +239,7 @@ export default function RegistrationModal({ isOpen, onClose, defaultProgram, pro
           gap: 6px;
           font-size: 0.78rem;
           color: var(--primary-hover);
-          background: rgba(14, 165, 233, 0.1);
+          background: rgba(22, 119, 255, 0.1);
           padding: 4px 10px;
           border-radius: var(--radius-full);
           margin-bottom: 8px;
@@ -289,7 +289,7 @@ export default function RegistrationModal({ isOpen, onClose, defaultProgram, pro
         }
         .reg-id-card {
           margin: 24px auto;
-          background: rgba(14, 165, 233, 0.08);
+          background: rgba(22, 119, 255, 0.08);
           border: 1px dashed var(--primary);
           padding: 18px;
           border-radius: var(--radius-md);

@@ -140,7 +140,7 @@ export default function ClientsCMS({ clients, authHeader, onRefreshData, onReloa
                   <td><strong>#{c.display_order ?? c.order ?? 1}</strong></td>
                   <td>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(14, 165, 233, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.8rem', color: 'var(--primary-hover)' }}>
+                      <div style={{ width: '32px', height: '32px', borderRadius: '50%', background: 'rgba(22, 119, 255, 0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 700, fontSize: '0.8rem', color: 'var(--primary-hover)' }}>
                         {c.name.slice(0, 2).toUpperCase()}
                       </div>
                       <strong style={{ color: '#fff' }}>{c.name}</strong>

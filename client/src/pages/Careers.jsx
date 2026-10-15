@@ -236,7 +236,7 @@ export default function Careers() {
           gap: 4px;
         }
         .job-badge {
-          background: rgba(14, 165, 233, 0.1);
+          background: rgba(22, 119, 255, 0.1);
           color: var(--primary-hover);
           padding: 2px 8px;
           border-radius: var(--radius-sm);

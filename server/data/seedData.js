@@ -20,8 +20,8 @@ async function getSeedData() {
         _id: 'settings_default',
         companyName: 'NK SkillEdge Pvt. Ltd.',
         tagline: 'Shaping Skills, Building Futures',
-        brandLine: 'One Company — Many Solutions — Unlimited Possibilities',
-        logo: 'https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png',
+        brandLine: 'One Company — Many Solutions — Unlimited Possibilities.',
+        logo: '/nkskilledge-logo.png',
         corePositioning: 'NK SkillEdge empowers students and professionals through practical training, industry exposure, and real-world learning, while also providing digital solutions to businesses and startups.',
         phones: ['7498784109', '9356049629'],
         email: 'hmendhe72@gmail.com',
@@ -1538,11 +1538,11 @@ async function getSeedData() {
       {
         _id: 'med_logo',
         name: 'Official Company Logo',
-        url: 'https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png',
+        url: '/nkskilledge-logo.png',
         folder: 'Brand',
-        altText: 'NK SkillEdge Pvt. Ltd. Official Logo',
+        altText: 'NKSKILLEDGE official logo',
         mimeType: 'image/png',
-        size: '128 KB'
+        size: '104 KB'
       },
       {
         _id: 'med_ceo',

@@ -223,7 +223,7 @@ export default function VerifyCertificate() {
           font-family: monospace;
         }
         .sample-chip:hover {
-          background: rgba(14, 165, 233, 0.15);
+          background: rgba(22, 119, 255, 0.15);
           border-color: var(--primary);
         }
 
@@ -248,8 +248,8 @@ export default function VerifyCertificate() {
           max-width: 820px;
           margin: 0 auto;
           padding: 36px;
-          border: 2px solid rgba(14, 165, 233, 0.35);
-          box-shadow: 0 0 35px rgba(14, 165, 233, 0.15);
+          border: 2px solid rgba(22, 119, 255, 0.35);
+          box-shadow: 0 0 35px rgba(22, 119, 255, 0.15);
           position: relative;
         }
         .cert-top-banner {

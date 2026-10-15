@@ -219,7 +219,7 @@ export default function GlobalSearchModal({ isOpen, onClose }) {
           transition: all 0.2s;
         }
         .quick-tags span:hover {
-          background: rgba(14, 165, 233, 0.15);
+          background: rgba(22, 119, 255, 0.15);
           color: var(--primary-hover);
           border-color: var(--primary);
         }
@@ -249,7 +249,7 @@ export default function GlobalSearchModal({ isOpen, onClose }) {
           transition: all 0.2s ease;
         }
         .result-item:hover {
-          background: rgba(14, 165, 233, 0.08);
+          background: rgba(22, 119, 255, 0.08);
           border-color: var(--border-primary);
           transform: translateX(4px);
         }

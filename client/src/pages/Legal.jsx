@@ -141,7 +141,7 @@ export default function Legal() {
           transition: all 0.2s;
         }
         .legal-tab-btn.active, .legal-tab-btn:hover {
-          background: rgba(14, 165, 233, 0.15);
+          background: rgba(22, 119, 255, 0.15);
           color: var(--primary-hover);
           border-color: var(--primary);
         }

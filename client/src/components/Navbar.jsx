@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Menu, X, Search, ChevronDown, ArrowRight, ShieldCheck, UserCheck
 } from 'lucide-react';
@@ -7,8 +7,10 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const mobileMenuWasOpen = useRef(false);
+  const mobileDrawerRef = useRef(null);
 
-  const logoUrl = siteSettings?.logo || 'https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png';
+  const logoUrl = '/nkskilledge-logo.png';
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -46,6 +48,20 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
     };
   }, [mobileMenuOpen]);
 
+  useEffect(() => {
+    const wasOpen = mobileMenuWasOpen.current;
+    mobileMenuWasOpen.current = mobileMenuOpen;
+    if (mobileDrawerRef.current) {
+      mobileDrawerRef.current.inert = !mobileMenuOpen;
+    }
+
+    if (mobileMenuOpen) {
+      document.querySelector('#mobile-navigation-panel .mobile-link')?.focus();
+    } else if (wasOpen) {
+      document.querySelector('.mobile-toggle-btn')?.focus();
+    }
+  }, [mobileMenuOpen]);
+
   const toggleDropdown = (name) => {
     setActiveDropdown((current) => (current === name ? null : name));
   };
@@ -57,8 +73,8 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
 
   const [announcementDismissed, setAnnouncementDismissed] = useState(false);
   const announcement = siteSettings?.announcementBar;
-  const brandName = siteSettings?.companyName || 'NK SkillEdge';
-  const brandTagline = siteSettings?.tagline || 'Shaping Skills, Building Futures';
+  const brandName = 'NKSKILLEDGE Pvt. Ltd.';
+  const brandTagline = 'Shaping Skills, Building Futures';
 
   return (
     <>
@@ -228,17 +244,35 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
         />
 
         <aside
+          ref={mobileDrawerRef}
           id="mobile-navigation-panel"
           className={`mobile-drawer ${mobileMenuOpen ? 'is-open' : ''}`}
           role="dialog"
           aria-modal="true"
           aria-label="Mobile navigation menu"
+          aria-hidden={!mobileMenuOpen}
+          onKeyDown={(event) => {
+            if (event.key !== 'Tab') return;
+
+            const focusableItems = event.currentTarget.querySelectorAll('a[href], button:not(:disabled)');
+            if (!focusableItems.length) return;
+
+            const firstItem = focusableItems[0];
+            const lastItem = focusableItems[focusableItems.length - 1];
+            if (event.shiftKey && document.activeElement === firstItem) {
+              event.preventDefault();
+              lastItem.focus();
+            } else if (!event.shiftKey && document.activeElement === lastItem) {
+              event.preventDefault();
+              firstItem.focus();
+            }
+          }}
         >
           <div className="mobile-drawer-inner">
             <div className="mobile-brand-row">
-              <img src={logoUrl} alt="NK SkillEdge Pvt. Ltd. Official Logo" className="brand-logo-img-mobile" />
+              <img src={logoUrl} alt="NKSKILLEDGE official logo" className="brand-logo-img-mobile" />
               <div className="brand-text">
-                <span className="brand-name">NK SkillEdge</span>
+                <span className="brand-name">NKSKILLEDGE Pvt. Ltd.</span>
                 <span className="brand-tagline">Shaping Skills, Building Futures</span>
               </div>
             </div>
@@ -282,13 +316,13 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           right: 0;
           z-index: 900;
           transition: all 0.25s ease;
-          background: rgba(6, 9, 17, 0.78);
+          background: #0B1A34;
           backdrop-filter: blur(14px);
           -webkit-backdrop-filter: blur(14px);
           border-bottom: 1px solid var(--border-subtle);
         }
         .navbar-scrolled {
-          background: rgba(6, 9, 17, 0.96);
+          background: #102A56;
           box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
           border-bottom-color: var(--border-light);
         }
@@ -305,23 +339,30 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           gap: 12px;
           text-decoration: none;
           min-width: 0;
+          flex-shrink: 0;
         }
         .brand-logo-img {
-          height: 48px;
-          width: auto;
+          height: 56px;
+          width: 56px;
           max-width: 56px;
           object-fit: contain;
-          filter: drop-shadow(0 2px 8px rgba(14, 165, 233, 0.35));
+          padding: 3px;
+          border-radius: 12px;
+          background: #ffffff;
+          box-shadow: 0 3px 12px rgba(0, 0, 0, 0.16);
           transition: transform 0.2s ease;
         }
         .brand-logo:hover .brand-logo-img {
           transform: scale(1.05);
         }
         .brand-logo-img-mobile {
-          height: 44px;
-          width: auto;
-          max-width: 52px;
+          height: 48px;
+          width: 48px;
+          max-width: 48px;
           object-fit: contain;
+          padding: 3px;
+          border-radius: 11px;
+          background: #ffffff;
         }
         .mobile-brand-row {
           display: flex;
@@ -339,27 +380,32 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
         .brand-name {
           font-family: var(--font-heading);
           font-weight: 800;
-          font-size: 1.2rem;
+          font-size: 1.05rem;
           color: var(--text-primary);
           letter-spacing: -0.01em;
           line-height: 1.2;
+          white-space: nowrap;
+        }
+        .navbar-container .brand-name {
+          color: #F7FAFF;
         }
         .brand-tagline {
-          font-size: 0.72rem;
+          font-size: 0.62rem;
           color: var(--primary-hover);
-          letter-spacing: 0.04em;
+          letter-spacing: 0.025em;
           text-transform: uppercase;
           font-weight: 600;
+          white-space: nowrap;
         }
         .desktop-nav {
           display: flex;
           align-items: center;
-          gap: 22px;
+          gap: 18px;
         }
         .nav-link {
           font-size: 0.92rem;
           font-weight: 500;
-          color: var(--text-secondary);
+          color: #DCE8F8;
           display: inline-flex;
           align-items: center;
           gap: 4px;
@@ -369,7 +415,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           border: none;
         }
         .nav-link:hover {
-          color: var(--text-primary);
+          color: #ffffff;
         }
         .dropdown-toggle {
           font-family: inherit;
@@ -403,7 +449,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           transition: background 0.15s ease;
         }
         .dropdown-item:hover {
-          background: rgba(14, 165, 233, 0.12);
+          background: rgba(0, 194, 255, 0.12);
         }
         .dropdown-title {
           display: block;
@@ -426,9 +472,9 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           width: 38px;
           height: 38px;
           border-radius: 50%;
-          background: rgba(255, 255, 255, 0.06);
-          border: 1px solid var(--border-subtle);
-          color: var(--text-secondary);
+          background: rgba(255, 255, 255, 0.08);
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          color: #DCE8F8;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -444,9 +490,9 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           width: 36px;
           height: 36px;
           border-radius: var(--radius-sm);
-          background: rgba(15, 23, 42, 0.6);
-          border: 1px solid var(--border-subtle);
-          color: var(--text-muted);
+          background: rgba(255, 255, 255, 0.06);
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          color: #C2D0E2;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -486,19 +532,22 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           right: 0;
           bottom: 0;
           width: min(420px, 100vw);
-          background: rgba(6, 9, 17, 0.98);
+          background: #102A56;
           border-left: 1px solid var(--border-subtle);
           box-shadow: -30px 0 60px rgba(2, 6, 23, 0.3);
           backdrop-filter: blur(18px);
           -webkit-backdrop-filter: blur(18px);
           transform: translateX(102%);
-          transition: transform 0.28s ease;
+          visibility: hidden;
+          transition: transform 0.28s ease, visibility 0s linear 0.28s;
           z-index: 920;
           overflow-y: auto;
           padding: 24px 20px 32px;
         }
         .mobile-drawer.is-open {
           transform: translateX(0);
+          visibility: visible;
+          transition: transform 0.28s ease, visibility 0s;
         }
         .mobile-drawer-inner {
           display: flex;
@@ -525,16 +574,26 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
         }
         @media (max-width: 640px) {
           .navbar-container { height: 72px; }
-          .brand-name { font-size: 1.05rem; }
-          .brand-tagline { font-size: 0.62rem; }
+          .brand-logo-img { height: 44px; width: 44px; }
+          .brand-name { font-size: 0.95rem; }
+          .brand-tagline { font-size: 0.58rem; }
           .mobile-drawer { top: 72px; }
           .mobile-menu-backdrop { inset: 72px 0 0 0; }
           .mobile-drawer-inner { gap: 10px; }
           .mobile-link { font-size: 0.98rem; }
         }
+        @media (min-width: 1081px) and (max-width: 1200px) {
+          .brand-logo { gap: 8px; }
+          .brand-logo-img { width: 48px; height: 48px; }
+          .brand-name { font-size: 0.92rem; }
+          .brand-tagline { display: none; }
+          .desktop-nav { gap: 12px; }
+          .nav-link { font-size: 0.84rem; }
+          .nav-actions { gap: 8px; }
+        }
         .announcement-top-bar {
-          background: linear-gradient(90deg, rgba(14, 165, 233, 0.22), rgba(99, 102, 241, 0.22));
-          border-bottom: 1px solid rgba(14, 165, 233, 0.35);
+          background: linear-gradient(90deg, rgba(22, 119, 255, 0.3), rgba(0, 194, 255, 0.24));
+          border-bottom: 1px solid rgba(0, 194, 255, 0.35);
           padding: 8px 16px;
           font-size: 0.84rem;
           color: #f8fafc;
@@ -590,4 +649,3 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
     </>
   );
 }
-

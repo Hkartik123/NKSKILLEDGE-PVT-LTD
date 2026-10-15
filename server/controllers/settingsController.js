@@ -4,8 +4,8 @@ const { logAuditAction } = require('../services/auditService');
 const DEFAULT_SETTINGS = {
   companyName: 'NK SkillEdge Pvt. Ltd.',
   tagline: 'Shaping Skills, Building Futures',
-  brandLine: 'One Company — Many Solutions — Unlimited Possibilities',
-  logo: 'https://i.ibb.co/1fbFtjTr/Untitled-design-removebg-preview.png',
+  brandLine: 'One Company — Many Solutions — Unlimited Possibilities.',
+  logo: '/nkskilledge-logo.png',
   corePositioning: 'NK SkillEdge empowers students and professionals through practical training, industry exposure, and real-world learning, while also providing digital solutions to businesses and startups.',
   phones: ['7498784109', '9356049629'],
   email: 'hmendhe72@gmail.com',
@@ -17,9 +17,9 @@ const DEFAULT_SETTINGS = {
   hero: {
     badgeText: 'Government Recognized & ISO 9001:2015 Certified Center',
     title: 'Shaping Skills, Building Futures.',
-    subtitle: 'One Company — Many Solutions — Unlimited Possibilities',
-    brandLine: 'One Company — Many Solutions — Unlimited Possibilities',
-    description: 'Empowering students through practical training, industry exposure and real-world learning, while architecting modern digital solutions for businesses and startups.',
+    subtitle: 'One Company — Many Solutions — Unlimited Possibilities.',
+    brandLine: 'One Company — Many Solutions — Unlimited Possibilities.',
+    description: 'Empowering students through practical training, industry exposure and real-world learning, while building modern digital solutions for businesses and startups.',
     ctaPrimaryText: 'Explore Programs',
     ctaPrimaryLink: '#programs',
     ctaSecondaryText: 'Get a Business Consultation',

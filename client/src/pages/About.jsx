@@ -157,7 +157,7 @@ export default function About({ siteSettings }) {
           width: 58px;
           height: 58px;
           border-radius: var(--radius-md);
-          background: rgba(14, 165, 233, 0.12);
+          background: rgba(22, 119, 255, 0.12);
           color: var(--primary-hover);
           display: flex;
           align-items: center;
@@ -192,7 +192,7 @@ export default function About({ siteSettings }) {
           margin: 0 auto;
           position: relative;
           padding-left: 30px;
-          border-left: 2px solid rgba(14, 165, 233, 0.3);
+          border-left: 2px solid rgba(22, 119, 255, 0.3);
         }
         .timeline-node {
           position: relative;
@@ -217,7 +217,7 @@ export default function About({ siteSettings }) {
           font-size: 0.8rem;
           font-weight: 700;
           color: var(--primary-hover);
-          background: rgba(14, 165, 233, 0.1);
+          background: rgba(22, 119, 255, 0.1);
           padding: 2px 10px;
           border-radius: var(--radius-full);
           margin-bottom: 8px;

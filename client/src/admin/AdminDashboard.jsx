@@ -803,7 +803,8 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
       {/* Admin Top Header */}
       <header className="admin-top-bar">
         <div className="admin-bar-brand">
-          <span className="brand-badge">NK SkillEdge Admin</span>
+          <img src="/nkskilledge-logo.png" alt="NKSKILLEDGE logo" className="admin-brand-logo" />
+          <span className="brand-badge">NKSKILLEDGE Admin</span>
           <span className="role-tag">{user?.role?.toUpperCase()}</span>
         </div>
 
@@ -837,19 +838,19 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
             >
               <LayoutDashboard size={18} /> Executive Overview
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'leads' ? 'active' : ''}`}
               onClick={() => setActiveTab('leads')}
             >
               <MessageSquare size={18} /> Contact Leads ({leads.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'registrations' ? 'active' : ''}`}
               onClick={() => setActiveTab('registrations')}
             >
               <BookOpen size={18} /> Course Registrations ({registrations.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'internships' ? 'active' : ''}`}
               onClick={() => setActiveTab('internships')}
             >
@@ -865,31 +866,31 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
           <div className="sidebar-group">
             <span className="sidebar-group-title">Website Presentation CMS</span>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'hero' ? 'active' : ''}`}
               onClick={() => setActiveTab('hero')}
             >
               <Sparkles size={18} /> Hero & Top Banner
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'about' ? 'active' : ''}`}
               onClick={() => setActiveTab('about')}
             >
               <Target size={18} /> About Us & Story
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'stats' ? 'active' : ''}`}
               onClick={() => setActiveTab('stats')}
             >
               <Activity size={18} /> Dynamic Statistics
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'branches' ? 'active' : ''}`}
               onClick={() => setActiveTab('branches')}
             >
               <MapPin size={18} /> Branch Offices ({branches.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'settings' ? 'active' : ''}`}
               onClick={() => setActiveTab('settings')}
             >
@@ -899,25 +900,25 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
           <div className="sidebar-group">
             <span className="sidebar-group-title">Offerings & Portfolio</span>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'services' ? 'active' : ''}`}
               onClick={() => setActiveTab('services')}
             >
               <Briefcase size={18} /> Enterprise Services ({services.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'programs' ? 'active' : ''}`}
               onClick={() => setActiveTab('programs')}
             >
               <BookOpen size={18} /> Training Programs ({programs.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'projects' ? 'active' : ''}`}
               onClick={() => setActiveTab('projects')}
             >
               <FolderGit2 size={18} /> Projects & Case Studies ({projects.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'clients' ? 'active' : ''}`}
               onClick={() => setActiveTab('clients')}
             >
@@ -927,55 +928,55 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
           <div className="sidebar-group">
             <span className="sidebar-group-title">Trust & Engagement</span>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'certificates' ? 'active' : ''}`}
               onClick={() => setActiveTab('certificates')}
             >
               <ShieldCheck size={18} /> Student Certificates ({certificates.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'team' ? 'active' : ''}`}
               onClick={() => setActiveTab('team')}
             >
               <UserCheck size={18} /> Team Members ({teamMembers.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'successStories' ? 'active' : ''}`}
               onClick={() => setActiveTab('successStories')}
             >
               <Award size={18} /> Success Stories ({successStories.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'testimonials' ? 'active' : ''}`}
               onClick={() => setActiveTab('testimonials')}
             >
               <MessageSquare size={18} /> Testimonials ({testimonialsList.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'certifications' ? 'active' : ''}`}
               onClick={() => setActiveTab('certifications')}
             >
               <Award size={18} /> Govt Accreditations ({certifications.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'events' ? 'active' : ''}`}
               onClick={() => setActiveTab('events')}
             >
               <Calendar size={18} /> Events & Workshops ({events.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'blogs' ? 'active' : ''}`}
               onClick={() => setActiveTab('blogs')}
             >
               <Megaphone size={18} /> Articles & Blogs ({blogs.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'faqs' ? 'active' : ''}`}
               onClick={() => setActiveTab('faqs')}
             >
               <HelpCircle size={18} /> FAQs & Answers ({faqs.length})
             </button>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'audit' ? 'active' : ''}`}
               onClick={() => setActiveTab('audit')}
             >
@@ -2190,13 +2191,13 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
       <style>{`
         .admin-app-root {
           min-height: 100vh;
-          background: #060911;
+          background: #0B1A34;
           display: flex;
           flex-direction: column;
         }
         .admin-top-bar {
           height: 64px;
-          background: rgba(11, 17, 32, 0.95);
+          background: rgba(11, 26, 52, 0.96);
           border-bottom: 1px solid var(--border-light);
           display: flex;
           align-items: center;
@@ -2211,6 +2212,14 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           align-items: center;
           gap: 12px;
         }
+        .admin-brand-logo {
+          width: 40px;
+          height: 40px;
+          object-fit: contain;
+          padding: 2px;
+          border-radius: 9px;
+          background: #ffffff;
+        }
         .brand-badge {
           font-family: var(--font-heading);
           font-weight: 800;
@@ -2221,7 +2230,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           font-size: 0.72rem;
           font-weight: 700;
           color: var(--primary-hover);
-          background: rgba(14, 165, 233, 0.15);
+          background: rgba(22, 119, 255, 0.15);
           padding: 2px 8px;
           border-radius: var(--radius-sm);
         }
@@ -2294,7 +2303,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
         }
         .sidebar-nav-btn.active {
           color: var(--primary-hover);
-          background: rgba(14, 165, 233, 0.12);
+          background: rgba(22, 119, 255, 0.12);
         }
         .admin-main-panel {
           flex: 1;
@@ -2454,9 +2463,9 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           padding: 3px 10px;
           border-radius: var(--radius-full);
         }
-        .status-new { background: rgba(14, 165, 233, 0.15); color: #38bdf8; }
+        .status-new { background: rgba(22, 119, 255, 0.15); color: #00C2FF; }
         .status-contacted { background: rgba(245, 158, 11, 0.15); color: #fbbf24; }
-        .status-qualified { background: rgba(139, 92, 246, 0.15); color: #a78bfa; }
+        .status-qualified { background: rgba(22, 119, 255, 0.15); color: #6CABFF; }
         .status-converted { background: rgba(16, 185, 129, 0.15); color: #34d399; }
         .status-closed { background: rgba(255, 255, 255, 0.08); color: var(--text-muted); }
 
