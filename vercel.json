@@ -10,6 +10,10 @@
     {
       "source": "/api/:apiPath*",
       "destination": "/api/index?__nks_api_path=:apiPath*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ]
 }
