@@ -2,11 +2,13 @@ const dotenv = require('dotenv');
 const path = require('path');
 dotenv.config({ path: path.join(__dirname, '..', '.env') });
 
+const nodeEnv = process.env.NODE_ENV || 'development';
+
 module.exports = {
   PORT: process.env.PORT || 5000,
-  NODE_ENV: process.env.NODE_ENV || 'development',
+  NODE_ENV: nodeEnv,
   MONGODB_URI: process.env.MONGODB_URI || '',
-  JWT_SECRET: process.env.JWT_SECRET || 'nkskilledge_super_secret_jwt_key_2025',
+  JWT_SECRET: process.env.JWT_SECRET || (nodeEnv === 'production' ? '' : 'nkskilledge_super_secret_jwt_key_2025'),
   JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '7d',
   OFFICIAL_INFO: {
     name: 'NK SkillEdge Pvt. Ltd.',

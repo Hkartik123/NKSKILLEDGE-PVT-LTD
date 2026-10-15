@@ -4,6 +4,10 @@ const { User } = require('../models');
 
 async function authenticate(req, res, next) {
   try {
+    if (!config.JWT_SECRET) {
+      return res.status(503).json({ success: false, message: 'Authentication is not configured on this server.' });
+    }
+
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
       return res.status(401).json({ success: false, message: 'Authentication required. No token provided.' });

@@ -72,6 +72,7 @@ async function getRegistrations(req, res) {
     if (program && program !== 'All') query.programName = program;
 
     let list = await Registration.find(query);
+    list = list.filter(registration => registration.registrationType !== 'INTERNSHIP_DEMO');
     list.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     return res.json({ success: true, count: list.length, registrations: list });

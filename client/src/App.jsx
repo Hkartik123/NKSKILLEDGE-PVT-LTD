@@ -11,6 +11,7 @@ import Internships from './pages/Internships';
 import Careers from './pages/Careers';
 import VerifyCertificate from './pages/VerifyCertificate';
 import Legal from './pages/Legal';
+import InternshipDemoRegistration from './pages/InternshipDemoRegistration';
 
 import AdminLogin from './admin/AdminLogin';
 import AdminDashboard from './admin/AdminDashboard';
@@ -201,6 +202,7 @@ export default function App() {
 
   // If in #admin mode
   const isAdminRoute = currentHash.startsWith('#admin');
+  const isInternshipDemoRoute = window.location.pathname === '/internship-demo';
 
   return (
     <div className="app-container">
@@ -235,30 +237,36 @@ export default function App() {
           />
 
           <main id="main-content">
-            <Home 
-              siteSettings={siteSettings}
-              services={services}
-              programs={programs}
-              projects={projects}
-              leadership={leadership}
-              team={team}
-              testimonials={testimonials}
-              successStories={successStories}
-              certifications={certifications}
-              clients={clients}
-              blogs={blogs}
-              events={events}
-              branches={branches}
-              faqs={faqs}
-              onOpenRegister={openRegister}
-              onOpenQuote={(service) => openRegister(null)}
-            />
+            {isInternshipDemoRoute ? (
+              <InternshipDemoRegistration />
+            ) : (
+              <>
+                <Home
+                  siteSettings={siteSettings}
+                  services={services}
+                  programs={programs}
+                  projects={projects}
+                  leadership={leadership}
+                  team={team}
+                  testimonials={testimonials}
+                  successStories={successStories}
+                  certifications={certifications}
+                  clients={clients}
+                  blogs={blogs}
+                  events={events}
+                  branches={branches}
+                  faqs={faqs}
+                  onOpenRegister={openRegister}
+                  onOpenQuote={(service) => openRegister(null)}
+                />
 
-            <About siteSettings={siteSettings} />
-            <Internships onOpenRegister={openRegister} />
-            <VerifyCertificate />
-            <Careers />
-            <Legal />
+                <About siteSettings={siteSettings} />
+                <Internships onOpenRegister={openRegister} />
+                <VerifyCertificate />
+                <Careers />
+                <Legal />
+              </>
+            )}
           </main>
 
           <Footer 

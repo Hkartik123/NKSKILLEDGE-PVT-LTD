@@ -17,6 +17,7 @@ import BlogsCMS from './components/BlogsCMS';
 import EventsCMS from './components/EventsCMS';
 import FaqsCMS from './components/FaqsCMS';
 import BranchesCMS from './components/BranchesCMS';
+import InternshipDemoRegistrations from './InternshipDemoRegistrations';
 
 export default function AdminDashboard({ user, token, onLogout, onRefreshData, themePreference = 'system', onThemeChange }) {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -830,7 +831,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
         <aside className="admin-sidebar">
           <div className="sidebar-group">
             <span className="sidebar-group-title">Analytics & Pipeline</span>
-            <button 
+            <button
               className={`sidebar-nav-btn ${activeTab === 'dashboard' ? 'active' : ''}`}
               onClick={() => setActiveTab('dashboard')}
             >
@@ -853,6 +854,12 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
               onClick={() => setActiveTab('internships')}
             >
               <Users size={18} /> Internship Applicants ({internships.length})
+            </button>
+            <button
+              className={`sidebar-nav-btn ${activeTab === 'internship-demos' ? 'active' : ''}`}
+              onClick={() => setActiveTab('internship-demos')}
+            >
+              <BookOpen size={18} /> Internship Demo Registrations
             </button>
           </div>
 
@@ -1192,6 +1199,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                 </table>
               </div>
             </div>
+          )}
+
+          {activeTab === 'internship-demos' && (
+            <InternshipDemoRegistrations token={token} />
           )}
 
           {/* TAB 4: INTERNSHIPS */}

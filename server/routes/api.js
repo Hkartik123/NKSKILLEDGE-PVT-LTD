@@ -5,6 +5,7 @@ const { authenticate, authorize } = require('../middleware/auth');
 const authCtrl = require('../controllers/authController');
 const leadsCtrl = require('../controllers/leadsController');
 const regCtrl = require('../controllers/registrationsController');
+const internshipDemoCtrl = require('../controllers/internshipDemoController');
 const internCtrl = require('../controllers/internshipsController');
 const careersCtrl = require('../controllers/careersController');
 const contentCtrl = require('../controllers/contentController');
@@ -36,6 +37,11 @@ router.delete('/leads/:id', authenticate, authorize('super_admin'), leadsCtrl.de
 router.post('/registrations', regCtrl.createRegistration);
 router.get('/registrations', authenticate, authorize('super_admin', 'admin', 'training_manager'), regCtrl.getRegistrations);
 router.put('/registrations/:id', authenticate, authorize('super_admin', 'admin', 'training_manager'), regCtrl.updateRegistrationStatus);
+
+// --- Internship Demo Registrations ---
+router.post('/internship-demo/registrations', internshipDemoCtrl.createInternshipDemoRegistration);
+router.get('/internship-demo/registrations', authenticate, authorize('super_admin', 'admin', 'training_manager'), internshipDemoCtrl.getInternshipDemoRegistrations);
+router.patch('/internship-demo/registrations/:id/status', authenticate, authorize('super_admin', 'admin', 'training_manager'), internshipDemoCtrl.updateInternshipDemoRegistrationStatus);
 
 // --- Internship Applications ---
 router.post('/internships/apply', internCtrl.applyInternship);

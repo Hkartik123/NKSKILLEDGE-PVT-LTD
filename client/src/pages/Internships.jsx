@@ -90,6 +90,9 @@ export default function Internships({ onOpenRegister }) {
               <button className="btn btn-primary" style={{ width: '100%' }} onClick={() => setShowApplyModal(true)}>
                 Apply for Internship Cohort
               </button>
+              <a href="/internship-demo" className="btn btn-outline" style={{ width: '100%', marginTop: '10px' }}>
+                Register for a Free Demo
+              </a>
             </div>
           </div>
         </div>

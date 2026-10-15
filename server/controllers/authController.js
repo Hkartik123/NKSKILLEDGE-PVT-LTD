@@ -6,6 +6,10 @@ const { logAuditAction } = require('../services/auditService');
 
 async function login(req, res) {
   try {
+    if (!config.JWT_SECRET) {
+      return res.status(503).json({ success: false, message: 'Authentication is not configured on this server.' });
+    }
+
     const { email, password } = req.body;
     if (!email || !password) {
       return res.status(400).json({ success: false, message: 'Please provide email and password.' });
