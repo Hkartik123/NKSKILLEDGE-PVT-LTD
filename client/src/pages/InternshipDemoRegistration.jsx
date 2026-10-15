@@ -1,6 +1,18 @@
 import React, { useRef, useState } from 'react';
 import { CheckCircle2, GraduationCap, LoaderCircle, Send } from 'lucide-react';
 
+const WHATSAPP_GROUP_INVITATION_URL = (
+  import.meta.env.VITE_INTERNSHIP_WHATSAPP_GROUP_URL ||
+  'https://chat.whatsapp.com/CoQ1ZqSOJdO6RePEjtzspB'
+).trim();
+const hasWhatsAppGroupInvitation = (() => {
+  try {
+    return new URL(WHATSAPP_GROUP_INVITATION_URL).protocol === 'https:';
+  } catch {
+    return false;
+  }
+})();
+
 const EDUCATION_LEVELS = [
   '10th/12th',
   'Diploma',
@@ -110,6 +122,19 @@ export default function InternshipDemoRegistration() {
                 contact you with the confirmed demo session details.
               </p>
               <span className="demo-registration-id">Registration ID: {registrationId}</span>
+              {hasWhatsAppGroupInvitation ? (
+                <a
+                  className="btn btn-primary"
+                  href={WHATSAPP_GROUP_INVITATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ marginTop: '20px' }}
+                >
+                  Join Internship Group
+                </a>
+              ) : (
+                <p role="status">The internship group invitation link is not configured yet.</p>
+              )}
             </div>
           ) : (
             <>
