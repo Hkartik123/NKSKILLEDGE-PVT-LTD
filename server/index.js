@@ -57,7 +57,6 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Start Server
 async function startServer() {
   try {
     await connectDB();
@@ -76,4 +75,8 @@ async function startServer() {
   }
 }
 
-startServer();
+module.exports = app;
+
+if (require.main === module) {
+  startServer();
+}
