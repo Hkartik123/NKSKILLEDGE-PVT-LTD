@@ -9,6 +9,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
   const [activeDropdown, setActiveDropdown] = useState(null);
   const mobileMenuWasOpen = useRef(false);
   const mobileDrawerRef = useRef(null);
+  const mobileToggleRef = useRef(null);
 
   const logoUrl = '/nkskilledge-logo.png';
 
@@ -21,30 +22,42 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
       }
     };
     const handleOutsideClick = (event) => {
-      const drawer = document.getElementById('mobile-navigation-panel');
-      const trigger = document.querySelector('.mobile-toggle-btn');
+      const drawer = mobileDrawerRef.current;
+      const trigger = mobileToggleRef.current;
 
       if (mobileMenuOpen && drawer && !drawer.contains(event.target) && !(trigger && trigger.contains(event.target))) {
         setMobileMenuOpen(false);
         setActiveDropdown(null);
       }
     };
+    const handleResize = () => {
+      if (window.innerWidth > 1080) {
+        setMobileMenuOpen(false);
+        setActiveDropdown(null);
+      }
+    };
 
     window.addEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
     document.addEventListener('keydown', handleKeyDown);
-    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('pointerdown', handleOutsideClick);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
       document.removeEventListener('keydown', handleKeyDown);
-      document.removeEventListener('mousedown', handleOutsideClick);
+      document.removeEventListener('pointerdown', handleOutsideClick);
     };
   }, [mobileMenuOpen]);
 
   useEffect(() => {
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousDocumentOverflow = document.documentElement.style.overflow;
     document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    document.documentElement.style.overflow = mobileMenuOpen ? 'hidden' : '';
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = previousBodyOverflow;
+      document.documentElement.style.overflow = previousDocumentOverflow;
     };
   }, [mobileMenuOpen]);
 
@@ -56,9 +69,9 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
     }
 
     if (mobileMenuOpen) {
-      document.querySelector('#mobile-navigation-panel .mobile-link')?.focus();
+      mobileDrawerRef.current?.querySelector('.mobile-link')?.focus();
     } else if (wasOpen) {
-      document.querySelector('.mobile-toggle-btn')?.focus();
+      mobileToggleRef.current?.focus();
     }
   }, [mobileMenuOpen]);
 
@@ -227,6 +240,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
             <button
               type="button"
               className="mobile-toggle-btn"
+              ref={mobileToggleRef}
               onClick={() => setMobileMenuOpen((open) => !open)}
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
@@ -237,76 +251,79 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           </div>
         </div>
 
-        <div
-          className={`mobile-menu-backdrop ${mobileMenuOpen ? 'is-open' : ''}`}
-          onClick={() => setMobileMenuOpen(false)}
-          aria-hidden="true"
-        />
+      </header>
 
-        <aside
-          ref={mobileDrawerRef}
-          id="mobile-navigation-panel"
-          className={`mobile-drawer ${mobileMenuOpen ? 'is-open' : ''}`}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile navigation menu"
-          aria-hidden={!mobileMenuOpen}
-          onKeyDown={(event) => {
-            if (event.key !== 'Tab') return;
+      <div
+        className={`mobile-menu-backdrop ${mobileMenuOpen ? 'is-open' : ''}`}
+        onClick={() => setMobileMenuOpen(false)}
+        aria-hidden="true"
+      />
 
-            const focusableItems = event.currentTarget.querySelectorAll('a[href], button:not(:disabled)');
-            if (!focusableItems.length) return;
+      <aside
+        ref={mobileDrawerRef}
+        id="mobile-navigation-panel"
+        className={`mobile-drawer ${mobileMenuOpen ? 'is-open' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Mobile navigation menu"
+        aria-hidden={!mobileMenuOpen}
+        onKeyDown={(event) => {
+          if (event.key !== 'Tab') return;
 
-            const firstItem = focusableItems[0];
-            const lastItem = focusableItems[focusableItems.length - 1];
-            if (event.shiftKey && document.activeElement === firstItem) {
-              event.preventDefault();
-              lastItem.focus();
-            } else if (!event.shiftKey && document.activeElement === lastItem) {
-              event.preventDefault();
-              firstItem.focus();
-            }
-          }}
-        >
-          <div className="mobile-drawer-inner">
-            <div className="mobile-brand-row">
-              <img src={logoUrl} alt="NKSKILLEDGE official logo" className="brand-logo-img-mobile" />
-              <div className="brand-text">
-                <span className="brand-name">NKSKILLEDGE Pvt. Ltd.</span>
-                <span className="brand-tagline">Shaping Skills, Building Futures</span>
-              </div>
-            </div>
+          const focusableItems = event.currentTarget.querySelectorAll('a[href], button:not(:disabled)');
+          if (!focusableItems.length) return;
 
-            <a href="#home" className="mobile-link" onClick={navItemClick}>Home</a>
-            <a href="#about" className="mobile-link" onClick={navItemClick}>About Us & Journey</a>
-            <a href="#leadership" className="mobile-link" onClick={navItemClick}>Leadership & Team</a>
-            <a href="#services" className="mobile-link" onClick={navItemClick}>Business Services</a>
-            <a href="#programs" className="mobile-link" onClick={navItemClick}>Training Programs</a>
-            <a href="#projects" className="mobile-link" onClick={navItemClick}>Featured Projects</a>
-            <a href="#success-stories" className="mobile-link" onClick={navItemClick}>Student Placements</a>
-            <a href="#verify" className="mobile-link" onClick={navItemClick}><ShieldCheck size={17} /> Verify Certificate</a>
-            <a href="#internships" className="mobile-link" onClick={navItemClick}>Internship Portal</a>
-            <a href="#events" className="mobile-link" onClick={navItemClick}>Workshops & Events</a>
-            <a href="#careers" className="mobile-link" onClick={navItemClick}>Careers / Work With Us</a>
-            <a href="#contact" className="mobile-link" onClick={navItemClick}>Contact & 3 Office Branches</a>
-            <a href="#admin" className="mobile-link" onClick={navItemClick}>Staff Admin Portal</a>
-
-            <div className="mobile-drawer-cta">
-              <button
-                type="button"
-                className="btn btn-primary btn-lg"
-                style={{ width: '100%' }}
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenRegister(null);
-                }}
-              >
-                Apply for Training
-              </button>
+          const firstItem = focusableItems[0];
+          const lastItem = focusableItems[focusableItems.length - 1];
+          if (event.shiftKey && document.activeElement === firstItem) {
+            event.preventDefault();
+            lastItem.focus();
+          } else if (!event.shiftKey && document.activeElement === lastItem) {
+            event.preventDefault();
+            firstItem.focus();
+          }
+        }}
+      >
+        <div className="mobile-drawer-inner">
+          <div className="mobile-brand-row">
+            <img src={logoUrl} alt="NKSKILLEDGE official logo" className="brand-logo-img-mobile" />
+            <div className="brand-text">
+              <span className="brand-name">NKSKILLEDGE Pvt. Ltd.</span>
+              <span className="brand-tagline">Shaping Skills, Building Futures</span>
             </div>
           </div>
-        </aside>
-      </header>
+
+          <a href="#home" className="mobile-link" onClick={navItemClick}>Home</a>
+          <a href="#about" className="mobile-link" onClick={navItemClick}>About Us & Journey</a>
+          <a href="#leadership" className="mobile-link" onClick={navItemClick}>Executive Leadership</a>
+          <a href="#team" className="mobile-link" onClick={navItemClick}>Technical Mentors & Team</a>
+          <a href="#certifications" className="mobile-link" onClick={navItemClick}>Accreditations & Badges</a>
+          <a href="#services" className="mobile-link" onClick={navItemClick}>Business Services</a>
+          <a href="#programs" className="mobile-link" onClick={navItemClick}>Training Programs</a>
+          <a href="#projects" className="mobile-link" onClick={navItemClick}>Featured Projects</a>
+          <a href="#success-stories" className="mobile-link" onClick={navItemClick}>Student Placements</a>
+          <a href="#verify" className="mobile-link" onClick={navItemClick}><ShieldCheck size={17} /> Verify Certificate</a>
+          <a href="#internships" className="mobile-link" onClick={navItemClick}>Internship Portal</a>
+          <a href="#events" className="mobile-link" onClick={navItemClick}>Workshops & Events</a>
+          <a href="#careers" className="mobile-link" onClick={navItemClick}>Careers / Work With Us</a>
+          <a href="#contact" className="mobile-link" onClick={navItemClick}>Contact & 3 Office Branches</a>
+          <a href="#admin" className="mobile-link" onClick={navItemClick}>Staff Admin Portal</a>
+
+          <div className="mobile-drawer-cta">
+            <button
+              type="button"
+              className="btn btn-primary btn-lg"
+              style={{ width: '100%' }}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                onOpenRegister(null);
+              }}
+            >
+              Apply for Training
+            </button>
+          </div>
+        </div>
+      </aside>
 
       <style>{`
         .navbar-wrapper {
@@ -315,6 +332,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           left: 0;
           right: 0;
           z-index: 900;
+          padding-top: env(safe-area-inset-top, 0px);
           transition: all 0.25s ease;
           background: #0B1A34;
           backdrop-filter: blur(14px);
@@ -515,7 +533,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
         }
         .mobile-menu-backdrop {
           position: fixed;
-          inset: 80px 0 0 0;
+          inset: calc(80px + env(safe-area-inset-top, 0px)) 0 0 0;
           background: rgba(2, 6, 23, 0.5);
           opacity: 0;
           pointer-events: none;
@@ -528,10 +546,12 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
         }
         .mobile-drawer {
           position: fixed;
-          top: 80px;
+          top: calc(80px + env(safe-area-inset-top, 0px));
           right: 0;
           bottom: 0;
           width: min(420px, 100vw);
+          max-height: calc(100vh - 80px - env(safe-area-inset-top, 0px));
+          max-height: calc(100dvh - 80px - env(safe-area-inset-top, 0px));
           background: #102A56;
           border-left: 1px solid var(--border-subtle);
           box-shadow: -30px 0 60px rgba(2, 6, 23, 0.3);
@@ -542,7 +562,9 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           transition: transform 0.28s ease, visibility 0s linear 0.28s;
           z-index: 920;
           overflow-y: auto;
-          padding: 24px 20px 32px;
+          overscroll-behavior: contain;
+          -webkit-overflow-scrolling: touch;
+          padding: 24px 20px calc(32px + env(safe-area-inset-bottom, 0px));
         }
         .mobile-drawer.is-open {
           transform: translateX(0);
@@ -558,6 +580,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           font-size: 1.02rem;
           font-weight: 600;
           color: var(--text-primary);
+          min-height: 44px;
           padding: 10px 0;
           border-bottom: 1px solid rgba(148, 163, 184, 0.12);
           display: flex;
@@ -576,11 +599,32 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           .navbar-container { height: 72px; }
           .brand-logo-img { height: 44px; width: 44px; }
           .brand-name { font-size: 0.95rem; }
-          .brand-tagline { font-size: 0.58rem; }
-          .mobile-drawer { top: 72px; }
-          .mobile-menu-backdrop { inset: 72px 0 0 0; }
+          .brand-tagline { display: none; }
+          .mobile-drawer {
+            top: calc(72px + env(safe-area-inset-top, 0px));
+            max-height: calc(100vh - 72px - env(safe-area-inset-top, 0px));
+            max-height: calc(100dvh - 72px - env(safe-area-inset-top, 0px));
+          }
+          .mobile-menu-backdrop { inset: calc(72px + env(safe-area-inset-top, 0px)) 0 0 0; }
+          .nav-actions { gap: 8px; }
+          .nav-icon-btn { width: 36px; height: 36px; }
           .mobile-drawer-inner { gap: 10px; }
           .mobile-link { font-size: 0.98rem; }
+        }
+        @media (max-width: 380px) {
+          .navbar-container { gap: 8px; }
+          .brand-logo { gap: 8px; }
+          .brand-logo-img { width: 38px; height: 38px; }
+          .navbar-container .brand-name { font-size: 0.76rem; }
+          .admin-link-btn { display: none; }
+          .mobile-drawer { width: 100%; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .mobile-menu-backdrop,
+          .mobile-drawer,
+          .mobile-toggle-btn {
+            transition: none;
+          }
         }
         @media (min-width: 1081px) and (max-width: 1200px) {
           .brand-logo { gap: 8px; }

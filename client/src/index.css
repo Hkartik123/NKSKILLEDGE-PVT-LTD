@@ -702,8 +702,14 @@ img {
 }
 
 @media (max-width: 440px) {
-  .brand-text {
-    display: none !important;
+  .navbar-container .brand-text {
+    display: flex;
+    min-width: 0;
+  }
+
+  .navbar-container .brand-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
