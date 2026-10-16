@@ -69,7 +69,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
     }
 
     if (mobileMenuOpen) {
-      mobileDrawerRef.current?.querySelector('.mobile-link')?.focus();
+      mobileDrawerRef.current?.querySelector('.mobile-drawer-close')?.focus();
     } else if (wasOpen) {
       mobileToggleRef.current?.focus();
     }
@@ -285,12 +285,22 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
         }}
       >
         <div className="mobile-drawer-inner">
-          <div className="mobile-brand-row">
-            <img src={logoUrl} alt="NKSKILLEDGE official logo" className="brand-logo-img-mobile" />
-            <div className="brand-text">
-              <span className="brand-name">NKSKILLEDGE Pvt. Ltd.</span>
-              <span className="brand-tagline">Shaping Skills, Building Futures</span>
+          <div className="mobile-drawer-header">
+            <div className="mobile-brand-row">
+              <img src={logoUrl} alt="NKSKILLEDGE official logo" className="brand-logo-img-mobile" />
+              <div className="brand-text">
+                <span className="brand-name">NKSKILLEDGE Pvt. Ltd.</span>
+                <span className="brand-tagline">Shaping Skills, Building Futures</span>
+              </div>
             </div>
+            <button
+              type="button"
+              className="mobile-drawer-close"
+              onClick={navItemClick}
+              aria-label="Close navigation menu"
+            >
+              <X size={24} />
+            </button>
           </div>
 
           <a href="#home" className="mobile-link" onClick={navItemClick}>Home</a>
@@ -386,9 +396,6 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           display: flex;
           align-items: center;
           gap: 12px;
-          padding-bottom: 14px;
-          margin-bottom: 8px;
-          border-bottom: 1px solid rgba(148, 163, 184, 0.18);
         }
         .brand-text {
           display: flex;
@@ -546,25 +553,24 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
         }
         .mobile-drawer {
           position: fixed;
-          top: calc(80px + env(safe-area-inset-top, 0px));
-          right: 0;
-          bottom: 0;
-          width: min(420px, 100vw);
-          max-height: calc(100vh - 80px - env(safe-area-inset-top, 0px));
-          max-height: calc(100dvh - 80px - env(safe-area-inset-top, 0px));
+          inset: 0;
+          width: 100%;
+          height: 100vh;
+          height: 100dvh;
+          max-height: 100vh;
+          max-height: 100dvh;
           background: #102A56;
-          border-left: 1px solid var(--border-subtle);
-          box-shadow: -30px 0 60px rgba(2, 6, 23, 0.3);
+          box-shadow: var(--shadow-lg);
           backdrop-filter: blur(18px);
           -webkit-backdrop-filter: blur(18px);
-          transform: translateX(102%);
+          transform: translateX(100%);
           visibility: hidden;
           transition: transform 0.28s ease, visibility 0s linear 0.28s;
-          z-index: 920;
+          z-index: 1100;
           overflow-y: auto;
           overscroll-behavior: contain;
           -webkit-overflow-scrolling: touch;
-          padding: 24px 20px calc(32px + env(safe-area-inset-bottom, 0px));
+          padding: calc(16px + env(safe-area-inset-top, 0px)) 20px calc(32px + env(safe-area-inset-bottom, 0px));
         }
         .mobile-drawer.is-open {
           transform: translateX(0);
@@ -575,6 +581,19 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           display: flex;
           flex-direction: column;
           gap: 14px;
+          width: 100%;
+          max-width: 680px;
+          min-height: 100%;
+          margin: 0 auto;
+        }
+        .mobile-drawer-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 16px;
+          padding-bottom: 14px;
+          margin-bottom: 8px;
+          border-bottom: 1px solid rgba(148, 163, 184, 0.18);
         }
         .mobile-link {
           font-size: 1.02rem;
@@ -589,6 +608,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
         }
         .mobile-drawer-cta {
           margin-top: 22px;
+          padding-bottom: env(safe-area-inset-bottom, 0px);
         }
         @media (max-width: 1080px) {
           .desktop-nav { display: none; }
@@ -600,16 +620,27 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           .brand-logo-img { height: 44px; width: 44px; }
           .brand-name { font-size: 0.95rem; }
           .brand-tagline { display: none; }
-          .mobile-drawer {
-            top: calc(72px + env(safe-area-inset-top, 0px));
-            max-height: calc(100vh - 72px - env(safe-area-inset-top, 0px));
-            max-height: calc(100dvh - 72px - env(safe-area-inset-top, 0px));
-          }
-          .mobile-menu-backdrop { inset: calc(72px + env(safe-area-inset-top, 0px)) 0 0 0; }
+          .mobile-drawer { padding-right: 16px; padding-left: 16px; }
           .nav-actions { gap: 8px; }
           .nav-icon-btn { width: 36px; height: 36px; }
           .mobile-drawer-inner { gap: 10px; }
           .mobile-link { font-size: 0.98rem; }
+        }
+        .mobile-drawer-close {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          flex: 0 0 44px;
+          width: 44px;
+          height: 44px;
+          border: 1px solid var(--border-light);
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.06);
+          color: var(--text-primary);
+          cursor: pointer;
+        }
+        .mobile-drawer-close:hover {
+          background: rgba(255, 255, 255, 0.12);
         }
         @media (max-width: 380px) {
           .navbar-container { gap: 8px; }
@@ -617,7 +648,6 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           .brand-logo-img { width: 38px; height: 38px; }
           .navbar-container .brand-name { font-size: 0.76rem; }
           .admin-link-btn { display: none; }
-          .mobile-drawer { width: 100%; }
         }
         @media (prefers-reduced-motion: reduce) {
           .mobile-menu-backdrop,
