@@ -5,6 +5,7 @@ const { authenticate, authorize } = require('../middleware/auth');
 const authCtrl = require('../controllers/authController');
 const leadsCtrl = require('../controllers/leadsController');
 const regCtrl = require('../controllers/registrationsController');
+const reservationsCtrl = require('../controllers/reservationsController');
 const internshipDemoCtrl = require('../controllers/internshipDemoController');
 const internCtrl = require('../controllers/internshipsController');
 const careersCtrl = require('../controllers/careersController');
@@ -37,6 +38,12 @@ router.delete('/leads/:id', authenticate, authorize('super_admin'), leadsCtrl.de
 router.post('/registrations', regCtrl.createRegistration);
 router.get('/registrations', authenticate, authorize('super_admin', 'admin', 'training_manager'), regCtrl.getRegistrations);
 router.put('/registrations/:id', authenticate, authorize('super_admin', 'admin', 'training_manager'), regCtrl.updateRegistrationStatus);
+
+// --- Seat Reservations ---
+router.get('/reservations/payment-config', reservationsCtrl.getPaymentConfiguration);
+router.post('/reservations', reservationsCtrl.createReservation);
+router.get('/reservations/:trackingId', reservationsCtrl.getReservationStatus);
+router.patch('/reservations/:trackingId/payment-reference', reservationsCtrl.updatePaymentReference);
 
 // --- Internship Demo Registrations ---
 router.post('/internship-demo/registrations', internshipDemoCtrl.createInternshipDemoRegistration);

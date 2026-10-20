@@ -12,6 +12,7 @@ import Careers from './pages/Careers';
 import VerifyCertificate from './pages/VerifyCertificate';
 import Legal from './pages/Legal';
 import InternshipDemoRegistration from './pages/InternshipDemoRegistration';
+import SeatReservation from './pages/SeatReservation';
 
 import AdminLogin from './admin/AdminLogin';
 import AdminDashboard from './admin/AdminDashboard';
@@ -203,6 +204,14 @@ export default function App() {
   // If in #admin mode
   const isAdminRoute = currentHash.startsWith('#admin');
   const isInternshipDemoRoute = window.location.pathname === '/internship-demo';
+  const isSeatReservationRoute = window.location.pathname === '/reserve-seat';
+  const handlePublicNavigation = (event) => {
+    if (!isSeatReservationRoute) return;
+    const link = event.target.closest('a[href^="#"]');
+    if (link) {
+      window.location.href = `/${link.getAttribute('href')}`;
+    }
+  };
 
   return (
     <div className="app-container">
@@ -213,10 +222,10 @@ export default function App() {
             <a href="#home" className="return-link">← Return to Public Website</a>
           </div>
           {adminUser && adminToken ? (
-            <AdminDashboard 
-              user={adminUser} 
-              token={adminToken} 
-              onLogout={handleAdminLogout} 
+            <AdminDashboard
+              user={adminUser}
+              token={adminToken}
+              onLogout={handleAdminLogout}
               onRefreshData={refreshPublicData}
               themePreference={themePreference}
               onThemeChange={setThemePreference}
@@ -226,8 +235,8 @@ export default function App() {
           )}
         </div>
       ) : (
-        <div className="public-site-wrapper">
-          <Navbar 
+        <div className="public-site-wrapper" onClick={handlePublicNavigation}>
+          <Navbar
             onOpenSearch={() => setSearchOpen(true)}
             onOpenRegister={openRegister}
             siteSettings={siteSettings}
@@ -239,6 +248,8 @@ export default function App() {
           <main id="main-content">
             {isInternshipDemoRoute ? (
               <InternshipDemoRegistration />
+            ) : isSeatReservationRoute ? (
+              <SeatReservation programs={programs} />
             ) : (
               <>
                 <Home
@@ -269,20 +280,20 @@ export default function App() {
             )}
           </main>
 
-          <Footer 
-            siteSettings={siteSettings} 
-            onOpenRegister={openRegister} 
+          <Footer
+            siteSettings={siteSettings}
+            onOpenRegister={openRegister}
             branches={branches}
           />
 
           <WhatsAppFloatingButton phoneNumber={siteSettings?.phones?.[0] || '7498784109'} />
 
-          <GlobalSearchModal 
-            isOpen={searchOpen} 
-            onClose={() => setSearchOpen(false)} 
+          <GlobalSearchModal
+            isOpen={searchOpen}
+            onClose={() => setSearchOpen(false)}
           />
 
-          <RegistrationModal 
+          <RegistrationModal
             isOpen={regModalOpen}
             onClose={() => setRegModalOpen(false)}
             defaultProgram={activeRegProgram}

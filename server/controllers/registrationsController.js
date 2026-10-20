@@ -1,3 +1,4 @@
+const crypto = require('crypto');
 const { Registration } = require('../models');
 const { sendRegistrationConfirmation } = require('../services/emailService');
 const { logAuditAction } = require('../services/auditService');
@@ -6,6 +7,14 @@ function generateRegistrationId() {
   const random = Math.floor(1000 + Math.random() * 9000);
   const year = new Date().getFullYear();
   return `NKSK-TR-${year}-${random}`;
+}
+
+async function generateReservationId() {
+  let reservationId;
+  do {
+    reservationId = `NKSK-RES-${new Date().getFullYear()}-${crypto.randomBytes(6).toString('hex').toUpperCase()}`;
+  } while (await Registration.findOne({ registrationId: reservationId }));
+  return reservationId;
 }
 
 async function createRegistration(req, res) {
@@ -92,8 +101,57 @@ async function updateRegistrationStatus(req, res) {
     }
 
     const updates = {};
-    if (status) updates.status = status;
-    if (paymentStatus) updates.paymentStatus = paymentStatus;
+    if (reg.registrationType === 'SEAT_RESERVATION') {
+      const allowedPaymentStatuses = ['Pending', 'Paid', 'Failed', 'Refunded'];
+      const allowedStatuses = ['Pending', 'Confirmed', 'Cancelled'];
+
+      if (paymentStatus && !allowedPaymentStatuses.includes(paymentStatus)) {
+        return res.status(400).json({ success: false, message: 'Invalid reservation payment status.' });
+      }
+      if (
+        reg.paymentStatus === 'Refunded' ||
+        (reg.paymentStatus === 'Paid' && paymentStatus && paymentStatus !== 'Refunded')
+      ) {
+        return res.status(409).json({ success: false, message: 'This reservation payment can no longer be changed.' });
+      }
+      if (status && !allowedStatuses.includes(status)) {
+        return res.status(400).json({ success: false, message: 'Invalid reservation status.' });
+      }
+      if (status === 'Confirmed' && reg.paymentStatus !== 'Paid' && paymentStatus !== 'Paid') {
+        return res.status(409).json({ success: false, message: 'Verify the reservation payment before confirming the seat.' });
+      }
+      if (paymentStatus === 'Paid') {
+        if (req.body.paymentVerified !== true) {
+          return res.status(400).json({ success: false, message: 'Confirm that this payment was checked against the provider or bank records.' });
+        }
+        if (!reg.transactionId) {
+          return res.status(400).json({ success: false, message: 'A transaction reference is required before verifying payment.' });
+        }
+
+        updates.paymentStatus = 'Paid';
+        updates.registrationId = reg.registrationId || await generateReservationId();
+        updates.status = 'Confirmed';
+        updates.reservationStatus = 'Confirmed';
+        updates.paymentVerifiedAt = new Date().toISOString();
+        updates.paymentVerifiedBy = req.user.name || req.user.email;
+      } else if (paymentStatus) {
+        updates.paymentStatus = paymentStatus;
+        updates.reservationStatus = paymentStatus === 'Refunded'
+          ? 'Refunded'
+          : paymentStatus === 'Failed'
+            ? 'Payment failed'
+            : 'Awaiting payment verification';
+        if (paymentStatus === 'Refunded') updates.status = 'Cancelled';
+      }
+
+      if (status && status !== 'Confirmed') {
+        updates.status = status;
+        if (status === 'Cancelled') updates.reservationStatus = 'Cancelled';
+      }
+    } else {
+      if (status) updates.status = status;
+      if (paymentStatus) updates.paymentStatus = paymentStatus;
+    }
     if (note) {
       const notes = reg.notes || [];
       notes.push({
@@ -105,7 +163,11 @@ async function updateRegistrationStatus(req, res) {
     }
 
     const updated = await Registration.findByIdAndUpdate(id, updates);
-    await logAuditAction(req.user, 'UPDATE_REGISTRATION', 'Registrations', { regId: id, status });
+    await logAuditAction(req.user, 'UPDATE_REGISTRATION', 'Registrations', {
+      regId: id,
+      status: updated.status,
+      paymentStatus: updated.paymentStatus
+    });
 
     return res.json({ success: true, message: 'Registration updated', registration: updated });
   } catch (err) {

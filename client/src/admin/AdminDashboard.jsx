@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { 
-  LayoutDashboard, Users, UserCheck, BookOpen, Laptop, FolderGit2, 
-  Award, MessageSquare, Briefcase, FileText, Settings, ShieldCheck, 
+import {
+  LayoutDashboard, Users, UserCheck, BookOpen, Laptop, FolderGit2,
+  Award, MessageSquare, Briefcase, FileText, Settings, ShieldCheck,
   Activity, Bell, LogOut, CheckCircle, Clock, AlertCircle, Save, Plus, Trash2, Edit,
   Sparkles, MapPin, HelpCircle, Calendar, Megaphone, Target
 } from 'lucide-react';
@@ -287,6 +287,46 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
       }
     } catch (err) {
       console.error(err);
+    }
+  };
+
+  const updateRegPaymentStatus = async (registration, paymentStatus) => {
+    if (paymentStatus === 'Paid') {
+      if (!registration.transactionId) {
+        setSaveMessage('Add a transaction reference before verifying this payment.');
+        return;
+      }
+      const verified = window.confirm(
+        'Have you checked this transaction reference against NKSKILLEDGE bank or provider records? Only verified payments can confirm a seat.'
+      );
+      if (!verified) return;
+    }
+
+    try {
+      const res = await fetch(`/api/registrations/${registration._id}`, {
+        method: 'PUT',
+        headers: authHeader,
+        body: JSON.stringify({
+          paymentStatus,
+          ...(paymentStatus === 'Paid' ? { paymentVerified: true } : {})
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Unable to update the reservation payment status.');
+      }
+      setRegistrations(current => current.map(item => (
+        item._id === registration._id ? data.registration : item
+      )));
+      setSaveMessage(
+        paymentStatus === 'Paid'
+          ? `Payment verified. Reservation ${data.registration.registrationId} is confirmed.`
+          : `Payment status updated to ${paymentStatus}.`
+      );
+      setTimeout(() => setSaveMessage(''), 5000);
+    } catch (err) {
+      console.error('Reservation payment update failed:', err);
+      setSaveMessage(err.message || 'Unable to update the reservation payment status.');
     }
   };
 
@@ -1063,7 +1103,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                             <span className={`status-badge-lead status-${l.status?.toLowerCase()}`}>{l.status}</span>
                           </td>
                           <td>
-                            <a 
+                            <a
                               href={`https://wa.me/91${l.phone}?text=Hello%20${encodeURIComponent(l.fullName)},%20this%20is%20NK%20SkillEdge.`}
                               target="_blank"
                               rel="noreferrer"
@@ -1117,7 +1157,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                         <td>{l.serviceOrCourse}</td>
                         <td><span className="type-badge">{l.userType}</span></td>
                         <td>
-                          <select 
+                          <select
                             className="form-select-sm"
                             value={l.status}
                             onChange={(e) => updateLeadStatus(l._id, e.target.value)}
@@ -1130,7 +1170,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                           </select>
                         </td>
                         <td>
-                          <a 
+                          <a
                             href={`https://wa.me/91${l.phone}?text=Hello%20${encodeURIComponent(l.fullName)},%20thank%20you%20for%20contacting%20NK%20SkillEdge%20regarding%20${encodeURIComponent(l.serviceOrCourse)}.`}
                             target="_blank"
                             rel="noreferrer"
@@ -1151,8 +1191,8 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           {activeTab === 'registrations' && (
             <div className="tab-pane">
               <div className="pane-header">
-                <h2>Training Registrations</h2>
-                <p>Official registration applications with generated IDs (NKSK-TR-XXXX).</p>
+                <h2>Training Registrations &amp; Seat Reservations</h2>
+                <p>Verify reservation payments against bank or provider records before confirming a seat.</p>
               </div>
 
               <div className="table-responsive glass-panel" style={{ padding: '20px' }}>
@@ -1165,12 +1205,14 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                       <th>College & Branch</th>
                       <th>Mode</th>
                       <th>Admission Status</th>
+                      <th>Payment Status</th>
+                      <th>Transaction Reference</th>
                     </tr>
                   </thead>
                   <tbody>
                     {registrations.map((r) => (
                       <tr key={r._id}>
-                        <td><span className="reg-id-pill">{r.registrationId}</span></td>
+                        <td><span className="reg-id-pill">{r.registrationId || 'Payment pending'}</span></td>
                         <td>
                           <strong>{r.fullName}</strong>
                           <div className="sub-email">{r.email} • {r.mobileNumber}</div>
@@ -1182,18 +1224,36 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                         </td>
                         <td>{r.trainingMode}</td>
                         <td>
-                          <select 
+                          <select
                             className="form-select-sm"
                             value={r.status}
                             onChange={(e) => updateRegStatus(r._id, e.target.value)}
                           >
                             <option value="Pending">Pending</option>
-                            <option value="Confirmed">Confirmed</option>
+                            <option value="Confirmed" disabled={r.registrationType === 'SEAT_RESERVATION' && r.paymentStatus !== 'Paid'}>Confirmed</option>
                             <option value="Enrolled">Enrolled</option>
                             <option value="Completed">Completed</option>
                             <option value="Cancelled">Cancelled</option>
                           </select>
                         </td>
+                        <td>
+                          {r.registrationType === 'SEAT_RESERVATION' ? (
+                            <select
+                              className="form-select-sm"
+                              aria-label={`Payment status for ${r.fullName}`}
+                              value={r.paymentStatus || 'Pending'}
+                              onChange={(e) => updateRegPaymentStatus(r, e.target.value)}
+                            >
+                              <option value="Pending">Pending verification</option>
+                              <option value="Paid">Paid (verify)</option>
+                              <option value="Failed">Failed</option>
+                              <option value="Refunded">Refunded</option>
+                            </select>
+                          ) : (
+                            <span>{r.paymentStatus || '—'}</span>
+                          )}
+                        </td>
+                        <td>{r.registrationType === 'SEAT_RESERVATION' ? (r.transactionId || 'Not provided') : '—'}</td>
                       </tr>
                     ))}
                   </tbody>
@@ -1269,10 +1329,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                   <div className="form-row-2">
                     <div className="form-group">
                       <label className="form-label">Students Trained</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         value={statsForm.studentsTrained}
                         onChange={(e) => setStatsForm({ ...statsForm, studentsTrained: e.target.value })}
                         placeholder="e.g. 200+"
@@ -1281,10 +1341,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
                     <div className="form-group">
                       <label className="form-label">Students Placed</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         value={statsForm.studentsPlaced}
                         onChange={(e) => setStatsForm({ ...statsForm, studentsPlaced: e.target.value })}
                         placeholder="e.g. 50+"
@@ -1295,10 +1355,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                   <div className="form-row-2">
                     <div className="form-group">
                       <label className="form-label">Active Projects</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         value={statsForm.activeProjects}
                         onChange={(e) => setStatsForm({ ...statsForm, activeProjects: e.target.value })}
                         placeholder="e.g. 15+"
@@ -1307,10 +1367,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
                     <div className="form-group">
                       <label className="form-label">Happy Clients</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         value={statsForm.happyClients}
                         onChange={(e) => setStatsForm({ ...statsForm, happyClients: e.target.value })}
                         placeholder="e.g. 30+"
@@ -1321,10 +1381,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                   <div className="form-row-2">
                     <div className="form-group">
                       <label className="form-label">Projects Completed</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         value={statsForm.projectsCompleted}
                         onChange={(e) => setStatsForm({ ...statsForm, projectsCompleted: e.target.value })}
                         placeholder="e.g. 50+"
@@ -1333,10 +1393,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
                     <div className="form-group">
                       <label className="form-label">Upcoming Initiatives</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         value={statsForm.upcomingProjects}
                         onChange={(e) => setStatsForm({ ...statsForm, upcomingProjects: e.target.value })}
                         placeholder="e.g. 10+"
@@ -1366,10 +1426,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                   <div className="form-row-2">
                     <div className="form-group">
                       <label className="form-label">Certificate ID *</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         placeholder="e.g. NKSK-2025-WD301"
                         value={newCert.certificateId}
                         onChange={(e) => setNewCert({ ...newCert, certificateId: e.target.value })}
@@ -1377,10 +1437,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                     </div>
                     <div className="form-group">
                       <label className="form-label">Student Full Name *</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         placeholder="e.g. Aditi Sharma"
                         value={newCert.studentName}
                         onChange={(e) => setNewCert({ ...newCert, studentName: e.target.value })}
@@ -1391,19 +1451,19 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                   <div className="form-row-2">
                     <div className="form-group">
                       <label className="form-label">Program Completed *</label>
-                      <input 
-                        type="text" 
-                        required 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        required
+                        className="form-input"
                         value={newCert.course}
                         onChange={(e) => setNewCert({ ...newCert, course: e.target.value })}
                       />
                     </div>
                     <div className="form-group">
                       <label className="form-label">Evaluation Grade</label>
-                      <input 
-                        type="text" 
-                        className="form-input" 
+                      <input
+                        type="text"
+                        className="form-input"
                         value={newCert.grade}
                         onChange={(e) => setNewCert({ ...newCert, grade: e.target.value })}
                       />
@@ -1412,9 +1472,9 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
                   <div className="form-group">
                     <label className="form-label">Capstone Project Title</label>
-                    <input 
-                      type="text" 
-                      className="form-input" 
+                    <input
+                      type="text"
+                      className="form-input"
                       placeholder="e.g. Real-Time Telemetry Node or SaaS Portal"
                       value={newCert.projectTitle}
                       onChange={(e) => setNewCert({ ...newCert, projectTitle: e.target.value })}
@@ -2001,10 +2061,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                 <form onSubmit={handleSaveSettings}>
                   <div className="form-group">
                     <label className="form-label">Official Office Location</label>
-                    <input 
-                      type="text" 
-                      required 
-                      className="form-input" 
+                    <input
+                      type="text"
+                      required
+                      className="form-input"
                       value={siteSettingsForm.office}
                       onChange={(e) => setSiteSettingsForm({ ...siteSettingsForm, office: e.target.value })}
                     />
@@ -2012,10 +2072,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
                   <div className="form-group">
                     <label className="form-label">Official Phone Numbers (Comma Separated)</label>
-                    <input 
-                      type="text" 
-                      required 
-                      className="form-input" 
+                    <input
+                      type="text"
+                      required
+                      className="form-input"
                       value={siteSettingsForm.phones}
                       onChange={(e) => setSiteSettingsForm({ ...siteSettingsForm, phones: e.target.value })}
                     />
@@ -2023,10 +2083,10 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
                   <div className="form-group">
                     <label className="form-label">Official Email</label>
-                    <input 
-                      type="email" 
-                      required 
-                      className="form-input" 
+                    <input
+                      type="email"
+                      required
+                      className="form-input"
                       value={siteSettingsForm.email}
                       onChange={(e) => setSiteSettingsForm({ ...siteSettingsForm, email: e.target.value })}
                     />
@@ -2042,7 +2102,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
 
           {/* CMS TABS */}
           {activeTab === 'hero' && (
-            <HeroAnnouncementCMS 
+            <HeroAnnouncementCMS
               siteSettings={siteSettings}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2052,7 +2112,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'about' && (
-            <AboutCMS 
+            <AboutCMS
               siteSettings={siteSettings}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2062,7 +2122,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'services' && (
-            <ServicesCMS 
+            <ServicesCMS
               services={services}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2072,7 +2132,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'programs' && (
-            <ProgramsCMS 
+            <ProgramsCMS
               programs={programs}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2082,7 +2142,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'projects' && (
-            <ProjectsCMS 
+            <ProjectsCMS
               projects={projects}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2092,7 +2152,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'certifications' && (
-            <CertificationsCMS 
+            <CertificationsCMS
               certifications={certifications}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2102,7 +2162,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'clients' && (
-            <ClientsCMS 
+            <ClientsCMS
               clients={clients}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2112,7 +2172,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'blogs' && (
-            <BlogsCMS 
+            <BlogsCMS
               blogs={blogs}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2122,7 +2182,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'events' && (
-            <EventsCMS 
+            <EventsCMS
               events={events}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2132,7 +2192,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'faqs' && (
-            <FaqsCMS 
+            <FaqsCMS
               faqs={faqs}
               token={token}
               onRefresh={loadAllAdminData}
@@ -2142,7 +2202,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
           )}
 
           {activeTab === 'branches' && (
-            <BranchesCMS 
+            <BranchesCMS
               branches={branches}
               token={token}
               onRefresh={loadAllAdminData}

@@ -190,6 +190,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
             </div>
 
             <a href="#projects" className="nav-link">Projects</a>
+            <a href="/reserve-seat" className="nav-link">Reserve a Seat</a>
 
             <div
               className="nav-item-dropdown"
@@ -311,6 +312,7 @@ export default function Navbar({ onOpenSearch, onOpenRegister, siteSettings }) {
           <a href="#services" className="mobile-link" onClick={navItemClick}>Business Services</a>
           <a href="#programs" className="mobile-link" onClick={navItemClick}>Training Programs</a>
           <a href="#projects" className="mobile-link" onClick={navItemClick}>Featured Projects</a>
+          <a href="/reserve-seat" className="mobile-link" onClick={navItemClick}>Reserve Your Seat</a>
           <a href="#success-stories" className="mobile-link" onClick={navItemClick}>Student Placements</a>
           <a href="#verify" className="mobile-link" onClick={navItemClick}><ShieldCheck size={17} /> Verify Certificate</a>
           <a href="#internships" className="mobile-link" onClick={navItemClick}>Internship Portal</a>
