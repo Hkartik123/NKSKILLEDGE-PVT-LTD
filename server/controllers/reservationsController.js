@@ -71,9 +71,10 @@ async function createReservation(req, res) {
       typeof programName !== 'string' ||
       !programName.trim() ||
       programName.trim().length > 160 ||
-      !['Online', 'Offline'].includes(trainingMode)
+      !['Online', 'Offline'].includes(trainingMode) ||
+      body.whatsappOptIn !== true
     ) {
-      return res.status(400).json({ success: false, message: 'Please check the required fields and mobile number.' });
+      return res.status(400).json({ success: false, message: 'Please check the required fields, mobile number, and WhatsApp consent.' });
     }
 
     const normalizedEmail = typeof email === 'string' ? email.trim() : '';
@@ -118,6 +119,8 @@ async function createReservation(req, res) {
       city: 'Not provided',
       paymentAmount: RESERVATION_AMOUNT,
       transactionId: normalizedTransactionId,
+      whatsappOptIn: true,
+      whatsappOptInAt: new Date().toISOString(),
       paymentStatus: 'Pending',
       reservationStatus: 'Awaiting payment verification',
       status: 'Pending',

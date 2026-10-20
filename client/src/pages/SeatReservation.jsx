@@ -22,7 +22,8 @@ export default function SeatReservation({ programs = [] }) {
     mobileNumber: '',
     email: '',
     programName: '',
-    trainingMode: 'Online'
+    trainingMode: 'Online',
+    whatsappOptIn: false
   });
   const [paymentConfig, setPaymentConfig] = useState(null);
   const [reservation, setReservation] = useState(null);
@@ -328,6 +329,17 @@ export default function SeatReservation({ programs = [] }) {
                     ))}
                   </div>
                 </fieldset>
+
+                <label className="seat-whatsapp-consent seat-field-full">
+                  <input
+                    checked={form.whatsappOptIn}
+                    name="whatsappOptIn"
+                    onChange={event => setForm(current => ({ ...current, whatsappOptIn: event.target.checked }))}
+                    required
+                    type="checkbox"
+                  />
+                  <span>I agree to receive my payment confirmation and reservation welcome message on WhatsApp at the mobile number above.</span>
+                </label>
 
                 <label className="seat-field seat-field-full">
                   <span>UPI transaction reference <small>OPTIONAL UNTIL YOU PAY</small></span>

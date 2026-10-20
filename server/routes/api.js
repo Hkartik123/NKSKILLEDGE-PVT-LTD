@@ -44,6 +44,7 @@ router.get('/reservations/payment-config', reservationsCtrl.getPaymentConfigurat
 router.post('/reservations', reservationsCtrl.createReservation);
 router.get('/reservations/:trackingId', reservationsCtrl.getReservationStatus);
 router.patch('/reservations/:trackingId/payment-reference', reservationsCtrl.updatePaymentReference);
+router.post('/reservations/:id/welcome-message/retry', authenticate, authorize('super_admin', 'admin', 'training_manager'), regCtrl.retryReservationWelcomeMessage);
 
 // --- Internship Demo Registrations ---
 router.post('/internship-demo/registrations', internshipDemoCtrl.createInternshipDemoRegistration);

@@ -1,7 +1,11 @@
 const crypto = require('crypto');
 const { Registration } = require('../models');
 const { sendRegistrationConfirmation } = require('../services/emailService');
-const { logAuditAction } = require('../services/auditService');
+const { logAuditAction, createNotification } = require('../services/auditService');
+const {
+  buildReservationWelcomeMessage,
+  sendReservationWelcomeWhatsApp
+} = require('../services/whatsappService');
 
 function generateRegistrationId() {
   const random = Math.floor(1000 + Math.random() * 9000);
@@ -15,6 +19,48 @@ async function generateReservationId() {
     reservationId = `NKSK-RES-${new Date().getFullYear()}-${crypto.randomBytes(6).toString('hex').toUpperCase()}`;
   } while (await Registration.findOne({ registrationId: reservationId }));
   return reservationId;
+}
+
+async function dispatchReservationWelcome(registrationId) {
+  const registration = await Registration.findById(registrationId);
+  if (!registration || registration.registrationType !== 'SEAT_RESERVATION') {
+    throw new Error('Seat reservation was not found for WhatsApp delivery.');
+  }
+
+  if (registration.whatsappOptIn !== true) {
+    return Registration.findByIdAndUpdate(registrationId, {
+      whatsappWelcomeStatus: 'NOT_OPTED_IN'
+    });
+  }
+
+  const message = buildReservationWelcomeMessage(registration);
+  const result = await sendReservationWelcomeWhatsApp(registration);
+  const updates = {
+    whatsappWelcomeMessage: message,
+    whatsappWelcomeStatus: result.status,
+    whatsappWelcomeAttemptedAt: new Date().toISOString(),
+    whatsappWelcomeErrorCode: result.errorCode || null,
+    ...(result.status === 'ACCEPTED'
+      ? {
+          whatsappWelcomeSentAt: new Date().toISOString(),
+          whatsappWelcomeProviderMessageId: result.providerMessageId
+        }
+      : {})
+  };
+  const updated = await Registration.findByIdAndUpdate(registrationId, updates);
+
+  if (result.status === 'FAILED') {
+    console.error('Reservation welcome message was not accepted by WhatsApp:', result.errorCode || 'UNKNOWN_ERROR');
+  }
+
+  await createNotification(
+    'Seat reservation payment verified',
+    `${registration.fullName}'s payment for ${registration.programName} was verified. WhatsApp welcome message: ${result.status}.`,
+    'registration',
+    '/admin/registrations'
+  );
+
+  return updated;
 }
 
 async function createRegistration(req, res) {
@@ -134,6 +180,7 @@ async function updateRegistrationStatus(req, res) {
         updates.reservationStatus = 'Confirmed';
         updates.paymentVerifiedAt = new Date().toISOString();
         updates.paymentVerifiedBy = req.user.name || req.user.email;
+        updates.whatsappWelcomeStatus = reg.whatsappOptIn === true ? 'SENDING' : 'NOT_OPTED_IN';
       } else if (paymentStatus) {
         updates.paymentStatus = paymentStatus;
         updates.reservationStatus = paymentStatus === 'Refunded'
@@ -162,7 +209,10 @@ async function updateRegistrationStatus(req, res) {
       updates.notes = notes;
     }
 
-    const updated = await Registration.findByIdAndUpdate(id, updates);
+    let updated = await Registration.findByIdAndUpdate(id, updates);
+    if (reg.registrationType === 'SEAT_RESERVATION' && paymentStatus === 'Paid') {
+      updated = await dispatchReservationWelcome(id);
+    }
     await logAuditAction(req.user, 'UPDATE_REGISTRATION', 'Registrations', {
       regId: id,
       status: updated.status,
@@ -175,8 +225,51 @@ async function updateRegistrationStatus(req, res) {
   }
 }
 
+async function retryReservationWelcomeMessage(req, res) {
+  try {
+    const registration = await Registration.findById(req.params.id);
+    if (!registration || registration.registrationType !== 'SEAT_RESERVATION') {
+      return res.status(404).json({ success: false, message: 'Seat reservation not found.' });
+    }
+    if (registration.paymentStatus !== 'Paid') {
+      return res.status(409).json({ success: false, message: 'Verify payment before sending the welcome message.' });
+    }
+    if (registration.whatsappOptIn !== true) {
+      return res.status(409).json({ success: false, message: 'The student has not opted in to WhatsApp messages.' });
+    }
+    if (registration.whatsappWelcomeStatus === 'ACCEPTED') {
+      return res.status(409).json({ success: false, message: 'WhatsApp has already accepted the welcome message.' });
+    }
+    if (registration.whatsappWelcomeStatus === 'SENDING') {
+      return res.status(409).json({ success: false, message: 'The welcome message is already being sent.' });
+    }
+
+    await Registration.findByIdAndUpdate(registration._id, {
+      whatsappWelcomeStatus: 'SENDING',
+      whatsappWelcomeErrorCode: null
+    });
+    const updated = await dispatchReservationWelcome(registration._id);
+    await logAuditAction(req.user, 'RETRY_RESERVATION_WELCOME', 'Registrations', {
+      regId: registration._id,
+      whatsappWelcomeStatus: updated.whatsappWelcomeStatus
+    });
+
+    return res.json({
+      success: true,
+      message: updated.whatsappWelcomeStatus === 'ACCEPTED'
+        ? 'WhatsApp accepted the welcome message.'
+        : 'WhatsApp did not accept the welcome message. Check its status and configuration.',
+      registration: updated
+    });
+  } catch (err) {
+    console.error('Reservation welcome message retry failed:', err);
+    return res.status(500).json({ success: false, message: 'Unable to retry the reservation welcome message.' });
+  }
+}
+
 module.exports = {
   createRegistration,
   getRegistrations,
-  updateRegistrationStatus
+  updateRegistrationStatus,
+  retryReservationWelcomeMessage
 };
