@@ -182,6 +182,23 @@
   gap: 10px;
 }
 
+.seat-whatsapp-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: var(--text-secondary, #aebdd3);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.seat-whatsapp-consent input {
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  margin: 2px 0 0;
+  accent-color: #138cff;
+}
+
 .seat-mode-option {
   display: flex;
   height: 46px;

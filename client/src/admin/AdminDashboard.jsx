@@ -108,6 +108,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [saveMessage, setSaveMessage] = useState('');
+  const [retryingWelcomeId, setRetryingWelcomeId] = useState(null);
 
   // New certificate issuance form state
   const [newCert, setNewCert] = useState({
@@ -320,13 +321,38 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
       )));
       setSaveMessage(
         paymentStatus === 'Paid'
-          ? `Payment verified. Reservation ${data.registration.registrationId} is confirmed.`
+          ? `Payment verified. Reservation ${data.registration.registrationId} is confirmed. WhatsApp welcome: ${data.registration.whatsappWelcomeStatus || 'not sent'}.`
           : `Payment status updated to ${paymentStatus}.`
       );
       setTimeout(() => setSaveMessage(''), 5000);
     } catch (err) {
       console.error('Reservation payment update failed:', err);
       setSaveMessage(err.message || 'Unable to update the reservation payment status.');
+    }
+  };
+
+  const retryReservationWelcome = async (registration) => {
+    if (retryingWelcomeId) return;
+    setRetryingWelcomeId(registration._id);
+    try {
+      const res = await fetch(`/api/reservations/${registration._id}/welcome-message/retry`, {
+        method: 'POST',
+        headers: authHeader
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.message || 'Unable to retry the WhatsApp welcome message.');
+      }
+      setRegistrations(current => current.map(item => (
+        item._id === registration._id ? data.registration : item
+      )));
+      setSaveMessage(data.message);
+      setTimeout(() => setSaveMessage(''), 5000);
+    } catch (err) {
+      console.error('Reservation welcome message retry failed:', err);
+      setSaveMessage(err.message || 'Unable to retry the WhatsApp welcome message.');
+    } finally {
+      setRetryingWelcomeId(null);
     }
   };
 
@@ -1207,6 +1233,7 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                       <th>Admission Status</th>
                       <th>Payment Status</th>
                       <th>Transaction Reference</th>
+                      <th>WhatsApp Welcome</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -1254,6 +1281,45 @@ export default function AdminDashboard({ user, token, onLogout, onRefreshData, t
                           )}
                         </td>
                         <td>{r.registrationType === 'SEAT_RESERVATION' ? (r.transactionId || 'Not provided') : '—'}</td>
+                        <td>
+                          {r.registrationType === 'SEAT_RESERVATION' ? (
+                            <div>
+                              <span>
+                                {r.whatsappWelcomeStatus === 'ACCEPTED'
+                                  ? 'Accepted by WhatsApp'
+                                  : r.whatsappWelcomeStatus === 'SENDING'
+                                    ? 'Sending…'
+                                    : r.whatsappWelcomeStatus === 'NOT_CONFIGURED'
+                                      ? 'Not configured'
+                                      : r.whatsappWelcomeStatus === 'NOT_OPTED_IN'
+                                        ? 'No WhatsApp consent'
+                                        : r.whatsappWelcomeStatus === 'FAILED'
+                                          ? `Failed${r.whatsappWelcomeErrorCode ? ` (${r.whatsappWelcomeErrorCode})` : ''}`
+                                          : 'Not sent'}
+                              </span>
+                              {r.whatsappWelcomeMessage && (
+                                <details>
+                                  <summary>View message</summary>
+                                  <small>{r.whatsappWelcomeMessage}</small>
+                                </details>
+                              )}
+                              {r.whatsappWelcomeStatus && r.whatsappWelcomeStatus !== 'ACCEPTED' &&
+                                r.whatsappWelcomeStatus !== 'SENDING' &&
+                                r.whatsappWelcomeStatus !== 'NOT_OPTED_IN' &&
+                                r.paymentStatus === 'Paid' && r.whatsappOptIn === true && (
+                                  <button
+                                    className="btn btn-sm"
+                                    disabled={retryingWelcomeId === r._id}
+                                    onClick={() => retryReservationWelcome(r)}
+                                    style={{ display: 'block', marginTop: '6px' }}
+                                    type="button"
+                                  >
+                                    {retryingWelcomeId === r._id ? 'Retrying…' : 'Retry'}
+                                  </button>
+                                )}
+                            </div>
+                          ) : '—'}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
